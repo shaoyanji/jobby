@@ -1,7 +1,7 @@
 version: '3'
 
 vars:
-  GREETING: Hello, World!
+  GREETING: Hello! This is a taskfile command. please run go-task <command> to run or jobby if you want a gum UI menu.
   TEMP_DIR: ./tmp
   OUTPUT_DIR: ./output
   TEMPLATE_DIR: ./src
@@ -13,6 +13,7 @@ vars:
   CSS_FILE: ./src/resume-stylesheet.css
   BIN: ./src/bin
   SHRINK_PDF: ./src/bin/shrinkpdf.sh
+  FILE_SIZE: stat -c%s
 menu:
   ui:
     - generateletter
@@ -26,22 +27,28 @@ tasks:
   generateletter:
     cmds:
       - echo "Generating letter"
+      - mkdir -p {{.TEMP_DIR}}
       - (cat {{.HEADER_LETTER_YAML}} {{.LETTER_MD}}) > {{.TEMP_DIR}}/letter.md
-      - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
       - echo "Converting Markdown to PDF"
+      - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
+      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/letter.pdf) bytes"
+      - mkdir -p {{.OUTPUT_DIR}}
       - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.TEMP_DIR}}/letter.pdf
-      - echo "Compressing PDF..."
       - pdfcpu optimize {{.OUTPUT_DIR}}/letter.pdf
-      - echo "Cover Letter Generated"
+      - echo "Cover Letter Generated at {{.OUTPUT_DIR}}/letter.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/letter.pdf) bytes"
     silent: true
   generatecv:
     cmds:
       - echo "Generating CV"
+      - mkdir -p {{.TEMP_DIR}}
       - (cat {{.HEADER_RESUME_YAML}} {{.RESUME_MD}}) > {{.TEMP_DIR}}/resume.md
+      - echo "Converting Markdown to PDF"
       - pandoc {{.TEMP_DIR}}/resume.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume.pdf
+      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/resume.pdf) bytes"
+      - mkdir -p {{.OUTPUT_DIR}}
       - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume.pdf > {{.OUTPUT_DIR}}/resume.pdf
       - pdfcpu optimize {{.OUTPUT_DIR}}/resume.pdf
-      - echo "CV Generated"
+      - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
     silent: true
   clean:
     cmds:
