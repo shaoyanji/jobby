@@ -1,0 +1,48 @@
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  TEMP_DIR: ./tmp
+  OUTPUT_DIR: ./output
+  TEMPLATE_DIR: ./src
+  TEMPLATE_LATEX: ./src/letter.latex
+  HEADER_LETTER_YAML: ./src/letter.yaml
+  LETTER_MD: ./src/letter.md
+  HEADER_RESUME_YAML: ./src/resume.yaml
+  RESUME_MD: ./src/resume.md
+  CSS_FILE: ./src/resume-stylesheet.css
+  BIN: ./src/bin
+  SHRINK_PDF: ./src/bin/shrinkpdf.sh
+menu:
+  ui:
+    - generateletter
+    - generatecv
+    - clean
+tasks:
+  default:
+    cmds: 
+      - echo "{{.GREETING}}"
+    silent: true
+  generateletter:
+    cmds:
+      - echo "Generating letter"
+      - (cat {{.HEADER_LETTER_YAML}} {{.LETTER_MD}}) > {{.TEMP_DIR}}/letter.md
+      - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
+      - echo "Converting Markdown to PDF"
+      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.TEMP_DIR}}/letter.pdf
+      - echo "Compressing PDF..."
+      - pdfcpu optimize {{.OUTPUT_DIR}}/letter.pdf
+      - echo "Cover Letter Generated"
+    silent: true
+  generatecv:
+    cmds:
+      - echo "Generating CV"
+      - (cat {{.HEADER_RESUME_YAML}} {{.RESUME_MD}}) > {{.TEMP_DIR}}/resume.md
+      - pandoc {{.TEMP_DIR}}/resume.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume.pdf
+      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume.pdf > {{.OUTPUT_DIR}}/resume.pdf
+      - pdfcpu optimize {{.OUTPUT_DIR}}/resume.pdf
+      - echo "CV Generated"
+    silent: true
+  clean:
+    cmds:
+      - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
