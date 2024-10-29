@@ -1,7 +1,6 @@
 version: '3'
 
 vars:
-  GREETING: Hello! This is a taskfile command. please run go-task <command> to run or jobby if you want a gum UI menu.
   TEMP_DIR: ./tmp
   OUTPUT_DIR: ./output
   TEMPLATE_DIR: ./src
@@ -10,7 +9,7 @@ vars:
   HEADER_LETTER_YAML: ./tmp/letter.yaml
   LETTER_MD: ./src/letter.md
   ENC_HEADER_RESUME_YAML: ./src/resume.enc.yaml
-  HEADER_RESUME_YAML: ./src/resume.yaml
+  HEADER_RESUME_YAML: ./tmp/resume.yaml
   RESUME_MD: ./src/resume.md
   CSS_FILE: ./src/resume-stylesheet.css
   BIN: ./src/bin
@@ -20,13 +19,20 @@ menu:
   ui:
     - generateletter
     - generatecv
+    - edit
     - clean
     - git-clean-push
+    - exit
+  edit:
+    - back-to-task 
+    - edit-letter
+    - edit-resume
+    - edit-secrets
     - exit
 tasks:
   default:
     cmds: 
-      - task $(cat Taskfile.yml | yq .menu.[].[] | gum choose)
+      - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
     silent: true
   generateletter:
     cmds:
@@ -51,9 +57,9 @@ tasks:
       - echo "Generating CV"
       - mkdir -p {{.TEMP_DIR}}
       - echo "Decrypting secrets"
-      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.TEMP_DIR}}/{{.HEADER_RESUME_YAML}}
+      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.HEADER_RESUME_YAML}}
       - echo "---" > {{.TEMP_DIR}}/resume.md
-      - cat {{.TEMP_DIR}}/{{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume.md
+      - cat {{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume.md
       - echo "---" >> {{.TEMP_DIR}}/resume.md
       - cat {{.RESUME_MD}} >> {{.TEMP_DIR}}/resume.md
       - echo "Converting Markdown to PDF"
@@ -77,6 +83,25 @@ tasks:
         cmd: ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/{{.ITEM}}  {{.OUTPUT_DIR}}/{{.ITEM}}
         # cmd: pdfcpu optimize '{{.OUTPUT_DIR}}/{{.ITEM}}'
       - echo "Assets Compressed at {{.OUTPUT_DIR}}/src/assets"
+    silent: true
+  back-to-task:
+    cmds:
+      - task
+  edit:
+    cmds:
+      - task $(cat Taskfile.yml | yq .menu.edit.[] | gum choose)
+  edit-letter:
+    cmds:
+      - $EDITOR {{.LETTER_MD}}
+    silent: true
+  edit-resume:
+    cmds:
+      - $EDITOR {{.RESUME_MD}}
+    silent: true
+  edit-secrets:
+    cmds:
+      - sops edit {{.ENC_HEADER_LETTER_YAML}}
+      - sops edit {{.ENC_HEADER_RESUME_YAML}}
     silent: true
   clean:
     cmds:
