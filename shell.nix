@@ -28,11 +28,12 @@
     #yq
     go-task
     yq-go
+# secrets management
+    sops
   ];
   GREETING = "Hello, Nix!";
    shellHook = ''
    echo $GREETING | cowsay | lolcat
    eval "$(task --completion bash)"
-   go-task $(cat Taskfile.yml | yq .menu.[].[] | gum choose)
   '';
 }

@@ -1,0 +1,55 @@
+backaddress: ENC[AES256_GCM,data:hpK4D9JGJ6DZWuRhhDGvUmKXKT7TPZ0m2fIbvfPbn5+bnEev23uTEeHcSHT2mr2vLjBKYQ==,iv:J7Ny6QbvLPeKz5UnLECcn3TgRqtXOjV9yn90FjVVR0Q=,tag:ZLFuaIULR1OBHyC/Gz8B+A==,type:str]
+fromname: ENC[AES256_GCM,data:Y+SI4PCQR2QXXw==,iv:PBlzxElFsAH0YAEUuBOL3x1oRTO0BjS5T1xtDayI7Lw=,tag:upJIr8I64C+6OQNKzTdgSw==,type:str]
+place: ENC[AES256_GCM,data:KyIF4dMU6byDNw55Mc7TCITv,iv:TcDmpBx16qM6zTFCUsQgKGT4knHrqIZmSZ77VJBNNaA=,tag:80G2TPxOTB0tULvnAzjXkg==,type:str]
+fromaddress: ENC[AES256_GCM,data:QHCtBlQxtha5l72goCHUtcYYCzHlU8jcZjIxB633/vdjm0hYl+iAKA==,iv:y8jAK707CDP6RkKs09Z3pbMI5f8EnUixYh1HH+Fsans=,tag:yJYKGi9VDzEZtTMapDzC3Q==,type:str]
+to: ENC[AES256_GCM,data:LM522eknTw/09msvk+PC38BL9MMvH+btE6XWmklpyUC+PQRvn9aLMXjcqg1S7v3sLfuMvfbOeVPGQc2mocs=,iv:WUCt2aXa6RUNTmwc3INZsRbcT/V5OmHtNrHKfORWCE0=,tag:5PIdTtVlk5I+2G21wpeLeA==,type:str]
+date: ENC[AES256_GCM,data:+35UwR8GcQX6jw==,iv:gLeJ/QQByI6aUn0HiPfoc0TIukmY1imT74xTm0DwhGM=,tag:oi/uy5lKXDuxYUN6NKNU5A==,type:str]
+subject: ENC[AES256_GCM,data:iynYPgGde3jx8KKtU/rfRg5urN0E853mDm2Nt2a4d21ClQIwEH4ZEG3Wnmsc8qPE6Dub4kI=,iv:dTLoXsrUc8EJbEjG17m4xahVhTXeVxeLhnzjoFlGif8=,tag:VP37tApBmL71aF2lyKOcmg==,type:str]
+signature: ENC[AES256_GCM,data:89m3AiWafR1NQA==,iv:E1OfjloX4GrSlvBIcNEErIpIEOEelNrQ/m/0HX9vk84=,tag:n4GxnHyUIdLvePflpAIOQw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1tsv2lurpjzyx9ng6hcc4dff23lvv7tqkyyxz5zlpx32egu2c9vfql9m008
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4a1lzMlp5NnNEUUVWcTZs
+            T2RsR3FBbWRVek1Zc2cvVnhWZTBKZWRGVURrClhZQk5XblZ6VXhHK2xkSlpRVGMw
+            VmZ5VmI5UituTVBmOXlTbXpoN2VuK2sKLS0tIE44a3NFMVZPNjg4TGdKVERuTzE4
+            QmxDY2hJNWovUVAzbDQvSHpScXFvZWMKZftSueGOPUVyPyWd/uulOi79e1dI7GUz
+            yrIndsaLICpejg2OG7qnhNgCYf333YOa8jGk1nja5RKHvLxOpjvFEA==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1ywan3hwg4v306e3gk4sjzfvjfxru432kgr3xlmwu77nkhgsjmfuqr7lktd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlSm5SbUFqK011elltMWxi
+            YktaeW1lRmRXZUoyWTV2Wndvd21vdTA5dFVZCnhVc2FXYVhYVEFvVDMrM3paNWd0
+            Vkc5eDhseWhoNzRrOUtnbVlpdjVxeGcKLS0tIHZMMjMzZys3SVk0dHgwSkkraWs3
+            OEVHYStBNlZZVjdTRjI0TFZTTEEwVXMKqlQWKWCxoyseL+uFxLBqcrFtGU3wgtRp
+            dgZPXjyZiMtBzPrdT0JythItnCPMfLEMzxdVCYFhFCEaXzLgkXiJpA==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age15ptau7jyv6kcwz39vcfzxpw95p97l5r7uywkcl5g83gqxuhh7q4saggagy
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxM0RidzQyN1JNdkNZYXdM
+            TU1XajlUcTRxc0RmNGNzSnZzQWo1UDROVGhNCnUvMWJoZjk3d1haV3hrM1VtWXdC
+            V3FjK3lZZUllY1l1ZUM2SjdmS0p6eXMKLS0tIGpCN0M4QmxOVDBha1lmNGZUSHlL
+            bEtlTWl4QWpoU2g2UTRENk1rTUkvdlUK3D4PqxiUD/QtoIOF9VkBTR2uIqhHmfh4
+            8OVCjpY5lAFhYScYjWjyXLtmgI1DPFWMvBBiCj7km7U6bbr3FthZZg==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age1ezs5s0mx7pcmv0cq6lhvxqtrgx9shrenpxuqyny3m52rg4a6vuxq9ucd7c
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArVFNwNDE0dnNmcXZ5MVV0
+            UnRuelNZZHJXYktwd0VRdlREOGhjbndIYkdJCkw2cUE4Q3FKZEUwOERXL3ZxbVha
+            NUc3QlluN2xtdDhML3poZVFJSVZrVzgKLS0tIHVsUEZ3SmgzcDRIUjkzbmNrMGxL
+            TWJRcmt3V3MwUlhWRFF2eWg1b0ttbGMKr/19S+TbpVJAB/eODxCTPNnYDwSjus+L
+            7YSDI4SS+bkCSp2ibLC2OxuC7oy+GntjD9ohLOI7xYvuPZCZRaDIug==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-10-29T08:02:38Z"
+    mac: ENC[AES256_GCM,data:yhnM3lWHkt6H86TRl+/WWcsgn7K0e+01xuohl4qRdn1PQdrltnBnZL1OY+Jpf4eFLBlpFo3sv3M4CurhHTHN2tgIAfi4a5IkhSLlaSxJ8TqKTWEQ5A+Fn7EEiVohCfIFGhX7U2LKrbI6ZELtmaD6XeXKBj+7pSK8/gAkJ6OJzzc=,iv:3WYGA0vQCQ36z13t6XYPwaQMgWsDfg7yxZG/BlL1IPY=,tag:I8nuYm2wQU7So3VCYlqGvg==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.9.1

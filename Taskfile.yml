@@ -6,7 +6,8 @@ vars:
   OUTPUT_DIR: ./output
   TEMPLATE_DIR: ./src
   TEMPLATE_LATEX: ./src/letter.latex
-  HEADER_LETTER_YAML: ./src/letter.yaml
+  ENC_HEADER_LETTER_YAML: ./src/letter.enc.yaml
+  HEADER_LETTER_YAML: ./tmp/letter.yaml
   LETTER_MD: ./src/letter.md
   HEADER_RESUME_YAML: ./src/resume.yaml
   RESUME_MD: ./src/resume.md
@@ -19,16 +20,22 @@ menu:
     - generateletter
     - generatecv
     - clean
+    - exit
 tasks:
   default:
     cmds: 
-      - echo "{{.GREETING}}"
+      - task $(cat Taskfile.yml | yq .menu.[].[] | gum choose)
     silent: true
   generateletter:
     cmds:
       - echo "Generating letter"
       - mkdir -p {{.TEMP_DIR}}
-      - (cat {{.HEADER_LETTER_YAML}} {{.LETTER_MD}}) > {{.TEMP_DIR}}/letter.md
+      - echo "Decrypting secrets"
+      - sops -d {{.ENC_HEADER_LETTER_YAML}} > {{.HEADER_LETTER_YAML}}
+      - echo "---" > {{.TEMP_DIR}}/letter.md
+      - cat {{.HEADER_LETTER_YAML}} >> {{.TEMP_DIR}}/letter.md
+      - echo "..." >> {{.TEMP_DIR}}/letter.md
+      - cat {{.LETTER_MD}} >> {{.TEMP_DIR}}/letter.md
       - echo "Converting Markdown to PDF"
       - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
       - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/letter.pdf) bytes"
@@ -53,3 +60,6 @@ tasks:
   clean:
     cmds:
       - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
+  exit:
+    cmds:
+      - exit
