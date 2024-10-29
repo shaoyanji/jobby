@@ -9,6 +9,7 @@ vars:
   ENC_HEADER_LETTER_YAML: ./src/letter.enc.yaml
   HEADER_LETTER_YAML: ./tmp/letter.yaml
   LETTER_MD: ./src/letter.md
+  ENC_HEADER_RESUME_YAML: ./src/resume.enc.yaml
   HEADER_RESUME_YAML: ./src/resume.yaml
   RESUME_MD: ./src/resume.md
   CSS_FILE: ./src/resume-stylesheet.css
@@ -20,6 +21,7 @@ menu:
     - generateletter
     - generatecv
     - clean
+    - git-clean-push
     - exit
 tasks:
   default:
@@ -48,7 +50,12 @@ tasks:
     cmds:
       - echo "Generating CV"
       - mkdir -p {{.TEMP_DIR}}
-      - (cat {{.HEADER_RESUME_YAML}} {{.RESUME_MD}}) > {{.TEMP_DIR}}/resume.md
+      - echo "Decrypting secrets"
+      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.TEMP_DIR}}/{{.HEADER_RESUME_YAML}}
+      - echo "---" > {{.TEMP_DIR}}/resume.md
+      - cat {{.TEMP_DIR}}/{{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume.md
+      - echo "---" >> {{.TEMP_DIR}}/resume.md
+      - cat {{.RESUME_MD}} >> {{.TEMP_DIR}}/resume.md
       - echo "Converting Markdown to PDF"
       - pandoc {{.TEMP_DIR}}/resume.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume.pdf
       - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/resume.pdf) bytes"
@@ -57,9 +64,29 @@ tasks:
       - pdfcpu optimize {{.OUTPUT_DIR}}/resume.pdf
       - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
     silent: true
+  compress-assets:
+    vars:
+      PDF_NAME:
+        sh: find src -type f -name '*.pdf'
+    cmds:
+      - echo "Compressing assets"
+      - mkdir -p {{.OUTPUT_DIR}}/src/assets
+      - mkdir -p {{.TEMP_DIR}}/src/assets
+      - cp -r src/assets/* {{.TEMP_DIR}}/src/assets
+      - for: { var: PDF_NAME }
+        cmd: ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/{{.ITEM}}  {{.OUTPUT_DIR}}/{{.ITEM}}
+        # cmd: pdfcpu optimize '{{.OUTPUT_DIR}}/{{.ITEM}}'
+      - echo "Assets Compressed at {{.OUTPUT_DIR}}/src/assets"
+    silent: true
   clean:
     cmds:
       - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
+  git-clean-push:
+    cmds:
+      - git clean -fdx
+      - git add .
+      - 'git commit -m "chore: cleaning repo"'
+      - sudo git push
   exit:
     cmds:
       - exit

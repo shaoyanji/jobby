@@ -1,31 +1,32 @@
 # jobby
-A resume generator composed of many different tools mostly written in go and bash and nested in a dependency package in a shell.nix file to respect your disk space.
+A composable framework for job applications.
 
-The philosophy behind this project is that many AI models are out there which have a lot of ultra generalized knowledge. They *can* get the job but technically they are not legally yet. But if we adopt a framework where current job seekers are like a surrogate, then things get interesting.
+## Motivation
 
-The Problem: for an average job seeker who is trained to use MS Word to house their jpg mugshot and export to pdf is just going to bloat the hard drive relatively quickly. I have been guilty of not deleting these files because they are the unique key access data to my career arch despite them taking gigs of storage. Additionally, using these cloud services for storage in your "career" search is not very secure and not only exposes you but might signal to potential employers your lackadaisical attitude at handling secrets.
+The philosophy behind this project is that you can control and customize your job application using the latest disruptive tools of AI without being a surrogate.
 
-The Solution: A software that is composed of many open-source projects that employs the full potential of devops and LLMs. All the while being a little more sophisticated than copy and pasta from ChatGPT while being endlessly personalized and customizable. The current dinosaur model of a job application consists of: a CV, a cover letter, and minified media for distribution while keeping source files (your high quality assets) secure and private-ish or at your discretion. Plus, if you organize your notes and this framework correctly with Nix, it will give off the right professional vibe.
+The Problem: for an average job seeker who is trained to use MS Word to house their jpg mugshot and export to pdf is just going to bloat hard drive relatively quickly. Furthermore, discarding everything just to send, send, send doesn't provide you a history of a progressive career arc. While it is trivial to add a sqlite database and call it a day, you need a sensible way to access the data without querying while safely and securely managing private and sensitive information with a secrets management.
 
-Unfortunately, yaml is written for task management but it strikes a good middle ground between readability and greppability (queryable). Lucky for you, I am writing the yaml translated into a gum UI so you dont have to remember the bash commands.
+The Solution: use a yaml file to define your job application. yaml is used a lot in devops and it's a stringifiable query language while being human readable.
+
+Unlike other tools that are more effective at probably getting you a job (Auto_Jobs_Applier_AIHawk)[https://github.com/feder-cr/Auto_Jobs_Applier_AIHawk]. I am just simply practicing my yaml so I don't have to remember bash commands. While at the same time searching for a job and improving my CV using tools that a dependencies-managed in the framework of CLI compos-ability.
 
 ## Usage
-
-### Installation
-- clone the repo, set it to private and relax the .gitignore
-- run nix-shell
 
 ### Requirements
 - nix
 - git
 
-alternatively, I can provide a docker image at some point. but for now, i encourage a smarter way to deploy software
+### Installation
+- clone the repo, set it to private and the .gitignore to your preferences
+- run `nix-shell` to enter a nix shell
+- run 'task' for a list of menu options
 
 ### Commands
 - task generateletter
 - task generatecv
 - task clean
-
+- exit
 
 ## Dependencies
 - shrinkpdf.sh is a script to shrink pdf files to a given size. source: https://github.com/andreas-abel/shrinkpdf 
@@ -35,4 +36,5 @@ alternatively, I can provide a docker image at some point. but for now, i encour
 - pandoc
 - wkhtmltopdf
 - texlive.combined.scheme-small
+- sops (for secrets management)
 
