@@ -3,3 +3,6 @@
 output/*
 tmp/*
 src/assets/*
+src/letter.md
+src/tgpt.txt
+

@@ -17,8 +17,11 @@ vars:
   FILE_SIZE: stat -c%s
 menu:
   ui:
+    - pbpaste-tgpt
+    - pbpaste-letter
     - generateletter
     - generatecv
+    - compress-assets
     - edit
     - clean
     - git-clean-push
@@ -27,13 +30,24 @@ menu:
     - back-to-task 
     - edit-letter
     - edit-resume
-    - edit-secrets
+    - edit-letter-secrets
+    - edit-resume-secrets
     - exit
 tasks:
   default:
     cmds: 
       - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
     silent: true
+  pbpaste-tgpt:
+    cmds:
+      - nvim src/tgpt.txt
+      - cat src/tgpt.txt | tgpt 
+  pbpaste-letter:
+    cmds:
+      - pbpaste > {{.LETTER_MD}}
+      - task edit-letter
+      - task edit-letter-secrets
+      - task generateletter
   generateletter:
     cmds:
       - echo "Generating letter"
@@ -48,7 +62,7 @@ tasks:
       - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
       - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/letter.pdf) bytes"
       - mkdir -p {{.OUTPUT_DIR}}
-      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.TEMP_DIR}}/letter.pdf
+      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.OUTPUT_DIR}}/letter.pdf
       - pdfcpu optimize {{.OUTPUT_DIR}}/letter.pdf
       - echo "Cover Letter Generated at {{.OUTPUT_DIR}}/letter.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/letter.pdf) bytes"
     silent: true
@@ -71,19 +85,28 @@ tasks:
       - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
     silent: true
   compress-assets:
-    vars:
-      PDF_NAME:
-        sh: find src -type f -name '*.pdf'
     cmds:
       - echo "Compressing assets"
       - mkdir -p {{.OUTPUT_DIR}}/src/assets
       - mkdir -p {{.TEMP_DIR}}/src/assets
       - cp -r src/assets/* {{.TEMP_DIR}}/src/assets
+      - task compress-pdf
+      - task optimize-pdf
+      - echo "Assets Compressed at {{.OUTPUT_DIR}}/src/assets"
+  compress-pdf:
+    vars:
+      PDF_NAME:
+        sh: find src -type f -name '*.pdf'
+    cmds:
       - for: { var: PDF_NAME }
         cmd: ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/{{.ITEM}}  {{.OUTPUT_DIR}}/{{.ITEM}}
-        # cmd: pdfcpu optimize '{{.OUTPUT_DIR}}/{{.ITEM}}'
-      - echo "Assets Compressed at {{.OUTPUT_DIR}}/src/assets"
-    silent: true
+  optimize-pdf:
+    vars:
+      PDF_NAME:
+        sh: find src -type f -name '*.pdf'
+    cmds:
+      - for: { var: PDF_NAME }
+        cmd: pdfcpu optimize '{{.OUTPUT_DIR}}/{{.ITEM}}'
   back-to-task:
     cmds:
       - task
@@ -98,9 +121,12 @@ tasks:
     cmds:
       - $EDITOR {{.RESUME_MD}}
     silent: true
-  edit-secrets:
+  edit-letter-secrets:
     cmds:
       - sops edit {{.ENC_HEADER_LETTER_YAML}}
+    silent: true
+  edit-resume-secrets:
+    cmds:
       - sops edit {{.ENC_HEADER_RESUME_YAML}}
     silent: true
   clean:
