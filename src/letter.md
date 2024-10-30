@@ -1,42 +1,44 @@
-Dear Hiring Manager,
+Sehr geehrte Damen und Herren,
 
-I am writing to express my strong interest in the RevOps position at Shiftmove.
- With over five years of experience in consulting and management roles, I
- believe my skills and background make me an ideal candidate for this position
-.
+Ich bin begeistert von der Möglichkeit, mich für die Position als Growth Manager
+ bei Viessmann zu bewerben. Mit über vier Jahren Erfahrung im Asset Management
+ und Risk Management sowie einer solide finanziellen Grundlage und Programmierf
+ähigkeiten zur Automatisierung bin ich überzeugt, dass ich einen wertvollen
+ Beitrag zum Erfolg des Unternehmens leisten kann.
 
-Throughout my career, I have developed expertise in process optimization, data
- management, and team collaboration – all key aspects of the RevOps role you've
- described. My experience includes:
+Mein beruflicher Werdegang ist geprägt durch:
 
-• Implementing operational improvements that increased efficiency by 30% in a
- previous consulting engagement
-• Managing cross-functional teams to streamline processes and enhance data
- accuracy
-• Developing comprehensive documentation for complex business operations
-• Analyzing and presenting insights from data-driven reports to executive
- stakeholders
+- 4 Jahre Erfahrung als Asset Manager und Risk Manager
+- Solides Finance-Bildungsprofil mit Fokus auf Finanzmodellierung und Risikoman
+agement
+- Programmierkenntnisse zur Unterstützung von Automatisierungsprojekten
 
-My proficiency in Salesforce, coupled with my strong analytical and
- communication skills, would enable me to effectively support your GTM Reps and
- contribute to the administration and optimization of core tools such as
- Salesforce, Gong, Demodesk, and Talkdesk.
+Diese Kombination aus finanzieller Expertise und technischen Fähigkeiten ermög
+licht es mir, komplexe Geschäftsprozesse effizient zu analysieren und zu optim
+ieren.
 
-As a proactive and motivated professional, I thrive in fast-paced environments
- and am eager to apply my skills to drive operational excellence at Shiftmove.
- My experience working with B2B SaaS companies has provided me with valuable
- insights into the challenges and opportunities in the industry, which I
- believe would beneficial in optimizing revenue generation and overall
- profitability.
+Als erfahrener Growth Manager bringe ich folgende Kernkompetenz und Stärken mit
+:
 
-I am particularly drawn to Shiftmove's commitment to sustainable growth,
- employee development, and work-life balance. The opportunity to work remotely
- and participate in workation programs aligns perfectly with my desire for
- flexibility and international experiences.
+- Zusammenarbeit mit Product Owners bei der Ideengenerierung und -definition
+- Identifikation neuer Wertschöpfungsströme und Unterstützung beim Übergang zu
+ wiederkehrenden Einnahmen
+- Design und Launch von datengesteuerten Geschäftsinitiativen
+- Vereinfachung komplexer Marktanalysen zu klaren, handlungsleitenden KPIs
+- Umsetzung strategischer Maßnahmen zur Steigerung des Umsatzwachstums und der
+ Profitabilität
+- Durchführung umfassender Markt- und Konkurrenzanalysen zur Lenkung strateg
+ischer Geschäftsentscheidungen
+- Entwicklung skalierbarer Geschäftsmodelle und -dienste für verschiedene Märkte
 
-Thank you for considering my application. I look forward to the possibility of
- discussing how my skills and experience can contribute to Shiftmove's
- continued success.
+- Unterstützung internationaler Markteintritte und -rollouts
 
-Sincerely,
-Matt Ji
+Ich bin motiviert, meine Erfahrungen und Fähigkeiten bei Viessmann einzubringen
+ und zum Erfolg des Unternehmens beizutragen. Meine analytischen Fähigkeiten,
+ mein Verständnis für neue Märkte und Trends sowie meine Kommunikationsgeschick
+ machen mich zu einem idealen Kandidaten für diese Position.
+
+Ich freue mich darauf, Ihre Bewerbungsunterlagen zu erhalten und zu erfahren,
+ wie ich Ihnen bei der Gestaltung Ihres Unternehmens beitragen kann.
+
+Mit freundlichen Grüßen,

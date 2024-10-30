@@ -17,7 +17,7 @@ vars:
   FILE_SIZE: stat -c%s
 menu:
   ui:
-    - pbpaste-tgpt
+    - tgpt
     - pbpaste-letter
     - generateletter
     - generatecv
@@ -38,9 +38,9 @@ tasks:
     cmds: 
       - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
     silent: true
-  pbpaste-tgpt:
+  tgpt:
     cmds:
-      - nvim src/tgpt.txt
+      - $EDITOR src/tgpt.txt
       - cat src/tgpt.txt | tgpt 
   pbpaste-letter:
     cmds:
