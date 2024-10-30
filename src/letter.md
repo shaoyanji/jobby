@@ -1,44 +1,30 @@
-Sehr geehrte Damen und Herren,
+Sehr geehrter Bewerbungsempfänger,
 
-Ich bin begeistert von der Möglichkeit, mich für die Position als Growth Manager
- bei Viessmann zu bewerben. Mit über vier Jahren Erfahrung im Asset Management
- und Risk Management sowie einer solide finanziellen Grundlage und Programmierf
-ähigkeiten zur Automatisierung bin ich überzeugt, dass ich einen wertvollen
- Beitrag zum Erfolg des Unternehmens leisten kann.
+ich bin sehr interessiert an der Stellenausschreibung als Business Developer/Key Account Manager Solar
+ bei TotalEnergies. Mit meiner Erfahrung als Asset Manager für einen Solarenergieentwickler in den USA
+ und meinem technischen Hintergrund bin ich überzeugt, dass ich die Anforderungen für diese Position er
+füllen kann.
 
-Mein beruflicher Werdegang ist geprägt durch:
+Mein Profil:
 
-- 4 Jahre Erfahrung als Asset Manager und Risk Manager
-- Solides Finance-Bildungsprofil mit Fokus auf Finanzmodellierung und Risikoman
-agement
-- Programmierkenntnisse zur Unterstützung von Automatisierungsprojekten
+• Abschluss in Petroleum Engineering und Master in Renewables
+• 3 Jahre Erfahrung im Business Development im B2B-ereich, speziell in der Solaren Energiebranche
+• Erfahrung im Key Account Management, Ausschreibungsprozessen und komplexen Angebotskalulationen
+• Ausgeprägte Fähigkeiten in Excel und CRM-Tools wie Salesforce
+• Verhandlungssichere Deutsch- und Englischkenntnisse
+• Stark ausgeprägte Kommunikationsstärke und Verhandlungsgeschick
+• Deutschlandweite Reisebereitschaft
 
-Diese Kombination aus finanzieller Expertise und technischen Fähigkeiten ermög
-licht es mir, komplexe Geschäftsprozesse effizient zu analysieren und zu optim
-ieren.
+Als Inhaber eines Bachelor in Petroleum Engineering und eines Master in Renewables habe ich eine solide
+ Grundlage in der Energiewirtschaft. Diese Kombination aus technischem und betriebswirtschaftlichem W
+issen ermöglicht es mir, sowohl technische Aspekte als auch geschäftliche Strategien zu verstehen und
+ umzusetzen.
 
-Als erfahrener Growth Manager bringe ich folgende Kernkompetenz und Stärken mit
-:
+Ich bin überzeugt, dass meine Erfahrung im Solarsektor sowie mein technisches Hintergrund mich ideal
+ für diese Position machen. Ich freue mich darauf, meine Fähigkeiten in einem renommierten Unternehmen
+ wie TotalEnergies einzubringen und zum Erfolg des Unternehmens beizutragen.
 
-- Zusammenarbeit mit Product Owners bei der Ideengenerierung und -definition
-- Identifikation neuer Wertschöpfungsströme und Unterstützung beim Übergang zu
- wiederkehrenden Einnahmen
-- Design und Launch von datengesteuerten Geschäftsinitiativen
-- Vereinfachung komplexer Marktanalysen zu klaren, handlungsleitenden KPIs
-- Umsetzung strategischer Maßnahmen zur Steigerung des Umsatzwachstums und der
- Profitabilität
-- Durchführung umfassender Markt- und Konkurrenzanalysen zur Lenkung strateg
-ischer Geschäftsentscheidungen
-- Entwicklung skalierbarer Geschäftsmodelle und -dienste für verschiedene Märkte
-
-- Unterstützung internationaler Markteintritte und -rollouts
-
-Ich bin motiviert, meine Erfahrungen und Fähigkeiten bei Viessmann einzubringen
- und zum Erfolg des Unternehmens beizutragen. Meine analytischen Fähigkeiten,
- mein Verständnis für neue Märkte und Trends sowie meine Kommunikationsgeschick
- machen mich zu einem idealen Kandidaten für diese Position.
-
-Ich freue mich darauf, Ihre Bewerbungsunterlagen zu erhalten und zu erfahren,
- wie ich Ihnen bei der Gestaltung Ihres Unternehmens beitragen kann.
+Vielen Dank für Ihre Aufmerksamkeit. Ich freue mich auf die Möglichkeit, meine Qualifikationen im
+ Rahmen eines Vorstellungsgesprächs zu erörtern.
 
 Mit freundlichen Grüßen,

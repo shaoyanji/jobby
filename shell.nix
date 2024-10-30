@@ -28,6 +28,7 @@
     #yq
     go-task
     yq-go
+    nushell
 # secrets management
     sops
   ];
@@ -35,5 +36,6 @@
    shellHook = ''
    echo $GREETING | cowsay | lolcat
    eval "$(task --completion bash)"
+   nu
   '';
 }

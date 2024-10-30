@@ -38,3 +38,86 @@ Unlike other tools that are more effective at probably getting you a job (Auto_J
 - texlive.combined.scheme-small
 - sops (for secrets management)
 
+## shortcuts to mupdf
+1. Navigation:
+   - Page Up/Down: Previous/Next page
+   - Spacebar: Next page
+   - Backspace: Previous page
+   - Home: First page
+   - End: Last page
+
+2. Zoom:
+   - '+' or '=': Increase zoom level
+   - '-' or '_' : Decrease zoom level
+   - '0': Reset zoom level
+
+3. Text selection:
+   - Mouse drag: Select text
+   - Shift + Arrow keys: Extend selection
+
+4. Copy/Paste:
+   - Ctrl/Cmd + C: Copy selected text
+   - Ctrl/Cmd + V: Paste copied text
+
+5. Find:
+   - Ctrl/F: Open find panel
+   - Ctrl/G: Find next occurrence
+
+6. Bookmarks:
+   - Ctrl/D: Add/remove bookmark
+   - Ctrl+B: Toggle bookmark visibility
+
+7. Fullscreen:
+   - F11: Toggle fullscreen mode
+
+Please note that these shortcuts may vary slightly depending on the operating
+ system and MUPDF version. For the most accurate and comprehensive list of
+ shortcuts, it's recommended to consult the official MUPDF documentation or help
+ menu within the application.Based on the search results, here is a
+ comprehensive list of MUPDF shortcuts from the official documentation:
+
+Navigation:
+- Page Up/Down: Previous/Next page
+- Spacebar: Next page
+- Backspace: Previous page
+- Home: First page
+- End: Last page
+- . : Go to next page
+- , : Go to previous page
+- < : Go back 10 pages
+- > : Go forward 10 pages
+- [number] g : Go to page number
+- G : Go to last page
+
+Zoom/Fit:
+- + or = : Zoom in
+-  : Zoom out
+- W : Fit width
+- H : Fit height
+- Z : Autofit
+- w : Shrinkwrap window to fit page
+- [number] z : Set zoom resolution in DPI
+
+Rotation:
+- L : Rotate left (counter-clockwise)
+- R : Rotate right (clockwise)
+
+Search:
+- / : Start searching forward
+- ? : Start searching backward
+- n/N : Find next/previous search result
+
+Other:
+- i : Display document metadata
+- o : Toggle outline display
+- L : Toggle link display
+- r : Reload document
+- q : Quit viewer
+- f : Toggle fullscreen
+- m : Save current page to navigation history
+- t/T : Go back/forward in navigation history
+- [number] m/t : Set/go to numbered bookmark
+- p : Presentation mode
+- b : Smart move one screenful backward
+- [space] : Smart move one screenful forward
+- [comma/page up] : Go one page backward
