@@ -17,7 +17,7 @@ vars:
   FILE_SIZE: stat -c%s
 menu:
   ui:
-    - tgpt
+    - tgpt2
     - pbpaste-letter
     - generateletter
     - generatecv
@@ -38,6 +38,12 @@ tasks:
     cmds: 
       - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
     silent: true
+  tgpt2:
+    cmds:
+      - mkdir -p {{.TEMP_DIR}}
+      - cp ./src/template.yaml {{.TEMP_DIR}}/template.yaml
+      - $EDITOR {{.TEMP_DIR}}/template.yaml
+      - yq .prompt {{.TEMP_DIR}}/template.yaml | tgpt
   tgpt:
     cmds:
       - mkdir -p {{.TEMP_DIR}}

@@ -1,0 +1,8 @@
+prompt: |-
+  
+company: 
+  name: {{ prompt "Company name" }}
+  address1:
+  address2:
+title:
+language:
