@@ -1,0 +1,143 @@
+var:
+  website: bountystash.com
+  website_title: Bountystash
+  website_url: https://bountystash.com
+  website_description: Bountystash is a financial technology company that helps companies manage their risks and mitigate their exposure to cyber threats.
+  email: matt@bountystash.com
+  phone: +491733281570
+  location: Freiburg, Baden-Wuerttemberg, Germany
+  timezone: Europe/Berlin
+skills:
+  programming: Lua, Erlang, Go, Python, C, Elixir, Gleam, Java, Bash
+  databases: MySQL, Postgres, sqlite, SQL Server, Oracle
+  containers: Docker, Kubernetes
+  linux: Alpine, Ubuntu, Debian, Arch, NixOS, Kali Linux, etc.
+  devops: AWS, Azure, Google Cloud, Docker, Kubernetes, etc.
+  languages: English (Native), German (B2)
+experience:
+  - title: Consultant, Bountystash
+    company: Bountystash
+    location: Freiburg, Baden-Wuerttemberg, Germany
+    start: 2020-06
+    end: Present
+    description: |
+      - built risk-adjusted PPA trading models for energy companies
+      - risk managed gas storage and gas swing trading models as a risk manager for EWE Trading
+      - built apps for clients with $300M+ valuation land portfolios
+      - architected a portfolio strategy for covered-call risk hedging strategy for clients
+      - developed fibonacci binary tree algorithm for computational scientists
+      - developed an LLM-based knowledge base software solution
+      - audited bug bounty programs
+      - learned and self-taught NixOS and Kubernetes
+    technologies:
+      - Python
+      - Excel
+      - VB
+      - Docker
+      - Git
+      - SQL
+      - Lua
+      - Bash
+      - Jira
+      - NixOS
+      - K3s
+  - title: Asset Manager, O3 Energy
+    company: O3 Energy
+    location: Dallas, TX
+    start: 2016-2020
+    end: 2020-06
+    description: |
+      - built financial models and managed 10 MW solar PV power plants
+      - head of asset management of a $100M+ portfolio
+      - scoped and due diligenced O&M projects as backup to project managers
+      - document and managed software and IT admin for company and subsidiaries
+      - interfaced with clients, banks and deal brokers to handle a dozen 4-5 million dollar projects
+      - analyzed corporate liability risks and developed an internal risk management framework
+      - designed a mobile app for enterprise employees to scout new project opportunities
+      - managed an international team and built the incentive structure according to a real-time financial model
+      - scoped and due diligenced O&M projects as backup to project managers
+    technologies:
+      - Excel
+      - MS Office
+      - Google Cloud
+      - Android
+      - SalesForce
+      - PVWatts
+      - Helioscope
+      - various asset management software
+  - title: Director of Sustainability, Smart Energy 360
+    company: Smart Energy 360
+    location: Dallas, TX
+    start: 2015-2016
+    end: 2016-06
+    description: |
+      - managed a pipeline of $100M+ projects
+      - customer service and support for clients
+      - devised sustainability sales and marketing strategies
+      - advised clients on cybersecurity software and risk management
+  - title: Associate Technical Professional, Halliburton
+    company: Halliburton
+    location: Williston, ND
+    start: 2010-2011
+    end: 2011-06
+    description: |
+      - implemented new excel spreadsheets for the engineering department
+      - managed two frack crews $3M+/week
+      - worked 12 hours a day shifts in the field
+      - troubleshooted chemicals and equipment on site
+      - led safety training for crew members
+      - worked on experimental projects using novel technologies developed by engineering
+    technologies:
+      - Excel
+      - Ares
+      - FracPro
+      - blenders
+      - pump trucks
+      - growlers
+projects:
+  - title: Clov Chronicles
+    location: Freiburg, Baden-Wuerttemberg, Germany
+    start: 2020
+    end: 2022
+    description: |
+      - Authored a series of articles covering Healthcare technology
+  - title: LERU Conference
+    location: Freiburg, Baden-Wuerttemberg, Germany
+    start: 2014
+    end: 2014
+    description: |
+      - participated in the League of European Research Universities conference as a student representative of Uni Freiburg on the theme of sustainability and energy transition
+  - title: Master's Thesis, University of Freiburg
+    company: University of Freiburg
+    location: Freiburg, Baden-Wuerttemberg, Germany
+    start: 2014-2015
+    end: 2015-06
+    description: |
+      - Intermittent Renewable Energy and Weather Patterns Analyzed through Artificial Neural Networks, MATLAB
+  - title: United Nations University
+    company: United Nations University
+    location: Tokyo, Japan
+    start: 2013-2014
+    end: 2014-06
+    description: |
+      - Analyzed hydrogen production and storage projects using RETScreen
+      - Post-graduate research in renewable energy
+      - Solar, Wind, Geothermal, and Bioenergy modules completed under the tutelage of industry and academic experts
+      - conducted research on heliostat imperfections using interferometry at Fraunhofer ISE using Mathematica, C, Python and proprietary software
+education:
+  - title: Master's of Science Renewable Energy Management
+    university: University of Freiburg
+    location: Freiburg, Baden-Wuerttemberg, Germany
+    start: 2011
+    end: 2014
+    description: |
+      - Intermittent Renewable Energy and Weather Patterns Analyzed through Artificial Neural Networks, MATLAB
+  - title: Bachelor of Science Petroleum Engineering
+    university: Colorado School of Mines
+    location: Golden, CO
+    start: 2006
+    end: 2010
+    description: |
+      - 3.2 GPA
+      - Minor in Economics and McBride Honors Program in Public Policy
+      - graduated with 159 credits, one short of a master's degree
