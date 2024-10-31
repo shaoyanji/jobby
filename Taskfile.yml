@@ -21,6 +21,7 @@ menu:
     - pbpaste-letter
     - generateletter
     - generatecv
+    - make-pdf-map
     - compress-assets
     - edit
     - clean
@@ -38,10 +39,19 @@ tasks:
     cmds: 
       - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
     silent: true
+  update-date:
+    cmds:
+      - nu {{.BIN}}/update-date.nu
+  make-pdf-map:
+    cmds:
+      - mkdir -p {{.TEMP_DIR}}
+      - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
+      - nu {{.BIN}}/resume-map.nu
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
       - cp ./src/template.yaml {{.TEMP_DIR}}/template.yaml
+      - task update-date
       - $EDITOR {{.TEMP_DIR}}/template.yaml
       - yq .prompt {{.TEMP_DIR}}/template.yaml | tgpt
   tgpt:
@@ -60,6 +70,7 @@ tasks:
       - echo "Generating letter"
       - mkdir -p {{.TEMP_DIR}}
       - echo "Decrypting secrets"
+      - task update-date
       - sops -d {{.ENC_HEADER_LETTER_YAML}} > {{.HEADER_LETTER_YAML}}
       - echo "---" > {{.TEMP_DIR}}/letter.md
       - cat {{.HEADER_LETTER_YAML}} >> {{.TEMP_DIR}}/letter.md
