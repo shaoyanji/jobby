@@ -38,6 +38,11 @@ Unlike other tools that are more effective at probably getting you a job (Auto_J
 - texlive.combined.scheme-small
 - sops (for secrets management)
 
+## TODO
+- [ ] add a way to generate a pdf from a yaml file
+- [x] add a way to generate a pdf from a markdown file
+- [ ] add a way to parse yaml in sops
+
 ## shortcuts to mupdf
 1. Navigation:
    - Page Up/Down: Previous/Next page
