@@ -47,6 +47,7 @@ tasks:
       - mkdir -p {{.TEMP_DIR}}
       - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
       - nu {{.BIN}}/resume-map.nu
+      - ({{.BIN}}/resume-map.nu && viu Bewerbungsbilder_biemaIMG_2043.jpg -w 20 -x 260 -ay 8 && viu signature.png -w 40 -x 250 -ay 65)
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}

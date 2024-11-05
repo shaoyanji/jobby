@@ -24,6 +24,7 @@
     ghostscript
 # ui
     gum
+    viu
 # utilities
     #yq
     go-task
