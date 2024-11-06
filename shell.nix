@@ -25,6 +25,7 @@
 # ui
     gum
     viu
+    mdcat
 # utilities
     #yq
     go-task

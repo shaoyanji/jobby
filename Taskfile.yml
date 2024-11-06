@@ -15,6 +15,8 @@ vars:
   BIN: ./src/bin
   SHRINK_PDF: ./src/bin/shrinkpdf.sh
   FILE_SIZE: stat -c%s
+  PROFILE: ./src/assets/profile.jpg
+  SIGNATURE: ./src/assets/signature.png
 menu:
   ui:
     - tgpt2
@@ -47,7 +49,7 @@ tasks:
       - mkdir -p {{.TEMP_DIR}}
       - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
       #- nu {{.BIN}}/resume-map.nu
-      - ({{.BIN}}/resume-map.nu && viu Bewerbungsbilder_biemaIMG_2043.jpg -w 20 -x 260 -ay 8 && viu signature.png -w 40 -x 250 -ay 65)
+      - ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
@@ -159,7 +161,7 @@ tasks:
       - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
   git-clean-push:
     cmds:
-      - git clean -fdx
+      #      - git clean -fdx
       - git add .
       - 'git commit -m "chore: cleaning repo"'
       - sudo git push
