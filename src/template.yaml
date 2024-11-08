@@ -1,8 +1,10 @@
 prompt: |-
-  
-company: 
-  name: {{ prompt "Company name" }}
-  address1:
-  address2:
+  Write a job cover letter for a project manager position at {{ company }}.
+  The job is to manage the development of a new product for {{ company }}.
+  The product is a {{ language }} application.
+
+company:
+  Sick GmBH 
 title:
-language:
+  Project Manager
+language: DE
