@@ -27,6 +27,7 @@ menu:
     - compress-assets
     - edit
     - clean
+    - update-sops
     - git-clean-push
     - exit
   edit:
@@ -159,6 +160,9 @@ tasks:
   clean:
     cmds:
       - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
+  update-sops:
+    cmds:
+      - sops updatekeys {{.TEMPLATE_DIR}}/*.enc.yaml
   git-clean-push:
     cmds:
       #      - git clean -fdx
