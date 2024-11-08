@@ -1,10 +1,12 @@
 prompt: |-
-  Write a job cover letter for a project manager position at {{ company }}.
-  The job is to manage the development of a new product for {{ company }}.
-  The product is a {{ language }} application.
+  Write a job cover letter in German for a project manager position at Sick GmBH.
+  The Job Description is for the sensor safety business unit.
 
 company:
   Sick GmBH 
+  
+  Erwin-Sick-Straße 1
+  Waldkirch, 79183 DE
 title:
   Project Manager
 language: DE
