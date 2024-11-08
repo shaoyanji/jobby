@@ -1,12 +1,20 @@
+var:
+  Company: Foo
+  Addresse: Bar
+  Stadt: Berlin
+  Postleitzahl: 12345
+  Land: DE 
 prompt: |-
-  Write a job cover letter in German for a project manager position at Sick GmBH.
+  Write a job cover letter in German for a project manager position at:
+  {{.Company}}
   The Job Description is for the sensor safety business unit.
 
-company: |
-  Sick GmBH 
+company: |-
+  {{.Company}}
   
-  Erwin-Sick-Straße 1
-  Waldkirch, 79183 DE
+  {{.Addresse}}
+  
+  {{.Stadt}}, {{.Postleitzahl}} {{.Land}}
 title:
   Project Manager
 language: DE
