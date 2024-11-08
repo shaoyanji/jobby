@@ -2,7 +2,7 @@ prompt: |-
   Write a job cover letter in German for a project manager position at Sick GmBH.
   The Job Description is for the sensor safety business unit.
 
-company:
+company: |
   Sick GmBH 
   
   Erwin-Sick-Straße 1

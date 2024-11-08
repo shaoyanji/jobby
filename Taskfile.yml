@@ -60,7 +60,7 @@ tasks:
       - nu src/bin/update-to.nu
       - yq .prompt {{.TEMP_DIR}}/template.yaml | tgpt -q > {{.LETTER_MD}}
       - task edit-letter # one go through the edit cycle
-      - task generate-letter
+      - task generateletter
 
   tgpt:
     cmds:
