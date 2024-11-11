@@ -44,7 +44,7 @@ tasks:
     silent: true
   update-date:
     cmds:
-      - nu {{.BIN}}/update-date.nu
+      #    - nu {{.BIN}}/update-date.nu
   make-pdf-map:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
