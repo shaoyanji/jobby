@@ -91,7 +91,7 @@ tasks:
       - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.OUTPUT_DIR}}/letter.pdf
       - pdfcpu optimize {{.OUTPUT_DIR}}/letter.pdf
       - echo "Cover Letter Generated at {{.OUTPUT_DIR}}/letter.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/letter.pdf) bytes"
-      - mupdf {{.OUTPUT_DIR}}/letter.pdf
+      #      - mupdf {{.OUTPUT_DIR}}/letter.pdf
     silent: true
   generatecv:
     cmds:
@@ -110,7 +110,7 @@ tasks:
       - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume.pdf > {{.OUTPUT_DIR}}/resume.pdf
       - pdfcpu optimize {{.OUTPUT_DIR}}/resume.pdf
       - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
-      - mupdf {{.OUTPUT_DIR}}/resume.pdf
+      #      - mupdf {{.OUTPUT_DIR}}/resume.pdf
     silent: true
   compress-assets:
     cmds:

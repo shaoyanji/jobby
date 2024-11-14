@@ -6,16 +6,20 @@
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
-    git
     pandoc
     texlive.combined.scheme-small
     pdfcpu
     poppler_utils
-    #    wkhtmltopdf
-    mupdf
+    # wkhtmltopdf
+    # mupdf
     ghostscript
     viu
     nushell
+    #glow
+    #go-task
+    #charm-freeze
+    #yq-go
+    #gum
   ];
 
   # https://devenv.sh/languages/
