@@ -51,7 +51,10 @@ tasks:
       - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
       #- nu {{.BIN}}/resume-map.nu
       #- ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
-      - nu {{.BIN}}/resume-map.nu | freeze -o {{.OUTPUT_DIR}}/resume-map.png
+      - nu {{.BIN}}/resume-map.nu | freeze -o {{.OUTPUT_DIR}}/resume-map.png --language text
+      - magick {{.OUTPUT_DIR}}/resume-map.png {{.OUTPUT_DIR}}/resume-map.pdf
+      - pdfcpu optimize {{.OUTPUT_DIR}}/resume-map.pdf
+      - mupdf {{.OUTPUT_DIR}}/resume-map.pdf
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
