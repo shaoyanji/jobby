@@ -22,6 +22,9 @@
     wkhtmltopdf
     mupdf
     ghostscript
+    imagemagick
+    tmux # tmux capture-pane -pet 1 | freeze -c full
+
 # ui
     gum
     charm-freeze
