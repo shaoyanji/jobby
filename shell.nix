@@ -24,8 +24,9 @@
     ghostscript
 # ui
     gum
-    viu
-    mdcat
+    charm-freeze
+    # viu
+    # mdcat
 # utilities
     #yq
     go-task

@@ -50,7 +50,8 @@ tasks:
       - mkdir -p {{.TEMP_DIR}}
       - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
       #- nu {{.BIN}}/resume-map.nu
-      - ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
+      #- ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
+      - nu {{.BIN}}/resume-map.nu | freeze -o {{.OUTPUT_DIR}}/resume-map.png
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
