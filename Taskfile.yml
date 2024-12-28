@@ -11,6 +11,7 @@ vars:
   ENC_HEADER_RESUME_YAML: ./src/resume.enc.yaml
   HEADER_RESUME_YAML: ./tmp/resume.yaml
   RESUME_MD: ./src/resume.md
+  RESUME_DE_MD: ./src/resume-de.md
   CSS_FILE: ./src/resume-stylesheet.css
   BIN: ./src/bin
   SHRINK_PDF: ./src/bin/shrinkpdf.sh
@@ -49,12 +50,22 @@ tasks:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
       - sops -d {{.TEMPLATE_DIR}}/resume-map.enc.yaml > {{.TEMP_DIR}}/resume-map.yaml
-      #- nu {{.BIN}}/resume-map.nu
-      #- ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
-      - nu {{.BIN}}/resume-map.nu | freeze -o {{.OUTPUT_DIR}}/resume-map.png --language text
-      - magick {{.OUTPUT_DIR}}/resume-map.png {{.OUTPUT_DIR}}/resume-map.pdf
-      - pdfcpu optimize {{.OUTPUT_DIR}}/resume-map.pdf
-      - mupdf {{.OUTPUT_DIR}}/resume-map.pdf
+      - nu {{.BIN}}/resume-map.nu
+      - ({{.BIN}}/resume-map.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
+      #- nu {{.BIN}}/resume-map.nu | freeze -o {{.OUTPUT_DIR}}/resume-map.png --language text
+      #- magick {{.OUTPUT_DIR}}/resume-map.png {{.OUTPUT_DIR}}/resume-map.pdf
+      #- pdfcpu optimize {{.OUTPUT_DIR}}/resume-map.pdf
+      #- mupdf {{.OUTPUT_DIR}}/resume-map.pdf
+  make-pdf-map-de:
+    cmds:
+      - mkdir -p {{.TEMP_DIR}}
+      - sops -d {{.TEMPLATE_DIR}}/resume-map-de.enc.yaml > {{.TEMP_DIR}}/resume-map-de.yaml
+      #- nu {{.BIN}}/resume-map-de.nu
+      #- ({{.BIN}}/resume-map-de.nu && viu {{.PROFILE}} -w 20 -x 260 -ay 8 && viu {{.SIGNATURE}} -w 40 -x 250 -ay 65)
+      - nu {{.BIN}}/resume-map-de.nu | freeze -o {{.OUTPUT_DIR}}/resume-map-de.png --language text
+      - magick {{.OUTPUT_DIR}}/resume-map-de.png {{.OUTPUT_DIR}}/resume-map-de.pdf
+      - pdfcpu optimize {{.OUTPUT_DIR}}/resume-map-de.pdf
+      - mupdf {{.OUTPUT_DIR}}/resume-map-de.pdf
   tgpt2:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
@@ -116,6 +127,26 @@ tasks:
       - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
       #      - mupdf {{.OUTPUT_DIR}}/resume.pdf
     silent: true
+  generatecv-de:
+    cmds:
+      - echo "Generating CV"
+      - mkdir -p {{.TEMP_DIR}}
+      - echo "Decrypting secrets"
+      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.HEADER_RESUME_YAML}}
+      - echo "---" > {{.TEMP_DIR}}/resume-de.md
+      - cat {{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume-de.md
+      - echo "---" >> {{.TEMP_DIR}}/resume-de.md
+      - cat {{.RESUME_DE_MD}} >> {{.TEMP_DIR}}/resume-de.md
+      - echo "Converting Markdown to PDF"
+      - pandoc {{.TEMP_DIR}}/resume-de.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume-de.pdf
+      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/resume-de.pdf) bytes"
+      - mkdir -p {{.OUTPUT_DIR}}
+      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume-de.pdf > {{.OUTPUT_DIR}}/resume-de.pdf
+      - pdfcpu optimize {{.OUTPUT_DIR}}/resume-de.pdf
+      - echo "CV Generated at {{.OUTPUT_DIR}}/resume-de.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume-de.pdf) bytes"
+      #      - mupdf {{.OUTPUT_DIR}}/resume.pdf
+    silent: true
+
   compress-assets:
     cmds:
       - echo "Compressing assets"

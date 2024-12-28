@@ -28,7 +28,7 @@
 # ui
     gum
     charm-freeze
-    # viu
+    viu
     # mdcat
 # utilities
     #yq

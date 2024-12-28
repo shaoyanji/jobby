@@ -10,11 +10,13 @@
     texlive.combined.scheme-small
     pdfcpu
     poppler_utils
-    # wkhtmltopdf
-    # mupdf
+    imagemagick
+    #wkhtmltopdf
+    mupdf
     ghostscript
     viu
     nushell
+    tgpt
     #glow
     #go-task
     #charm-freeze
