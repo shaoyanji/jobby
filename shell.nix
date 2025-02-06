@@ -2,19 +2,19 @@
 #   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-unstable";
 #   pkgs = import nixpkgs { config = {}; overlays = []; };
 # in
-{ pkgs ? import <nixpkgs> {} }:
-  pkgs.mkShell
-# pkgs.mkShellNoCC 
+{pkgs ? import <nixpkgs> {}}:
+# pkgs.mkShell
+pkgs.mkShellNoCC
 {
   packages = with pkgs; [
     cowsay
     lolcat
-# aitools
+    # aitools
     #ollama
     #aichat
     tgpt
     #mods
-# pdf workflow
+    # pdf workflow
     pandoc
     texlive.combined.scheme-small
     pdfcpu
@@ -25,23 +25,23 @@
     imagemagick
     tmux # tmux capture-pane -pet 1 | freeze -c full
 
-# ui
+    # ui
     gum
     charm-freeze
     viu
     # mdcat
-# utilities
+    # utilities
     #yq
     go-task
     yq-go
     nushell
-# secrets management
+    # secrets management
     sops
   ];
   GREETING = "Hello, Nix!";
-   shellHook = ''
-   echo $GREETING | cowsay | lolcat
-   eval "$(task --completion bash)"
-   nu
+  shellHook = ''
+       echo $GREETING | cowsay | lolcat
+    #   eval "$(task --completion bash)"
+    #   nu
   '';
 }
