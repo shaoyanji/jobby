@@ -12,7 +12,7 @@
     flake-utils,
   }: let
     supportedSystems = [
-      # "x86_64-linux"
+      "x86_64-linux"
       # "x86_64-darwin"
       "aarch64-linux"
       # "aarch64-darwin"
@@ -51,6 +51,8 @@
               xkeyval
               xcolor
               fontawesome5
+              amsmath
+              bookmark
               ;
           };
           #      packagingLib = import ./lib/packaging.nix {
@@ -96,36 +98,43 @@
                 tex
               ];
             };
+            cmark = pkgs.mkShell {
+              packages = [
+                pkgs.cmark
+              ];
+            };
           };
-          
+
           packages = {
             document = pkgs.stdenvNoCC.mkDerivation rec {
-              name = "nixcv";
+              name = "cmark";
               src = self;
-              buildInputs = [pkgs.coreutils pkgs.pandoc pkgs.texlive.combine {
-                inherit
-                  (pkgs.texlive)
-                  scheme-small;
-              }];
-              phases = ["unpackPhase" "configurePhase" "buildPhase" "installPhase"];
-              configurePhase = /* bash */ ''
-                sops -d ./src/resume.enc.yaml > re 
-                echo "---" > cv.md
-                cat ./src/resume.yaml >> cv.md
+              buildInputs = [
+                pkgs.coreutils
+                pkgs.cmark
+                pkgs.pandoc
+                pkgs.wkhtmltopdf
+                tex
+                #                pkgs.texlive.combined.scheme-small
+              ];
+              phases = ["unpackPhase" "buildPhase" "installPhase"];
+              buildPhase =
+                /*
+                bash
+                */
+                ''
+                  export PATH="${pkgs.lib.makeBinPath buildInputs}";
+                  mkdir -p .cache/texmf-var
+                  env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
+                  cmark -t html ./src/resume.md | pandoc --pdf-engine wkhtmltopdf -o document.pdf
                 '';
-              buildPhase = /* bash */ ''
-                export PATH="${pkgs.lib.makeBinPath buildInputs}";
-                mkdir -p .cache/texmf-var
-                env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
-                latexmk -interaction=nonstopmode -pdf -lualatex cv.tex -f
-              '';
               installPhase = ''
                 mkdir -p $out
-                cp cv.pdf $out/
+                cp document.pdf $out/
               '';
             };
           };
-          defaultPackage = packages.cv;
+          defaultPackage = packages.document;
 
           # Tutorial for minimal LaTeX document
           #  packages =
