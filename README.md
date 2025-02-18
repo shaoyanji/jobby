@@ -13,6 +13,20 @@ Unlike other tools that are more effective at probably getting you a job (Auto_J
 
 ## Usage
 
+## TODO
+- [ ] add a way to generate a pdf from a yaml file
+- [x] add a way to generate a pdf from a markdown file
+- [ ] add a way to parse yaml in sops
+- [ ] UI/UX design
+- [x] research standard resume markdown and yaml formats
+- [ ] core functionalities
+   - [ ] gum form to bootstrap metadata (encrypted by default)
+   - [ ] scaffold yaml and markdown (resume: 1. decrypt 2. mark 3. cat)
+   - [ ] conversion
+   - [ ] pdfcpu utility autoexpiry
+   - [x] ported over cv and letter generate to nix build 
+   - [x] update task files for age integration on tar blob
+
 ### Requirements
 - nix
 - git
@@ -38,10 +52,6 @@ Unlike other tools that are more effective at probably getting you a job (Auto_J
 - texlive.combined.scheme-small
 - sops (for secrets management)
 
-## TODO
-- [ ] add a way to generate a pdf from a yaml file
-- [x] add a way to generate a pdf from a markdown file
-- [ ] add a way to parse yaml in sops
 
 ## shortcuts to mupdf
 1. Navigation:

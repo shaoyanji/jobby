@@ -92,60 +92,25 @@ tasks:
   generateletter:
     cmds:
       - echo "Generating letter"
-      - mkdir -p {{.TEMP_DIR}}
-      - echo "Decrypting secrets"
-      - task update-date
-      - sops -d {{.ENC_HEADER_LETTER_YAML}} > {{.HEADER_LETTER_YAML}}
-      - echo "---" > {{.TEMP_DIR}}/letter.md
-      - cat {{.HEADER_LETTER_YAML}} >> {{.TEMP_DIR}}/letter.md
-      - echo "..." >> {{.TEMP_DIR}}/letter.md
-      - cat {{.LETTER_MD}} >> {{.TEMP_DIR}}/letter.md
-      - echo "Converting Markdown to PDF"
-      - pandoc --template={{.TEMPLATE_LATEX}} {{.TEMP_DIR}}/letter.md -f markdown -t pdf -o {{.TEMP_DIR}}/letter.pdf
-      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/letter.pdf) bytes"
-      - mkdir -p {{.OUTPUT_DIR}}
-      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/letter.pdf > {{.OUTPUT_DIR}}/letter.pdf
-      - pdfcpu optimize {{.OUTPUT_DIR}}/letter.pdf
-      - echo "Cover Letter Generated at {{.OUTPUT_DIR}}/letter.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/letter.pdf) bytes"
-      #      - mupdf {{.OUTPUT_DIR}}/letter.pdf
+      - nix build .#letter
+      - mupdf result/final.pdf
     silent: true
+  keygen:
+    cmds:
+      - age-keygen -o src/.config/sops/age/key.txt
+  encrypt:
+    cmds:
+      - tar cvz unenc | age -r age1uhkne7s57zp4hu7yudajd2rjnvct6ge6g4h36n5xdg80eys46p5svlqvre > src/assets/enc.tar.gz.age
+  decrypt:
+    cmds:
+      - age --decrypt -i ./src/.config/sops/age/keys.txt src/assets/enc.tar.gz.age > unenc.tar.gz
+      - tar -xzf unenc.tar.gz
+      - rm unenc.tar.gz
   generatecv:
     cmds:
       - echo "Generating CV"
-      - mkdir -p {{.TEMP_DIR}}
-      - echo "Decrypting secrets"
-      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.HEADER_RESUME_YAML}}
-      - echo "---" > {{.TEMP_DIR}}/resume.md
-      - cat {{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume.md
-      - echo "---" >> {{.TEMP_DIR}}/resume.md
-      - cat {{.RESUME_MD}} >> {{.TEMP_DIR}}/resume.md
-      - echo "Converting Markdown to PDF"
-      - pandoc {{.TEMP_DIR}}/resume.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume.pdf
-      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/resume.pdf) bytes"
-      - mkdir -p {{.OUTPUT_DIR}}
-      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume.pdf > {{.OUTPUT_DIR}}/resume.pdf
-      - pdfcpu optimize {{.OUTPUT_DIR}}/resume.pdf
-      - echo "CV Generated at {{.OUTPUT_DIR}}/resume.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume.pdf) bytes"
-      #      - mupdf {{.OUTPUT_DIR}}/resume.pdf
-    silent: true
-  generatecv-de:
-    cmds:
-      - echo "Generating CV"
-      - mkdir -p {{.TEMP_DIR}}
-      - echo "Decrypting secrets"
-      - sops -d {{.ENC_HEADER_RESUME_YAML}} > {{.HEADER_RESUME_YAML}}
-      - echo "---" > {{.TEMP_DIR}}/resume-de.md
-      - cat {{.HEADER_RESUME_YAML}} >> {{.TEMP_DIR}}/resume-de.md
-      - echo "---" >> {{.TEMP_DIR}}/resume-de.md
-      - cat {{.RESUME_DE_MD}} >> {{.TEMP_DIR}}/resume-de.md
-      - echo "Converting Markdown to PDF"
-      - pandoc {{.TEMP_DIR}}/resume-de.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c {{.CSS_FILE}} -s -o {{.TEMP_DIR}}/resume-de.pdf
-      - echo "Compressing PDF...Current size is $({{.FILE_SIZE}} {{.TEMP_DIR}}/resume-de.pdf) bytes"
-      - mkdir -p {{.OUTPUT_DIR}}
-      - ./{{.SHRINK_PDF}} {{.TEMP_DIR}}/resume-de.pdf > {{.OUTPUT_DIR}}/resume-de.pdf
-      - pdfcpu optimize {{.OUTPUT_DIR}}/resume-de.pdf
-      - echo "CV Generated at {{.OUTPUT_DIR}}/resume-de.pdf total size is $({{.FILE_SIZE}} {{.OUTPUT_DIR}}/resume-de.pdf) bytes"
-      #      - mupdf {{.OUTPUT_DIR}}/resume.pdf
+      - nix build .#cv
+      - mupdf result/final.pdf
     silent: true
 
   compress-assets:
@@ -201,6 +166,7 @@ tasks:
       - sops updatekeys {{.TEMPLATE_DIR}}/*.enc.yaml
   git-clean-push:
     cmds:
+      - git rm -r --cached src/.config
       - git add .
       - 'git commit -m "chore: cleaning repo"'
       - git push

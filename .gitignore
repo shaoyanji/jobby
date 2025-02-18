@@ -1,12 +1,6 @@
 .git
 .env
-output/*
-tmp/*
-src/assets/*
-src/letter.md
-src/resume.md
-src/resume-en.md
-src/resume-de.md
+result
 
 # Devenv
 .devenv*

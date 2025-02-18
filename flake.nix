@@ -1,8 +1,7 @@
 {
-  description = "LaTeX and CV Management Platform";
+  description = "Jobby";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    #nixpkgs.url = github:NixOS/nixpkgs/nixos-21.05;
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -53,6 +52,7 @@
               fontawesome5
               amsmath
               bookmark
+              koma-script
               ;
           };
           #      packagingLib = import ./lib/packaging.nix {
@@ -92,9 +92,14 @@
           devShells = {
             default =
               import ./shell.nix {inherit pkgs;};
-            texlive = pkgs.mkShell {
+            min = pkgs.mkShellNoCC {
               packages = [
                 pkgs.pandoc
+                pkgs.wkhtmltopdf
+                pkgs.ghostscript
+                pkgs.pdfcpu
+                pkgs.sops
+                pkgs.age
                 tex
               ];
             };
@@ -104,38 +109,107 @@
               ];
             };
           };
-
           packages = {
-            document = pkgs.stdenvNoCC.mkDerivation rec {
-              name = "cmark";
-              src = self;
+            cv = pkgs.stdenvNoCC.mkDerivation rec {
+              name = "cv";
+              src = ./src;
+
               buildInputs = [
                 pkgs.coreutils
-                pkgs.cmark
                 pkgs.pandoc
                 pkgs.wkhtmltopdf
+                pkgs.ghostscript
+                pkgs.pdfcpu
+                pkgs.sops
+                pkgs.age
                 tex
-                #                pkgs.texlive.combined.scheme-small
               ];
-              phases = ["unpackPhase" "buildPhase" "installPhase"];
-              buildPhase =
-                /*
-                bash
-                */
-                ''
-                  export PATH="${pkgs.lib.makeBinPath buildInputs}";
-                  mkdir -p .cache/texmf-var
-                  env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
-                  cmark -t html ./src/resume.md | pandoc --pdf-engine wkhtmltopdf -o document.pdf
-                '';
+              encryptflags = "-upw decrypt -opw hdjsfhiuvhu843hui123251";
+              gen = ''
+                pandoc -f markdown \
+                  -t pdf \
+                  --pdf-engine wkhtmltopdf \
+                  -o document.pdf \
+                  -c ./lib/resume-stylesheet.css -s \
+                  begin.md
+              '';
+              phases = ["unpackPhase" "patchPhase" "buildPhase" "installPhase"];
+              patchPhase = ''
+                export XDG_CONFIG_HOME=./.config
+                age --decrypt -i .config/sops/age/keys.txt assets/enc.tar.gz.age > unenc.tar.gz
+                tar -xzf unenc.tar.gz
+                touch begin.md
+                echo "---" >> begin.md
+                sops -d -a age/key.txt ./assets/resume.enc.yaml >> begin.md
+                echo "..." >> begin.md
+                cat ./unenc/resume.md >> begin.md
+              '';
+              buildPhase = ''
+                 export PATH="${pkgs.lib.makeBinPath buildInputs}:bin";
+                 mkdir -p .cache/texmf-var .cache/pdfcpu
+                 env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
+                 ${gen}
+                shrinkpdf.sh document.pdf > shrink.pdf
+                 pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
+                 pdfcpu optimize -c .cache/pdfcpu shrink.pdf final.pdf
+              '';
               installPhase = ''
                 mkdir -p $out
-                cp document.pdf $out/
+                cp {final,final.enc}.pdf $out/
+              '';
+            };
+
+            letter = pkgs.stdenvNoCC.mkDerivation rec {
+              name = "letter";
+              src = ./src;
+
+              buildInputs = [
+                pkgs.coreutils
+                pkgs.pandoc
+                pkgs.ghostscript
+                pkgs.pdfcpu
+                pkgs.sops
+                pkgs.age
+                tex
+              ];
+              encryptflags = "-upw decrypt -opw hdjsfhiuvhu843hui123251";
+              gen = ''
+                pandoc -f markdown \
+                -t pdf \
+                --template ./lib/letter.latex \
+                -o document.pdf \
+                -s \
+                begin.md
+              '';
+              phases = ["unpackPhase" "patchPhase" "buildPhase" "installPhase"];
+              patchPhase = ''
+                export XDG_CONFIG_HOME=./.config
+                age --decrypt -i .config/sops/age/keys.txt assets/enc.tar.gz.age > unenc.tar.gz
+                tar -xzf unenc.tar.gz
+                touch begin.md
+                echo "---" >> begin.md
+                sops -d ./assets/letter.enc.yaml >> begin.md
+                echo "..." >> begin.md
+                cat ./unenc/letter.md >> begin.md
+              '';
+              buildPhase = ''
+                export PATH="${pkgs.lib.makeBinPath buildInputs}:bin";
+                mkdir -p .cache/texmf-var .cache/pdfcpu
+                env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
+                ${gen}
+                                shrinkpdf.sh document.pdf > shrink.pdf
+                pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
+                pdfcpu optimize -c .cache/pdfcpu shrink.pdf final.pdf
+              '';
+              installPhase = ''
+                mkdir -p $out
+                cp {final,final.enc}.pdf $out/
               '';
             };
           };
-          defaultPackage = packages.document;
-
+          defaultPackage = packages.cv;
+          cv = packages.cv;
+          letter = packages.letter;
           # Tutorial for minimal LaTeX document
           #  packages =
           #    {

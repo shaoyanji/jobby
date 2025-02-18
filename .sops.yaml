@@ -13,6 +13,7 @@ keys:
   - &minyx age17k653l45u5tusxjhnacms8ltqm64kyqluetxfr0khsrj8clesgeqemr95d
   - &guckloch age1aq6fer9unde6xwjw587qzc6e6cfe4wlu2xvcah7vjqrkptkd7gtq69v38r
   - &lunarfall age1wvrf6uclae5ald5uk5lvjyj9pgpc56tpy9vannv7wmy0s092850qk2mn0y
+  - &jobbydev1 age1uhkne7s57zp4hu7yudajd2rjnvct6ge6g4h36n5xdg80eys46p5svlqvre
 creation_rules:
   - path_regex: src/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -26,5 +27,6 @@ creation_rules:
       - *minyx
       - *guckloch
       - *lunarfall
+      - *jobbydev1
       gpg:
 
