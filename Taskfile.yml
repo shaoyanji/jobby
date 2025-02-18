@@ -166,7 +166,7 @@ tasks:
       - sops updatekeys {{.TEMPLATE_DIR}}/*.enc.yaml
   git-clean-push:
     cmds:
-      - git rm -r --cached src/.config
+      - git rm -rf src/.config
       - git add .
       - 'git commit -m "chore: cleaning repo"'
       - git push
