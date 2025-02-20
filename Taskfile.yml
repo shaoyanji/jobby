@@ -100,7 +100,7 @@ tasks:
       - tar cvz unenc | age -r age1vhtfwwnpqr3tu3sftsggsvdlqhmtl02y30ggp9faj8g65x4dgs3shx7j2e> src/assets/enc.tar.gz.age
   decrypt:
     cmds:
-      - age --decrypt -i ./src/.config/sops/age/keys.txt src/assets/enc.tar.gz.age > unenc.tar.gz
+      - age --decrypt -i src/.config/sops/age/keys.txt src/assets/enc.tar.gz.age > unenc.tar.gz
       - tar -xzf unenc.tar.gz
       - rm unenc.tar.gz
   generatecv:
