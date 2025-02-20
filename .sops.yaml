@@ -13,7 +13,7 @@ keys:
   - &minyx age17k653l45u5tusxjhnacms8ltqm64kyqluetxfr0khsrj8clesgeqemr95d
   - &guckloch age1aq6fer9unde6xwjw587qzc6e6cfe4wlu2xvcah7vjqrkptkd7gtq69v38r
   - &lunarfall age1wvrf6uclae5ald5uk5lvjyj9pgpc56tpy9vannv7wmy0s092850qk2mn0y
-  - &jobbydev1 age1hk3r6cgm4mh68dqtuvcf3gesdm50p273qdl6zxq9vrkttzhnap8sgyxt4s
+  - &jobbydev1 age1vhtfwwnpqr3tu3sftsggsvdlqhmtl02y30ggp9faj8g65x4dgs3shx7j2e
 creation_rules:
   - path_regex: src/assets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

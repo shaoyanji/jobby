@@ -68,14 +68,10 @@ tasks:
       - pdfcpu optimize {{.OUTPUT_DIR}}/resume-map-de.pdf
       - mupdf {{.OUTPUT_DIR}}/resume-map-de.pdf
   tgpt2:
+    vars:
+      TGPT: tgpt -q --provider groq --key $GROQ_API_KEY
     cmds:
-      - mkdir -p {{.TEMP_DIR}}
-      - sops edit {{.TEMPLATE_DIR}}/letter.enc.yaml
-      - cp ./src/template.yaml {{.TEMP_DIR}}/template.yaml
-      - task update-date
-      - $EDITOR {{.TEMP_DIR}}/template.yaml
-      - yq .prompt {{.TEMP_DIR}}/template.yaml | tgpt -q > {{.LETTER_MD}}
-      - task edit-letter # one go through the edit cycle
+      - cat unenc/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
       - task generateletter
 
   tgpt:
@@ -93,7 +89,7 @@ tasks:
     cmds:
       - echo "Generating letter"
       - nix build .#letter
-      - mupdf result/final.pdf
+      #- mupdf result/final.pdf
     silent: true
   keygen:
     cmds:
@@ -101,7 +97,7 @@ tasks:
       - age-keygen -o src/.config/sops/age/keys.txt
   encrypt:
     cmds:
-      - tar cvz unenc | age -r age1hk3r6cgm4mh68dqtuvcf3gesdm50p273qdl6zxq9vrkttzhnap8sgyxt4s> src/assets/enc.tar.gz.age
+      - tar cvz unenc | age -r age1vhtfwwnpqr3tu3sftsggsvdlqhmtl02y30ggp9faj8g65x4dgs3shx7j2e> src/assets/enc.tar.gz.age
   decrypt:
     cmds:
       - age --decrypt -i ./src/.config/sops/age/keys.txt src/assets/enc.tar.gz.age > unenc.tar.gz
@@ -111,7 +107,7 @@ tasks:
     cmds:
       - echo "Generating CV"
       - nix build .#cv
-      - mupdf result/final.pdf
+      #- mupdf result/final.pdf
     silent: true
 
   compress-assets:
@@ -164,7 +160,7 @@ tasks:
       - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
   update-sops:
     cmds:
-      - sops updatekeys {{.TEMPLATE_DIR}}/*.enc.yaml
+      - sops updatekeys {{.TEMPLATE_DIR}}/assets/*.enc.yaml
   git-clean-push:
     cmds:
       - git add .
