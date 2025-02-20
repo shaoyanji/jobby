@@ -92,6 +92,13 @@
           devShells = {
             default =
               import ./shell.nix {inherit pkgs;};
+            ai = pkgs.mkShellNoCC {
+              packages = [
+                pkgs.tgpt
+                pkgs.sops
+                pkgs.age
+              ];
+            };
             min = pkgs.mkShellNoCC {
               packages = [
                 pkgs.pandoc

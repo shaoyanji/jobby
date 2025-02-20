@@ -69,9 +69,13 @@ tasks:
       - mupdf {{.OUTPUT_DIR}}/resume-map-de.pdf
   tgpt2:
     vars:
-      TGPT: tgpt -q --provider groq --key $GROQ_API_KEY
+      TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $GROQ_API_KEY
     cmds:
+      - task decrypt
       - cat unenc/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
+      #- cat unenc/template.yaml | {{.TGPT}}  > unenc/letter.md
+      - $EDITOR unenc/letter.md
+      - task encrypt
       - task generateletter
 
   tgpt:
