@@ -88,7 +88,7 @@ tasks:
   generateletter:
     cmds:
       - echo "Generating letter"
-      - nix build .#letter
+      - nix build .#letter |& nom
       #- mupdf result/final.pdf
     silent: true
   keygen:
@@ -106,7 +106,7 @@ tasks:
   generatecv:
     cmds:
       - echo "Generating CV"
-      - nix build .#cv
+      - nix build .#cv |& nom
       #- mupdf result/final.pdf
     silent: true
 
