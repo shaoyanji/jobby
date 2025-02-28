@@ -17,3 +17,4 @@ devenv.local.nix
 ./*.smbdelete*
 
 unenc*
+src/.config/groqkey.txt

@@ -23,9 +23,9 @@ Unlike other tools that are more effective at probably getting you a job (Auto_J
    - [ ] gum form to bootstrap metadata (encrypted by default)
    - [ ] scaffold yaml and markdown (resume: 1. decrypt 2. mark 3. cat)
    - [ ] conversion
-   - [ ] pdfcpu utility autoexpiry
    - [x] ported over cv and letter generate to nix build 
    - [x] update task files for age integration on tar blob
+   - [ ] add gum form for job description and pipe to yq-go to generate the template yaml
 
 ### Requirements
 - nix

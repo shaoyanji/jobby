@@ -69,7 +69,7 @@ tasks:
       - mupdf {{.OUTPUT_DIR}}/resume-map-de.pdf
   tgpt2:
     vars:
-      TGPT: tgpt -q --provider groq --key $GROQ_API_KEY
+      TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $(cat src/.config/groqkey.txt)
     cmds:
       - cat unenc/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
       - task generateletter
@@ -164,7 +164,7 @@ tasks:
   git-clean-push:
     cmds:
       - git add .
-      - git restore --staged src/.config/sops/age/keys.txt
+      - git restore --staged src/.config
       - 'git commit -m "chore: cleaning repo"'
       - git push
   exit:
