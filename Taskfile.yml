@@ -4,15 +4,15 @@ vars:
   TEMP_DIR: ./tmp
   OUTPUT_DIR: ./output
   TEMPLATE_DIR: ./src
-  TEMPLATE_LATEX: ./src/letter.latex
+  TEMPLATE_LATEX: ./src/lib/letter.latex
   ENC_HEADER_LETTER_YAML: ./src/letter.enc.yaml
   HEADER_LETTER_YAML: ./tmp/letter.yaml
   LETTER_MD: ./src/letter.md
   ENC_HEADER_RESUME_YAML: ./src/resume.enc.yaml
   HEADER_RESUME_YAML: ./tmp/resume.yaml
-  RESUME_MD: ./src/resume.md
-  RESUME_DE_MD: ./src/resume-de.md
-  CSS_FILE: ./src/resume-stylesheet.css
+  # RESUME_MD: ./src/resume.md
+  # RESUME_EN_MD: ./src/resume-en.md
+  CSS_FILE: ./src/lib/resume-stylesheet.css
   BIN: ./src/bin
   SHRINK_PDF: ./src/bin/shrinkpdf.sh
   FILE_SIZE: stat -c%s
@@ -25,10 +25,11 @@ menu:
     #    - pbpaste-letter
     - generateletter
     - generatecv
+    - generatecv-en
     #    - make-pdf-map
     - compress-assets
     #    - edit
-    - clean
+    # - clean
     - update-sops
     - git-clean-push
     - exit
@@ -76,20 +77,28 @@ tasks:
     vars:
       TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $(cat src/.config/groqkey.txt)
     cmds:
-      - cat local/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
+      - sops -d src/assets/resume-map.enc.yaml | {{.TGPT}} "$(cat local/template.yaml && wl-paste)"| src/bin/detxtwrap.sh  > unenc/letter.md
       - task encrypt 
       - task generateletter
-  tgpt:
-    cmds:
-      - mkdir -p {{.TEMP_DIR}}
-      - $EDITOR {{.TEMP_DIR}}/tgpt.md
-      - cat {{.TEMP_DIR}}/tgpt.md | tgpt
+  # tgpt:
+  #   cmds:
+  #     - mkdir -p {{.TEMP_DIR}}
+  #     - $EDITOR {{.TEMP_DIR}}/tgpt.md
+  #     - cat {{.TEMP_DIR}}/tgpt.md | tgpt
   pbpaste-letter:
     cmds:
       - pbpaste > {{.LETTER_MD}}
       - task edit-letter
       - task edit-letter-secrets # make a form to sops set the three edit values
       - task generateletter
+  generatecv-en:
+    cmds:
+      - cat ./local/resume-header.md > ./unenc/resume.md
+      - cat ./local/resume-experience.md >> ./unenc/resume.md
+      - cat ./local/resume-skills.md >> ./unenc/resume.md
+      - cat ./local/resume-education.md >> ./unenc/resume.md
+      - task encrypt
+      - task generatecv
   generateletter:
     cmds:
       - echo "Generating letter"
@@ -104,11 +113,13 @@ tasks:
       - age-keygen -o src/.config/sops/age/keys.txt
   encrypt:
     cmds:
+      # - cp local/* unenc
       - tar cvz unenc | age -r age1vhtfwwnpqr3tu3sftsggsvdlqhmtl02y30ggp9faj8g65x4dgs3shx7j2e> src/assets/enc.tar.gz.age
   decrypt:
     cmds:
       - age --decrypt -i ./src/.config/sops/age/keys.txt src/assets/enc.tar.gz.age > unenc.tar.gz
       - tar -xzf unenc.tar.gz
+      # - cp unenc/* local
       - rm unenc.tar.gz
   generatecv:
     cmds:
@@ -164,9 +175,9 @@ tasks:
     cmds:
       - sops edit {{.ENC_HEADER_RESUME_YAML}}
     silent: true
-  clean:
-    cmds:
-      - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
+  # clean:
+  #   cmds:
+  #     - rm -rf {{.TEMP_DIR}} && mkdir -p {{.TEMP_DIR}}
   update-sops:
     cmds:
       - sops updatekeys {{.TEMPLATE_DIR}}/assets/*.enc.yaml
