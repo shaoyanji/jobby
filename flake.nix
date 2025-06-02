@@ -197,7 +197,7 @@
                 mkdir -p .cache/texmf-var .cache/pdfcpu
                 env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
                 ${gen}
-                                shrinkpdf.sh document.pdf > shrink.pdf
+                shrinkpdf.sh document.pdf > shrink.pdf
                 pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
                 pdfcpu optimize -c .cache/pdfcpu shrink.pdf final.pdf
               '';

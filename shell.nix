@@ -37,6 +37,7 @@ pkgs.mkShellNoCC
     nushell
     # secrets management
     sops
+    age
   ];
   GREETING = "Hello, Nix!";
   shellHook = ''
