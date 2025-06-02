@@ -9,6 +9,8 @@ devenv.local.nix
 # direnv
 .direnv
 
+
+.tar.gz
 # pre-commit
 .pre-commit-config.yaml
 
@@ -18,3 +20,5 @@ devenv.local.nix
 
 unenc*
 src/.config/groqkey.txt
+tmp*
+local

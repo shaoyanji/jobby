@@ -20,13 +20,14 @@ vars:
   SIGNATURE: ./src/assets/signature.png
 menu:
   ui:
+    - refresh
     - tgpt2
-    - pbpaste-letter
+    #    - pbpaste-letter
     - generateletter
     - generatecv
-    - make-pdf-map
+    #    - make-pdf-map
     - compress-assets
-    - edit
+    #    - edit
     - clean
     - update-sops
     - git-clean-push
@@ -40,12 +41,12 @@ menu:
     - exit
 tasks:
   default:
-    cmds: 
-      - task $(cat Taskfile.yml | yq .menu.[].[] | gum choose)
+    cmds:
+      - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
 #      - task $(cat Taskfile.yml | yq '.tasks | keys | .[]' | fzf --height 50%)
     silent: true
-  update-date:
-    cmds:
+#  update-date:
+#    cmds:
       #    - nu {{.BIN}}/update-date.nu
   make-pdf-map:
     cmds:
@@ -67,13 +68,17 @@ tasks:
       - magick {{.OUTPUT_DIR}}/resume-map-de.png {{.OUTPUT_DIR}}/resume-map-de.pdf
       - pdfcpu optimize {{.OUTPUT_DIR}}/resume-map-de.pdf
       - mupdf {{.OUTPUT_DIR}}/resume-map-de.pdf
+  refresh:
+    cmds:
+      - sops src/assets/letter.enc.yaml
+      - $SOPS_EDITOR local/template.yaml
   tgpt2:
     vars:
       TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $(cat src/.config/groqkey.txt)
     cmds:
-      - cat unenc/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
+      - cat local/template.yaml | {{.TGPT}} | src/bin/detxtwrap.sh  > unenc/letter.md
+      - task encrypt 
       - task generateletter
-
   tgpt:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
@@ -90,6 +95,8 @@ tasks:
       - echo "Generating letter"
       - nix build .#letter |& nom
       #- mupdf result/final.pdf
+      - cp result/final.pdf tmp/coverletter.pdf
+      - chmod 777 tmp/coverletter.pdf
     silent: true
   keygen:
     cmds:
@@ -108,6 +115,8 @@ tasks:
       - echo "Generating CV"
       - nix build .#cv |& nom
       #- mupdf result/final.pdf
+      - cp result/final.pdf tmp/cv.pdf
+      - chmod 777 tmp/cv.pdf
     silent: true
 
   compress-assets:

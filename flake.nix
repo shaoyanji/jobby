@@ -140,7 +140,7 @@
                 tar -xzf unenc.tar.gz
                 touch begin.md
                 echo "---" >> begin.md
-                sops -d -a age/key.txt ./assets/resume.enc.yaml >> begin.md
+                sops -d -a .config/sops/age/keys.txt ./assets/resume.enc.yaml >> begin.md
                 echo "..." >> begin.md
                 cat ./unenc/resume.md >> begin.md
               '';
