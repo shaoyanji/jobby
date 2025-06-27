@@ -90,9 +90,9 @@
           #      };
         in rec {
           devShells = {
-            default =
+            shell =
               import ./shell.nix {inherit pkgs;};
-            min = pkgs.mkShellNoCC {
+            default = pkgs.mkShellNoCC {
               packages = [
                 pkgs.pandoc
                 pkgs.wkhtmltopdf

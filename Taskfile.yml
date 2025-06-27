@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 vars:
   TEMP_DIR: ./tmp
@@ -34,7 +34,7 @@ menu:
     - git-clean-push
     - exit
   edit:
-    - back-to-task 
+    - back-to-task
     - edit-letter
     - edit-resume
     - edit-letter-secrets
@@ -44,11 +44,11 @@ tasks:
   default:
     cmds:
       - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
-#      - task $(cat Taskfile.yml | yq '.tasks | keys | .[]' | fzf --height 50%)
+    #      - task $(cat Taskfile.yml | yq '.tasks | keys | .[]' | fzf --height 50%)
     silent: true
-#  update-date:
-#    cmds:
-      #    - nu {{.BIN}}/update-date.nu
+  #  update-date:
+  #    cmds:
+  #    - nu {{.BIN}}/update-date.nu
   make-pdf-map:
     cmds:
       - mkdir -p {{.TEMP_DIR}}
@@ -75,10 +75,10 @@ tasks:
       - $SOPS_EDITOR local/template.yaml
   tgpt2:
     vars:
-      TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $(cat src/.config/groqkey.txt)
+      TGPT: tgpt -q --provider groq --model deepseek-r1-distill-llama-70b --key $(cat src/.config/groqkey.age | age -d -i src/.config/sops/age/keys.txt)
     cmds:
       - sops -d src/assets/resume-map.enc.yaml | {{.TGPT}} "$(cat local/template.yaml && wl-paste)"| src/bin/detxtwrap.sh  > unenc/letter.md
-      - task encrypt 
+      - task encrypt
       - task generateletter
   # tgpt:
   #   cmds:
@@ -187,6 +187,7 @@ tasks:
       - git restore --staged src/.config
       - 'git commit -m "chore: cleaning repo"'
       - git push
+      - git add .
   exit:
     cmds:
       - exit
