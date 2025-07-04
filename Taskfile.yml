@@ -43,7 +43,7 @@ menu:
 tasks:
   default:
     cmds:
-      - task $(cat Taskfile.yml | yq .menu.ui.[] | gum choose)
+      - task $(cat Taskfile.yml | yq .menu.ui.[] | fzf)
     #      - task $(cat Taskfile.yml | yq '.tasks | keys | .[]' | fzf --height 50%)
     silent: true
   #  update-date:
