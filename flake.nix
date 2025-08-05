@@ -100,6 +100,9 @@
                 pkgs.pdfcpu
                 pkgs.sops
                 pkgs.age
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
                 tex
               ];
             };
@@ -122,6 +125,9 @@
                 pkgs.pdfcpu
                 pkgs.sops
                 pkgs.age
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
                 tex
               ];
               encryptflags = "-upw decrypt -opw hdjsfhiuvhu843hui123251";
@@ -150,8 +156,65 @@
                  env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
                  ${gen}
                 shrinkpdf.sh document.pdf > shrink.pdf
-                 pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
-                 pdfcpu optimize -c .cache/pdfcpu shrink.pdf final.pdf
+                pdfcpu optimize shrink.pdf final.pdf
+                pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
+              '';
+              installPhase = ''
+                mkdir -p $out
+                cp {final,final.enc}.pdf $out/
+              '';
+            };
+
+            cv-en = pkgs.stdenvNoCC.mkDerivation rec {
+              name = "cv-en";
+              src = ./src;
+
+              buildInputs = [
+                pkgs.coreutils
+                pkgs.pandoc
+                pkgs.wkhtmltopdf
+                pkgs.ghostscript
+                pkgs.pdfcpu
+                pkgs.sops
+                pkgs.age
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
+                tex
+              ];
+              encryptflags = "-upw decrypt -opw hdjsfhiuvhu843hui123251";
+              gen = ''
+                pandoc -f markdown \
+                  -t pdf \
+                  --pdf-engine wkhtmltopdf \
+                  -o document.pdf \
+                  -c ./lib/resume-stylesheet.css -s \
+                  begin.md
+              '';
+              phases = ["unpackPhase" "patchPhase" "buildPhase" "installPhase"];
+              patchPhase = ''
+                export XDG_CONFIG_HOME=./.config
+                age --decrypt -i .config/sops/age/keys.txt assets/enc.tar.gz.age > unenc.tar.gz
+                tar -xzf unenc.tar.gz
+                touch begin.md
+                echo "---" >> begin.md
+                sops -d -a .config/sops/age/keys.txt ./assets/resume.enc.yaml >> begin.md
+                echo "..." >> begin.md
+                # Create English CV by combining sections
+                cat ./local/resume-header.md > ./unenc/resume-en.md
+                cat ./local/resume-experience.md >> ./unenc/resume-en.md
+                cat ./local/resume-skills.md >> ./unenc/resume-en.md
+                cat ./local/resume-education.md >> ./unenc/resume-en.md
+                cat ./unenc/resume-en.md >> begin.md
+              '';
+              buildPhase = ''
+                 export PATH="${pkgs.lib.makeBinPath buildInputs}:bin";
+                 mkdir -p .cache/texmf-var .cache/pdfcpu
+                 env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
+                 ${gen}
+                shrinkpdf.sh document.pdf > shrink.pdf
+                pdfcpu optimize shrink.pdf final.pdf
+                pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
               '';
               installPhase = ''
                 mkdir -p $out
@@ -170,6 +233,9 @@
                 pkgs.pdfcpu
                 pkgs.sops
                 pkgs.age
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
                 tex
               ];
               encryptflags = "-upw decrypt -opw hdjsfhiuvhu843hui123251";
@@ -198,18 +264,89 @@
                 env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
                 ${gen}
                 shrinkpdf.sh document.pdf > shrink.pdf
+                pdfcpu optimize shrink.pdf final.pdf
                 pdfcpu encrypt -c .cache/pdfcpu ${encryptflags} shrink.pdf final.enc.pdf
-                pdfcpu optimize -c .cache/pdfcpu shrink.pdf final.pdf
               '';
               installPhase = ''
                 mkdir -p $out
                 cp {final,final.enc}.pdf $out/
               '';
             };
+
+            cv-map = pkgs.stdenvNoCC.mkDerivation rec {
+              name = "cv-map";
+              src = ./src;
+
+              buildInputs = [
+                pkgs.coreutils
+                pkgs.pandoc
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
+                pkgs.sops
+                pkgs.age
+                tex
+              ];
+              phases = ["unpackPhase" "patchPhase" "buildPhase" "installPhase"];
+              patchPhase = ''
+                export XDG_CONFIG_HOME=./.config
+                age --decrypt -i .config/sops/age/keys.txt assets/enc.tar.gz.age > unenc.tar.gz
+                tar -xzf unenc.tar.gz
+                sops -d ./assets/resume-map.enc.yaml > resume-map.yaml
+              '';
+              buildPhase = ''
+                export PATH="${pkgs.lib.makeBinPath buildInputs}:bin";
+                mkdir -p .cache
+                nu bin/resume-map.nu | freeze -o cv-map.png --language text
+                magick cv-map.png cv-map.pdf
+                pdfcpu optimize cv-map.pdf final.pdf
+              '';
+              installPhase = ''
+                mkdir -p $out
+                cp final.pdf $out/
+              '';
+            };
+
+            cv-map-de = pkgs.stdenvNoCC.mkDerivation rec {
+              name = "cv-map-de";
+              src = ./src;
+
+              buildInputs = [
+                pkgs.coreutils
+                pkgs.pandoc
+                pkgs.nushell
+                pkgs.imagemagick
+                pkgs.viu
+                pkgs.sops
+                pkgs.age
+                tex
+              ];
+              phases = ["unpackPhase" "patchPhase" "buildPhase" "installPhase"];
+              patchPhase = ''
+                export XDG_CONFIG_HOME=./.config
+                age --decrypt -i .config/sops/age/keys.txt assets/enc.tar.gz.age > unenc.tar.gz
+                tar -xzf unenc.tar.gz
+                sops -d ./assets/resume-map-de.enc.yaml > resume-map-de.yaml
+              '';
+              buildPhase = ''
+                export PATH="${pkgs.lib.makeBinPath buildInputs}:bin";
+                mkdir -p .cache
+                nu bin/resume-map-de.nu | freeze -o cv-map-de.png --language text
+                magick cv-map-de.png cv-map-de.pdf
+                pdfcpu optimize cv-map-de.pdf final.pdf
+              '';
+              installPhase = ''
+                mkdir -p $out
+                cp final.pdf $out/
+              '';
+            };
           };
           defaultPackage = packages.cv;
           cv = packages.cv;
+          cv-en = packages.cv-en;
           letter = packages.letter;
+          cv-map = packages.cv-map;
+          cv-map-de = packages.cv-map-de;
           # Tutorial for minimal LaTeX document
           #  packages =
           #    {
