@@ -22,3 +22,4 @@ unenc*
 src/.config/groqkey.txt
 tmp*
 local
+.crush
