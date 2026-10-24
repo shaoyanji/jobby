@@ -1,143 +1,293 @@
 {
   "basics": {
-    "name": "Shao-yan (Matt) Ji",
-    "label": "Platform Engineer",
+    "email": "matt@bountystash.com",
+    "image": "https://res.cloudinary.com/de1eajx01/image/upload/v1765739348/lu7yx5irrcpfmisnhfzi.svg",
+    "signature": "https://res.cloudinary.com/de1eajx01/image/upload/v1765739484/qa7exxxy8xvzzkmjgyxn.png",
+    "label": "Software Engineer — AI systems, retrieval, evaluation",
     "altLabels": [
-      "AI Platform Engineer",
-      "Quantitative Risk Engineer",
-      "Consultant"
+      "Senior AI Software Architect",
+      "Programmer, Engineer, Consultant"
     ],
-    "email": "jisifu@gmail.com",
-    "url": "https://github.com/shaoyanji",
-    "summary": "Builds declarative infrastructure and local-first AI tooling, with a bias for small reproducible systems.",
-    "signature": "assets/signature.png",
     "location": {
-      "city": "Freiburg",
-      "countryCode": "DE"
+      "address": "Am Burgerhof 4",
+      "city": "Gutach im Breisgau",
+      "countryCode": "DE",
+      "postalCode": "BW 79261",
+      "region": "Baden-Wuerttemberg"
     },
+    "name": "Matt Ji",
+    "phone": "+49 1733281570",
     "profiles": [
       {
         "network": "GitHub",
+        "url": "https://github.com/shaoyanji",
         "username": "shaoyanji"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/mattji",
+        "username": "mattji"
+      },
+      {
+        "network": "XING",
+        "url": "https://xing.com/profile/Shaoyan_Ji",
+        "username": "Shaoyan_Ji"
       }
-    ]
+    ],
+    "summary": "Software engineer building production AI systems: agent memory, retrieval, and evaluation. A decade of work on quantitative data architectures, RAG-style pipelines, and tool-using agents in Python and Go. Comfortable turning ambiguous research ideas into measured product capabilities with traces, eval harnesses, and tight latency/cost budgets.",
+    "url": "https://www.bountystash.com"
   },
-  "work": [
-    {
-      "name": "Bountystash",
-      "position": "Founder",
-      "startDate": "2023-01",
-      "endDate": "",
-      "summary": "Early-stage AI product: retrieval, evaluation and the services around them.",
-      "highlights": [
-        "Built a retrieval layer over internal documents with RAG and MCP tools",
-        "Wrote the evaluation harness that gates every model change",
-        "Shipped Go and Python services for the storefront and billing",
-        "Ran the Postgres storage layer and its migrations"
-      ]
-    },
-    {
-      "name": "O3 Energy",
-      "position": "Platform Engineer",
-      "startDate": "2022-04",
-      "endDate": "",
-      "summary": "Owns the Nix-based fleet and the delivery pipeline behind it.",
-      "highlights": [
-        "Rebuilt the host fleet on one flake with inventory-driven CI",
-        "Cut median deploy time by offloading builds to remote builders",
-        "Modelled PPA exposure and weather-derivative settlement for the trading desk",
-        "Automated the monthly hedge report from market and portfolio data"
-      ]
-    },
-    {
-      "name": "Swirl Engine",
-      "position": "Independent Researcher",
-      "startDate": "2021-09",
-      "endDate": "2022-03",
-      "summary": "Small research vehicle for energy-market tooling.",
-      "highlights": [
-        "Built a backtesting engine for weather-derivative strategies",
-        "Prototyped a Rust risk engine with a Typst reporting front end"
-      ]
-    },
-    {
-      "name": "Fraunhofer ISE",
-      "position": "Research Assistant",
-      "startDate": "2019-04",
-      "endDate": "2021-08",
-      "highlights": [
-        "Modelled PV yield and grid-parity scenarios for regional studies",
-        "Published the data pipeline behind the scenario workbook"
-      ]
-    }
-  ],
-  "projects": [
-    {
-      "name": "resumectl",
-      "description": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
-      "url": "https://github.com/shaoyanji/jobby",
-      "roles": ["author"],
-      "highlights": [
-        "Lossless JSON tree, so unknown fields survive every export",
-        "Typst to PDF with pdfcpu provenance and mupdf live reload"
-      ]
-    },
-    {
-      "name": "Energy Scenario Kit",
-      "description": "Open tooling for PPA and weather-derivative scenario analysis.",
-      "roles": ["author"],
-      "highlights": [
-        "Backtests hedge structures against historical weather data",
-        "Generates scenario reports from one declarative input file"
-      ]
-    }
-  ],
   "skills": [
     {
-      "name": "AI systems",
-      "level": "advanced",
-      "keywords": ["RAG", "MCP", "evaluation", "retrieval", "LLM"]
+      "name": "Agent systems & retrieval",
+      "level": "Master",
+      "keywords": [
+        "agent memory",
+        "RAG",
+        "embeddings",
+        "vector search",
+        "MCP",
+        "tool use",
+        "eval harnesses",
+        "provenance"
+      ]
     },
     {
-      "name": "Nix",
-      "level": "expert",
-      "keywords": ["flakes", "home-manager", "nixos"]
+      "name": "Backend & data",
+      "level": "Master",
+      "keywords": [
+        "Python",
+        "FastAPI",
+        "Asyncio",
+        "Go",
+        "SQL",
+        "PostgreSQL",
+        "Pandas"
+      ]
     },
     {
-      "name": "Go",
-      "level": "advanced",
-      "keywords": ["CLI", "services"]
+      "name": "Production ML & DevOps",
+      "level": "Master",
+      "keywords": [
+        "Kubernetes",
+        "Docker",
+        "NixOS",
+        "CI/CD",
+        "traces",
+        "latency",
+        "cost"
+      ]
     },
     {
-      "name": "Energy markets",
-      "level": "working",
-      "keywords": ["PPA", "weather derivatives", "hedging"]
+      "name": "Domain",
+      "level": "Master",
+      "keywords": [
+        "energy portfolios",
+        "risk models",
+        "entity resolution",
+        "temporal reasoning"
+      ]
     }
   ],
   "languages": [
     {
-      "language": "English",
-      "fluency": "native"
+      "fluency": "Native speaker",
+      "language": "English"
     },
     {
-      "language": "German",
-      "fluency": "professional"
+      "fluency": "Fluent",
+      "language": "German"
+    }
+  ],
+  "projects": [
+    {
+      "description": "A polyglot risk calculation engine implementing Green's Theorem (Shoelace Formula) for stochastic shape analysis.",
+      "endDate": "2026-03-18",
+      "entity": "Personal Research",
+      "highlights": [
+        "Architected a Green's Theorem engine for stochastic polygon area calculation as a stress test of numerical pipelines",
+        "Implemented a Go shape fuzzer generating provenance-tagged synthetic geometry",
+        "Automated the data path with Nushell and Awk; containerized with Nix Flakes for reproducible Go builds"
+      ],
+      "keywords": [
+        "Go",
+        "Nushell",
+        "Awk",
+        "Green's Theorem",
+        "Risk Analysis",
+        "NixOS",
+        "Polyglot Programming"
+      ],
+      "name": "Risk Calculation Engine (Swirl Engine)",
+      "roles": [
+        "Lead Developer",
+        "Researcher"
+      ],
+      "startDate": "2026-03-15",
+      "type": "open_source",
+      "url": "https://github.com/shaoyanji/risk-calc"
+    },
+    {
+      "description": "Artificial Intelligence applied to weather prediction",
+      "endDate": "2014-02-24",
+      "entity": "Meteorological Institute of Freiburg",
+      "highlights": [
+        "Developed a time-cross-correlation method for wind-velocity data with a measured +70% accuracy lift",
+        "Trained neural nets on long-horizon weather series to improve grid economics of intermittent solar and wind"
+      ],
+      "keywords": [
+        "Artificial Neural Networks",
+        "Fractal Geometry",
+        "Vector Analysis"
+      ],
+      "name": "Master's Thesis",
+      "roles": [
+        "Student"
+      ],
+      "startDate": "2013-08-01",
+      "type": "thesis",
+      "url": "https://www.academia.edu/6762743/A_Study_on_Energy_Intermittency_Reduction_Strategies_with_Emphasis_on_Weather_Pattern_Prediction"
+    },
+    {
+      "description": "Post-graduate research in renewable energy",
+      "endDate": "2013-02-28",
+      "entity": "United Nations University",
+      "highlights": [
+        "Analyzed hydrogen production and storage projects using RETScreen",
+        "Post-graduate research in renewable energy",
+        "Solar, Wind, Geothermal, and Bioenergy modules completed under the UNU programme"
+      ],
+      "keywords": [
+        "Hydrogen Cells",
+        "Solar"
+      ],
+      "name": "Postgraduate Renewable Energy",
+      "roles": [
+        "Team lead",
+        "Engineer"
+      ],
+      "startDate": "2013-02-01",
+      "type": "course",
+      "url": "https://unu.edu"
+    }
+  ],
+  "work": [
+    {
+      "description": "Cybersecurity Energy Financial Consulting firm",
+      "endDate": "2026-09-19",
+      "highlights": [
+        "Designed production knowledge-base pipelines that extract structured facts from unstructured documents and assemble retrieval context for downstream agents",
+        "Built modular agent workflows with tool calling and Model Context Protocol so autonomous routines hit company APIs under explicit permissions",
+        "Shipped evaluation harnesses that measure answer quality, hallucination rate, retrieval relevance, and tool-call reliability on every CI cycle",
+        "Implemented Python and Go data pipelines that join relational sources with embedding indexes for low-latency context assembly",
+        "Investigated production failures with traces and datasets, then iterated ranking and prompting against measured regressions",
+        "Built risk-adjusted PPA and weather-derivative models for energy traders (in-house risk manager)"
+      ],
+      "location": "Freiburg, DE",
+      "name": "Bountystash",
+      "position": "Founder & Senior AI Software Architect",
+      "startDate": "2020-06-01",
+      "summary": "Bountystash is a technology based on information theory, risk analysis, and market data.",
+      "url": "https://bountystash.com"
+    },
+    {
+      "description": "Top Solar Developer",
+      "endDate": "2020-06-01",
+      "highlights": [
+        "Owned commercial and technical steering of a 100M+ USD / 10 MW solar portfolio, including provenance of operational and financial data",
+        "Built dynamic models for entity-level risk, scenario analysis, and temporal performance of energy assets",
+        "Shipped an internal mobile capture app that resolved project entities and fed a structured opportunity pipeline",
+        "Designed a risk system that scored portfolio exposures and produced auditable traces for banks and transaction advisors",
+        "Documented and managed software and IT admin for the company and subsidiaries"
+      ],
+      "location": "Dallas, TX",
+      "name": "O3 Energy",
+      "position": "Asset Manager",
+      "startDate": "2016-08-01",
+      "summary": "O3 Energy has been rated as one of the top solar developers/contractors in the US.",
+      "url": "https://o3energy.com"
+    },
+    {
+      "description": "Top Energy Contractor",
+      "endDate": "2016-08-01",
+      "highlights": [
+        "Ran a 100M+ USD project pipeline and translated client requirements into technical solution designs",
+        "Advised on cybersecurity and risk tooling for energy operators",
+        "Built sales and support processes that connected unstructured client intake to structured delivery plans"
+      ],
+      "location": "Dallas, TX",
+      "name": "Smart Energy 360",
+      "position": "Director of Sustainability",
+      "startDate": "2015-08-01",
+      "summary": "Smart Energy 360 is a top energy provider in the region.",
+      "url": "https://smartenergy360.com"
+    },
+    {
+      "description": "Top Solar Research Institute",
+      "endDate": "2012-09-01",
+      "highlights": [
+        "Wrote C++ interfaces to scientific measurement systems and Python analysis for 3D geometry and error traces",
+        "Verified geometric calculations in Mathematica and scored measurement-system failures in a research setting",
+        "Conducted research on heliostat imperfections using interferometry"
+      ],
+      "name": "Fraunhofer ISE",
+      "location": "Freiburg, DE",
+      "position": "Student Researcher",
+      "startDate": "2012-03-01",
+      "summary": "A world-renowned research institute in Germany and a foremost in solar technologies.",
+      "url": "https://ise.fraunhofer.de"
+    },
+    {
+      "description": "International Oil Services Company",
+      "endDate": "2011-09-01",
+      "highlights": [
+        "Led two field crews on 3M+ USD/week operations with on-site equipment and chemical troubleshooting",
+        "Shipped Excel engineering tools that replaced ad-hoc calculation and improved operational feedback loops",
+        "Worked 12-hour field shifts; implemented new engineering spreadsheets"
+      ],
+      "name": "Halliburton",
+      "location": "Williston, ND, US",
+      "position": "Associate Technical Professional",
+      "startDate": "2010-06-01",
+      "summary": "Halliburton is one of the top oil and gas service companies, Bakken Shale, Williston ND.",
+      "url": "https://halliburton.com"
     }
   ],
   "education": [
     {
-      "institution": "Albert-Ludwigs-Universität Freiburg",
-      "area": "Computer Science",
-      "studyType": "M.Sc.",
-      "startDate": "2018-10",
-      "endDate": "2021-09",
-      "courses": ["Distributed Systems", "Numerical Methods"]
+      "area": "Renewable Energy Management",
+      "courses": [
+        "Intermittent Renewable Energy and Weather Patterns Analyzed through Artificial Neural Networks"
+      ],
+      "endDate": "2014-02-01",
+      "institution": "University of Freiburg",
+      "score": "1,8/5,0",
+      "startDate": "2011-11-01",
+      "studyType": "Master of Science",
+      "url": "https://rem.zee-uni-freiburg.de/"
+    },
+    {
+      "area": "Petroleum Engineering",
+      "courses": [
+        "McBride Honors Program in Public Policy",
+        "Economics"
+      ],
+      "endDate": "2010-05-15",
+      "institution": "Colorado School of Mines",
+      "score": "3.2 GPA",
+      "startDate": "2006-08-01",
+      "studyType": "Bachelor of Science",
+      "url": "https://mines.edu/"
     }
   ],
   "meta": {
+    "theme": "sidebar-photo-strip",
     "language": "en",
-    "synced_tasks": [],
-    "file_stem": "Matt_Ji",
-    "rezi_source_id": "demo"
+    "synced_tasks": [
+      "20260222-085142-normal",
+      "20260919-glassflow-en"
+    ],
+    "last_synced": "2026-09-19T09:58:27+00:00",
+    "rezi_source_id": "f6a0652c-fc32-450e-a6f9-f7d330378425"
   }
 }

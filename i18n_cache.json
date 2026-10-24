@@ -9,6 +9,24 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "0280f7088160",
+    "path_hint": "work[1].position",
+    "en": "Asset Manager",
+    "de_auto": "Asset Manager",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "04ad78f7d243",
+    "path_hint": "languages[1].fluency",
+    "en": "Fluent",
+    "de_auto": "fließend",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "0553a7b1f0fd",
     "path_hint": "projects[1].description",
     "en": "Open tooling for PPA and weather-derivative scenario analysis.",
@@ -16,6 +34,15 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "0802f7afc399",
+    "path_hint": "work[0].highlights[4]",
+    "en": "Investigated production failures with traces and datasets, then iterated ranking and prompting against measured regressions",
+    "de_auto": "Untersuchte Produktionsfehler mit Traces und Datensätzen und optimierte Ranking und Prompting anhand gemessener Regressionen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "0d361412e3a4",
@@ -36,6 +63,24 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "1a2ee7fca0aa",
+    "path_hint": "projects[1].highlights[0]",
+    "en": "Developed a time-cross-correlation method for wind-velocity data with a measured +70% accuracy lift",
+    "de_auto": "Entwickelte eine Zeitkreuzkorrelationsmethode für Windgeschwindigkeitsdaten mit einer gemessenen Genauigkeitssteigerung von 70 %",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "1bfd77d20cd1",
+    "path_hint": "work[0].position",
+    "en": "Founder \u0026 Senior AI Software Architect",
+    "de_auto": "Gründer \u0026 Senior KI-Softwarearchitekt",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "23602b6ae033",
     "path_hint": "education[0].courses[0]",
     "en": "Distributed Systems",
@@ -43,6 +88,42 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "23f23bd4676f",
+    "path_hint": "projects[0].description",
+    "en": "A polyglot risk calculation engine implementing Green's Theorem (Shoelace Formula) for stochastic shape analysis.",
+    "de_auto": "Eine polyglotte Risikoberechnungs-Engine, die den Satz von Green (Schnürsenkel-Formel) für stochastische Formanalyse implementiert.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "27d0c32f99a0",
+    "path_hint": "work[0].highlights[3]",
+    "en": "Implemented Python and Go data pipelines that join relational sources with embedding indexes for low-latency context assembly",
+    "de_auto": "Implementierte Datenpipelines in Python und Go, die relationale Quellen mit Embedding-Indizes für latenzarme Kontextzusammenstellung verbinden",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "2a164d541578",
+    "path_hint": "projects[1].roles[0]",
+    "en": "Student",
+    "de_auto": "Student",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "2f7f68fb5c91",
+    "path_hint": "education[1].studyType",
+    "en": "Bachelor of Science",
+    "de_auto": "Bachelor of Science",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "2fcd2f519c2c",
@@ -54,6 +135,15 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "300ec1b1bc99",
+    "path_hint": "work[1].summary",
+    "en": "O3 Energy has been rated as one of the top solar developers/contractors in the US.",
+    "de_auto": "O3 Energy zählt zu den führenden Solar-Entwicklern und -Installateuren in den USA.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "33ca924e4725",
     "path_hint": "cover_letter.opening",
     "en": "I am applying for Software Engineer — AI systems, retrieval, evaluation at TestGmbH, and the work described there sits squarely in the AI Systems \u0026 Retrieval Architect side of my background.",
@@ -63,6 +153,33 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "351a1451cfc4",
+    "path_hint": "work[4].summary",
+    "en": "Halliburton is one of the top oil and gas service companies, Bakken Shale, Williston ND.",
+    "de_auto": "Halliburton ist eines der führenden Öl- und Gasdienstleistungsunternehmen; Bakken-Schieferformation, Williston, North Dakota.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "3525e023c187",
+    "path_hint": "work[4].highlights[0]",
+    "en": "Led two field crews on 3M+ USD/week operations with on-site equipment and chemical troubleshooting",
+    "de_auto": "Leitete zwei Außendienstteams im Betrieb mit über 3 Mio. USD pro Woche, einschließlich Vor-Ort-Ausrüstung und chemischer Fehlersuche",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "3e6a47ba3adf",
+    "path_hint": "projects[0].highlights[1]",
+    "en": "Implemented a Go shape fuzzer generating provenance-tagged synthetic geometry",
+    "de_auto": "Implementierte einen Go-Shape-Fuzzer, der herkunftsmarkierte synthetische Geometrie erzeugt",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "3e980c8c1ae7",
     "path_hint": "projects[0].description",
     "en": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
@@ -70,6 +187,15 @@
     "de_override": "Headless-first JSON-Resume-Pipeline mit inhaltsadressiertem deutschem Übersetzungs-Cache.",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "412d6c53464b",
+    "path_hint": "work[3].position",
+    "en": "Student Researcher",
+    "de_auto": "Wissenschaftliche Hilfskraft",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "42ebff4396ce",
@@ -90,6 +216,33 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "4867c5a89d09",
+    "path_hint": "work[2].position",
+    "en": "Director of Sustainability",
+    "de_auto": "Leiter Nachhaltigkeit",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "50d2604d15cd",
+    "path_hint": "work[1].description",
+    "en": "Top Solar Developer",
+    "de_auto": "Führender Solar-Entwickler",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "510c10a8bde0",
+    "path_hint": "work[0].highlights[1]",
+    "en": "Built modular agent workflows with tool calling and Model Context Protocol so autonomous routines hit company APIs under explicit permissions",
+    "de_auto": "Entwickelte modulare Agenten-Workflows mit Tool-Calling und dem Model Context Protocol, damit autonome Routinen Unternehmens-APIs nur mit ausdrücklicher Freigabe aufrufen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "51926de444aa",
     "path_hint": "work[0].highlights[0]",
     "en": "Built a retrieval layer over internal documents with RAG and MCP tools",
@@ -97,6 +250,24 @@
     "de_override": "Retrieval-Schicht über internen Dokumenten mit RAG- und MCP-Tools aufgebaut",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "5665c583fee4",
+    "path_hint": "projects[2].highlights[2]",
+    "en": "Solar, Wind, Geothermal, and Bioenergy modules completed under the UNU programme",
+    "de_auto": "Module zu Solar, Wind, Geothermie und Bioenergie im Rahmen des UNU-Programms abgeschlossen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "570ac499665a",
+    "path_hint": "work[1].highlights[3]",
+    "en": "Designed a risk system that scored portfolio exposures and produced auditable traces for banks and transaction advisors",
+    "de_auto": "Konzipierte ein Risikosystem, das Portfolioexpositionen bewertete und prüfbare Nachweise für Banken und Transaktionsberater erzeugte",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "57fc772536ee",
@@ -108,6 +279,33 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "59192d41468b",
+    "path_hint": "work[2].highlights[0]",
+    "en": "Ran a 100M+ USD project pipeline and translated client requirements into technical solution designs",
+    "de_auto": "Verantwortete eine Projektpipeline von über 100 Mio. USD und übersetzte Kundenanforderungen in technische Lösungsdesigns",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "5926c704d5b3",
+    "path_hint": "education[1].courses[1]",
+    "en": "Economics",
+    "de_auto": "Volkswirtschaftslehre",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "59fdfa8e00b5",
+    "path_hint": "work[2].summary",
+    "en": "Smart Energy 360 is a top energy provider in the region.",
+    "de_auto": "Smart Energy 360 ist ein führender Energieanbieter der Region.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "5ca2e544969a",
     "path_hint": "basics.summary",
     "en": "Builds retrieval and evaluation systems end to end: RAG pipelines, MCP tooling, and the evaluation loops that keep model changes honest.",
@@ -115,6 +313,15 @@
     "de_override": "Entwickelt End-to-End-Retrieval- und Evaluierungssysteme: RAG-Pipelines, MCP-Tools und die Evaluierungsschleifen, die dafür sorgen, dass Modelländerungen belastbar bleiben.",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "5fb63880e90b",
+    "path_hint": "projects[0].highlights[2]",
+    "en": "Automated the data path with Nushell and Awk; containerized with Nix Flakes for reproducible Go builds",
+    "de_auto": "Automatisierte den Datenpfad mit Nushell und Awk; containerisierte ihn mit Nix Flakes für reproduzierbare Go-Builds",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "5fdc351f0998",
@@ -133,6 +340,24 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "638a37fb9b3c",
+    "path_hint": "education[0].courses[0]",
+    "en": "Intermittent Renewable Energy and Weather Patterns Analyzed through Artificial Neural Networks",
+    "de_auto": "Intermittierende erneuerbare Energien und Wettermuster, analysiert mit künstlichen neuronalen Netzen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "6b833bccbcdb",
+    "path_hint": "skills[0].name",
+    "en": "Agent systems \u0026 retrieval",
+    "de_auto": "Agentensysteme \u0026 Retrieval",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "6cc8519b9158",
@@ -162,6 +387,33 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "708bde58cc26",
+    "path_hint": "education[0].area",
+    "en": "Renewable Energy Management",
+    "de_auto": "Management erneuerbarer Energien",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "711c59498116",
+    "path_hint": "education[1].courses[0]",
+    "en": "McBride Honors Program in Public Policy",
+    "de_auto": "McBride Honors Program in Public Policy",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "73acafc57ffa",
+    "path_hint": "skills[2].name",
+    "en": "Production ML \u0026 DevOps",
+    "de_auto": "Produktions-ML \u0026 DevOps",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "741d34ff99a8",
     "path_hint": "work[1].summary",
     "en": "Owns the Nix-based fleet and the delivery pipeline behind it.",
@@ -169,6 +421,42 @@
     "de_override": "Verantwortet die Nix-basierte Flotte und die dahinterliegende Delivery-Pipeline.",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "74abf756de5c",
+    "path_hint": "work[0].highlights[2]",
+    "en": "Shipped evaluation harnesses that measure answer quality, hallucination rate, retrieval relevance, and tool-call reliability on every CI cycle",
+    "de_auto": "Lieferte Evaluierungs-Harnesses, die Antwortqualität, Halluzinationsrate, Retrieval-Relevanz und Zuverlässigkeit von Tool-Aufrufen in jedem CI-Zyklus messen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "78380ba410f6",
+    "path_hint": "projects[2].roles[0]",
+    "en": "Team lead",
+    "de_auto": "Teamleitung",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "7880d0196efe",
+    "path_hint": "education[0].studyType",
+    "en": "Master of Science",
+    "de_auto": "Master of Science",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "79fa33618d8e",
+    "path_hint": "skills[3].name",
+    "en": "Domain",
+    "de_auto": "Fachdomäne",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "7e8b8112baa0",
@@ -180,6 +468,24 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "81f93c8e38d1",
+    "path_hint": "work[3].description",
+    "en": "Top Solar Research Institute",
+    "de_auto": "Führendes Solarforschungsinstitut",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "834e98785e20",
+    "path_hint": "work[4].highlights[2]",
+    "en": "Worked 12-hour field shifts; implemented new engineering spreadsheets",
+    "de_auto": "Arbeitete 12-Stunden-Schichten im Außendienst; erstellte neue Engineering-Tabellen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "8cd90a60fc54",
     "path_hint": "work[2].position",
     "en": "Independent Researcher",
@@ -187,6 +493,42 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "8ed0c0c18eb7",
+    "path_hint": "projects[0].roles[0]",
+    "en": "Lead Developer",
+    "de_auto": "Lead-Entwickler",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "918fcd73c354",
+    "path_hint": "projects[0].roles[1]",
+    "en": "Researcher",
+    "de_auto": "Forscher",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "9464b8077729",
+    "path_hint": "work[2].highlights[2]",
+    "en": "Built sales and support processes that connected unstructured client intake to structured delivery plans",
+    "de_auto": "Entwickelte Vertriebs- und Supportprozesse, die unstrukturierte Kundenanfragen mit strukturierten Lieferplänen verbanden",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "96bb9a3591bf",
+    "path_hint": "work[4].position",
+    "en": "Associate Technical Professional",
+    "de_auto": "Associate Technical Professional",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "9931da794522",
@@ -198,6 +540,15 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "a193509f01e3",
+    "path_hint": "work[1].highlights[2]",
+    "en": "Shipped an internal mobile capture app that resolved project entities and fed a structured opportunity pipeline",
+    "de_auto": "Lieferte eine interne mobile Erfassungs-App, die Projektentitäten auflöste und eine strukturierte Opportunity-Pipeline speiste",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "a659b60d246d",
     "path_hint": "languages[1].language",
     "en": "German",
@@ -205,6 +556,15 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "a69d52718cbd",
+    "path_hint": "work[0].highlights[5]",
+    "en": "Built risk-adjusted PPA and weather-derivative models for energy traders (in-house risk manager)",
+    "de_auto": "Entwickelte risikoadjustierte PPA- und Wetterderivate-Modelle für Energietrader (interne Risikomanagement-Funktion)",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "a69d645f1512",
@@ -216,6 +576,24 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "a9a4944ca772",
+    "path_hint": "projects[1].highlights[1]",
+    "en": "Trained neural nets on long-horizon weather series to improve grid economics of intermittent solar and wind",
+    "de_auto": "Trainierte neuronale Netze auf langfristigen Wetterreihen, um die Netzwirtschaftlichkeit fluktuierender Solar- und Windeinspeisung zu verbessern",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "ae434a4e0f89",
+    "path_hint": "work[3].highlights[2]",
+    "en": "Conducted research on heliostat imperfections using interferometry",
+    "de_auto": "Forschte mit Interferometrie zu Unvollkommenheiten von Heliostaten",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "af55d95081d5",
     "path_hint": "basics.altLabels[1]",
     "en": "Quantitative Risk Engineer",
@@ -225,6 +603,15 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "b1336f687350",
+    "path_hint": "education[1].area",
+    "en": "Petroleum Engineering",
+    "de_auto": "Erdöl- und Erdgastechnik",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "b2b6dd85fb05",
     "path_hint": "work[1].highlights[0]",
     "en": "Rebuilt the host fleet on one flake with inventory-driven CI",
@@ -232,6 +619,24 @@
     "de_override": "Die Host-Flotte mit einem Flake und inventargesteuerter CI neu aufgebaut",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "b4bec79be565",
+    "path_hint": "projects[0].highlights[0]",
+    "en": "Architected a Green's Theorem engine for stochastic polygon area calculation as a stress test of numerical pipelines",
+    "de_auto": "Konzipierte eine Green's-Theorem-Engine zur stochastischen Polygonflächenberechnung als Stresstest numerischer Pipelines",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "b7a46b633276",
+    "path_hint": "work[1].highlights[0]",
+    "en": "Owned commercial and technical steering of a 100M+ USD / 10 MW solar portfolio, including provenance of operational and financial data",
+    "de_auto": "Verantwortete die kaufmännische und technische Steuerung eines Solarportfolios von über 100 Mio. USD bzw. 10 MW, einschließlich der Herkunftsnachweise operativer und finanzieller Daten",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "ba118bf7fc9c",
@@ -270,6 +675,51 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "c079870c31c9",
+    "path_hint": "work[3].summary",
+    "en": "A world-renowned research institute in Germany and a foremost in solar technologies.",
+    "de_auto": "Ein weltweit renommiertes Forschungsinstitut in Deutschland und führend in der Solartechnologie.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "c1b2e0f75641",
+    "path_hint": "work[4].description",
+    "en": "International Oil Services Company",
+    "de_auto": "Internationales Öl-Dienstleistungsunternehmen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "c2bc3615cb37",
+    "path_hint": "skills[1].name",
+    "en": "Backend \u0026 data",
+    "de_auto": "Backend \u0026 Daten",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "c532cc0b348f",
+    "path_hint": "projects[2].highlights[0]",
+    "en": "Analyzed hydrogen production and storage projects using RETScreen",
+    "de_auto": "Analysierte Wasserstofferzeugungs- und -speicherprojekte mit RETScreen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "c6294a744ce3",
+    "path_hint": "work[4].highlights[1]",
+    "en": "Shipped Excel engineering tools that replaced ad-hoc calculation and improved operational feedback loops",
+    "de_auto": "Lieferte Excel-Engineering-Tools, die Ad-hoc-Berechnungen ersetzten und die Rückkopplung im Betrieb verbesserten",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "c6ddfd471731",
     "path_hint": "projects[1].highlights[0]",
     "en": "Generates scenario reports from one declarative input file",
@@ -277,6 +727,15 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "cb650d3ce421",
+    "path_hint": "work[2].highlights[1]",
+    "en": "Advised on cybersecurity and risk tooling for energy operators",
+    "de_auto": "Beriet Energieversorger zu Cybersicherheit und Risikowerkzeugen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "cd340d1a5c41",
@@ -288,6 +747,69 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "cdbeb7f2e834",
+    "path_hint": "basics.altLabels[1]",
+    "en": "Programmer, Engineer, Consultant",
+    "de_auto": "Programmierer, Ingenieur, Berater",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "cf0f61b20022",
+    "path_hint": "work[1].highlights[1]",
+    "en": "Built dynamic models for entity-level risk, scenario analysis, and temporal performance of energy assets",
+    "de_auto": "Entwickelte dynamische Modelle für Risiken auf Entitätsebene, Szenarioanalysen und die zeitliche Performance von Energieanlagen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "d02aa21d6b26",
+    "path_hint": "basics.summary",
+    "en": "Software engineer building production AI systems: agent memory, retrieval, and evaluation. A decade of work on quantitative data architectures, RAG-style pipelines, and tool-using agents in Python and Go. Comfortable turning ambiguous research ideas into measured product capabilities with traces, eval harnesses, and tight latency/cost budgets.",
+    "de_auto": "Softwareentwickler für produktive KI-Systeme: Agenten-Gedächtnis, Retrieval und Evaluierung. Ein Jahrzehnt Arbeit an quantitativen Datenarchitekturen, RAG-Pipelines und werkzeugnutzenden Agenten in Python und Go. Übersetzt unklare Forschungsfragen routiniert in messbare Produktfunktionen — mit Traces, Evaluierungs-Harnesses und engen Latenz- und Kostenbudgets.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "d4863c07089e",
+    "path_hint": "projects[2].description",
+    "en": "Post-graduate research in renewable energy",
+    "de_auto": "Postgraduale Forschung im Bereich erneuerbare Energien",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "d93352a70395",
+    "path_hint": "projects[2].roles[1]",
+    "en": "Engineer",
+    "de_auto": "Ingenieur",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "daf300a8280f",
+    "path_hint": "projects[1].description",
+    "en": "Artificial Intelligence applied to weather prediction",
+    "de_auto": "Künstliche Intelligenz für die Wettervorhersage",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "dd73c7674dbd",
+    "path_hint": "work[3].highlights[0]",
+    "en": "Wrote C++ interfaces to scientific measurement systems and Python analysis for 3D geometry and error traces",
+    "de_auto": "Schrieb C++-Schnittstellen zu wissenschaftlichen Messsystemen sowie Python-Analysen für 3D-Geometrie und Fehler-Traces",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "ddcfa34ecf46",
     "path_hint": "work[0].highlights[1]",
     "en": "Wrote the evaluation harness that gates every model change",
@@ -297,6 +819,24 @@
     "updated_at": "2026-10-24T07:45:44Z"
   },
   {
+    "hash": "e0bc7463925a",
+    "path_hint": "work[0].description",
+    "en": "Cybersecurity Energy Financial Consulting firm",
+    "de_auto": "Beratungsunternehmen für Cybersicherheit, Energie und Finanzen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "e32fd1df401e",
+    "path_hint": "work[3].highlights[1]",
+    "en": "Verified geometric calculations in Mathematica and scored measurement-system failures in a research setting",
+    "de_auto": "Verifizierte geometrische Berechnungen in Mathematica und bewertete Ausfälle von Messsystemen im Forschungsumfeld",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
     "hash": "e37eb04842e6",
     "path_hint": "skills[3].name",
     "en": "Energy markets",
@@ -304,6 +844,15 @@
     "de_override": "",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "e58e0266c636",
+    "path_hint": "work[2].description",
+    "en": "Top Energy Contractor",
+    "de_auto": "Führender Energie-Dienstleister",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "ea540ffea2e0",
@@ -322,6 +871,24 @@
     "de_override": "Go- und Python-Dienste für Storefront und Abrechnung bereitgestellt",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "eb002d641840",
+    "path_hint": "work[1].highlights[4]",
+    "en": "Documented and managed software and IT admin for the company and subsidiaries",
+    "de_auto": "Dokumentierte und verantwortete Software und IT-Administration für das Unternehmen und seine Tochtergesellschaften",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "ee1cc3aac0bf",
+    "path_hint": "languages[0].fluency",
+    "en": "Native speaker",
+    "de_auto": "Muttersprache",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   },
   {
     "hash": "f114eb37fd37",
@@ -349,5 +916,23 @@
     "de_override": "Median-Deploy-Zeit durch Auslagerung der Builds auf Remote-Builder verkürzt",
     "verified": true,
     "updated_at": "2026-10-24T07:45:44Z"
+  },
+  {
+    "hash": "f7c4dcfc9479",
+    "path_hint": "work[0].summary",
+    "en": "Bountystash is a technology based on information theory, risk analysis, and market data.",
+    "de_auto": "Bountystash ist eine Technologie auf Basis von Informationstheorie, Risikoanalyse und Marktdaten.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
+  },
+  {
+    "hash": "faae83e23fef",
+    "path_hint": "work[0].highlights[0]",
+    "en": "Designed production knowledge-base pipelines that extract structured facts from unstructured documents and assemble retrieval context for downstream agents",
+    "de_auto": "Konzipierte Produktions-Pipelines für Wissensdatenbanken, die strukturierte Fakten aus unstrukturierten Dokumenten extrahieren und Retrieval-Kontext für nachgelagerte Agenten zusammenstellen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T08:10:07Z"
   }
 ]
