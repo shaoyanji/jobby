@@ -10,9 +10,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/shaoyanji/jobby/internal/atomicfile"
 	"github.com/shaoyanji/jobby/internal/capsule"
 	"github.com/shaoyanji/jobby/internal/coverletter"
 	"github.com/shaoyanji/jobby/internal/i18n"
+	"github.com/shaoyanji/jobby/internal/layout"
 	"github.com/shaoyanji/jobby/internal/lens"
 	"github.com/shaoyanji/jobby/internal/pdf"
 	"github.com/shaoyanji/jobby/internal/resume"
@@ -34,8 +36,13 @@ type Options struct {
 	// highlights", which is what makes a headless build produce real prose.
 	Points []string
 
-	Budget      int
-	StampSig    bool
+	Budget int
+	// Guides draws pdfcpu's alignment grid and the content box into the PDF.
+	Guides bool
+	// Density forces one typography preset instead of solving for the budget.
+	Density *layout.Density
+	// NoSignature leaves the signature image out of the layout.
+	NoSignature bool
 	Optimize    bool
 	NoCover     bool
 	NoNetwork   bool
@@ -49,18 +56,21 @@ type Options struct {
 
 // Report describes a finished build.
 type Report struct {
-	CapsuleDir string
-	Lang       string
-	CV         string
-	Letter     string
-	Package    string
-	Pages      int
-	Preset     string
-	Fitted     bool
-	Translated int
-	Missing    int
-	Stats      i18n.Stats
-	Warnings   []string
+	CapsuleDir   string
+	Lang         string
+	CV           string
+	Letter       string
+	Package      string
+	Layout       string
+	LayoutLetter string
+	Dist         []string
+	Pages        int
+	Preset       string
+	Fitted       bool
+	Translated   int
+	Missing      int
+	Stats        i18n.Stats
+	Warnings     []string
 }
 
 func (o *Options) logf(format string, args ...any) {
@@ -248,84 +258,128 @@ func Build(o Options) (*Report, error) {
 
 	assets, assetWarnings := pdf.ResolveAssets(view, o.Root, !o.NoNetwork)
 	report.Warnings = append(report.Warnings, assetWarnings...)
-	inputs := map[string]string{}
-	if p := assets["avatar"]; p != "" {
-		inputs["avatar"] = p
+	sigSrc, sigFile := "", ""
+	if !o.NoSignature {
+		sigSrc, sigFile = signaturePaths(o.Root, assets)
 	}
 
-	cvPath := filepath.Join(dir, c.Artifact("cv"))
-	props := map[string]string{
-		"Language":       c.Language,
-		"Lens":           c.Lens,
-		"Company":        c.Company,
-		"Profile":        c.Lens,
-		"BuildTimestamp": time.Now().UTC().Format(time.RFC3339),
-	}
-	cvRes, err := pdf.BuildDocument(pdf.DocOptions{
-		Root:        o.Root,
-		Template:    filepath.Join(o.Root, "templates", "resume.typ"),
-		JSONPath:    filepath.Join(dir, c.Artifact("rendered")),
-		PDFPath:     cvPath,
-		Doc:         view,
-		Inputs:      inputs,
-		Attachments: []string{c.FilePath(o.Root)},
-		AttachJSON:  true,
-		StampSig:    o.StampSig,
-		Optimize:    o.Optimize,
-		Budget:      o.Budget,
-		Properties:  props,
-		Log:         o.Log,
-	})
+	engine := pdf.NewEngine(o.Root)
+	version, err := engine.Check()
 	if err != nil {
 		return nil, err
 	}
-	report.CV = cvPath
-	report.Pages = cvRes.Pages
-	report.Preset = cvRes.Preset.Label
-	report.Fitted = cvRes.Fitted
+	if version != "" {
+		o.logf("pdfcpu %s", version)
+	}
 
-	artifacts := []string{filepath.Base(cvPath), c.Artifact("rendered")}
+	props := []string{
+		"Language = " + c.Language,
+		"Lens = " + c.Lens,
+		"Company = " + c.Company,
+		"SyncedTask = workbench-build",
+		"BuildTimestamp = " + time.Now().UTC().Format(time.RFC3339),
+	}
+
+	cvPath := filepath.Join(dir, c.Artifact("cv"))
+	cvLayoutPath := filepath.Join(dir, "layout_cv.json")
+	cvFit := layout.Compile(view, layout.Options{
+		Lang:    c.Language,
+		Guides:  o.Guides,
+		Budget:  o.Budget,
+		Density: o.Density,
+		SigSrc:  sigSrc,
+		SigFile: sigFile,
+	})
+	if !cvFit.Fits {
+		report.Warnings = append(report.Warnings, fmt.Sprintf(
+			"CV needs %d pages at the densest preset (%s); trim a bullet or raise --budget",
+			cvFit.Pages, cvFit.Density.ID))
+	}
+	if err := engine.Create(cvFit.Spec, cvLayoutPath, cvPath); err != nil {
+		return nil, err
+	}
+	if pages, err := engine.Pages(cvPath); err == nil {
+		report.Pages = pages
+	} else {
+		report.Pages = cvFit.Pages
+	}
+	report.Preset = cvFit.Density.ID
+	report.Fitted = cvFit.Fits
+	report.Layout = cvLayoutPath
+	report.CV = cvPath
+
+	if err := atomicfile.WriteJSON(filepath.Join(dir, c.Artifact("rendered")), view.Root); err != nil {
+		return nil, err
+	}
+	if err := engine.Props(cvPath, props); err != nil {
+		return nil, err
+	}
+	cvAttachments := []string{c.FilePath(o.Root), cvLayoutPath, filepath.Join(dir, c.Artifact("rendered"))}
+	if err := engine.Attach(cvPath, cvAttachments...); err != nil {
+		return nil, err
+	}
+	artifacts := []string{filepath.Base(cvPath), c.Artifact("rendered"), filepath.Base(cvLayoutPath)}
 
 	if !o.NoCover {
 		letterPath := filepath.Join(dir, c.Artifact("letter"))
-		payload := coverletter.BuildPayload(
-			basicsMap(view), letter, c.Language, formatDate(time.Now(), c.Language))
-		letterRes, err := pdf.BuildDocument(pdf.DocOptions{
-			Root:        o.Root,
-			Template:    filepath.Join(o.Root, "templates", "cover_letter.typ"),
-			JSONPath:    filepath.Join(dir, c.Artifact("letterjson")),
-			PDFPath:     letterPath,
-			Payload:     payload,
-			Inputs:      inputs,
-			Attachments: []string{c.FilePath(o.Root)},
-			AttachJSON:  true,
-			StampSig:    o.StampSig,
-			Optimize:    o.Optimize,
-			Budget:      1,
-			Properties:  props,
-			Log:         o.Log,
+		letterLayoutPath := filepath.Join(dir, "layout_letter.json")
+		letterJSON := filepath.Join(dir, c.Artifact("letterjson"))
+		payload := coverletter.BuildPayload(basicsMap(view), letter, c.Language, formatDate(time.Now(), c.Language))
+		if err := atomicfile.WriteJSON(letterJSON, payload); err != nil {
+			return nil, err
+		}
+		letterFit := layout.CompileLetter(view, letter, layout.Options{
+			Lang:    c.Language,
+			Guides:  o.Guides,
+			Budget:  1,
+			SigSrc:  sigSrc,
+			SigFile: sigFile,
 		})
-		if err != nil {
+		if !letterFit.Fits {
+			report.Warnings = append(report.Warnings, fmt.Sprintf(
+				"cover letter is %d pages; trim a paragraph", letterFit.Pages))
+		}
+		if err := engine.Create(letterFit.Spec, letterLayoutPath, letterPath); err != nil {
+			return nil, err
+		}
+		if err := engine.Props(letterPath, props); err != nil {
+			return nil, err
+		}
+		if err := engine.Attach(letterPath, c.FilePath(o.Root), letterLayoutPath, letterJSON); err != nil {
 			return nil, err
 		}
 		report.Letter = letterPath
-		if !letterRes.Fitted {
-			report.Warnings = append(report.Warnings,
-				fmt.Sprintf("cover letter is %d pages; tighten it or trim a paragraph", letterRes.Pages))
-		}
-		artifacts = append(artifacts, filepath.Base(letterPath))
+		report.LayoutLetter = letterLayoutPath
+		artifacts = append(artifacts, filepath.Base(letterPath), filepath.Base(letterLayoutPath), filepath.Base(letterJSON))
 
 		parts := []string{letterPath, cvPath}
 		if cert := attachmentsCert(o.Root); cert != "" {
 			parts = append(parts, cert)
 		}
 		pkg := filepath.Join(dir, c.Artifact("package"))
-		if err := pdf.Merge(pkg, parts); err != nil {
+		if err := engine.Merge(pkg, parts); err != nil {
 			return nil, err
 		}
 		report.Package = pkg
 		artifacts = append(artifacts, filepath.Base(pkg))
 		o.logf("package %s (%d documents)", filepath.Base(pkg), len(parts))
+	}
+
+	if o.Optimize {
+		for _, p := range []string{cvPath, report.Letter} {
+			if p == "" {
+				continue
+			}
+			if err := engine.Optimize(p); err != nil {
+				report.Warnings = append(report.Warnings, "optimize "+filepath.Base(p)+": "+err.Error())
+			}
+		}
+	}
+
+	if copies, err := exportDist(o.Root, c, report); err != nil {
+		report.Warnings = append(report.Warnings, "dist: "+err.Error())
+	} else {
+		report.Dist = copies
 	}
 
 	rec := capsule.BuildRecord{
@@ -419,4 +473,73 @@ func formatDate(t time.Time, lang string) string {
 		return fmt.Sprintf("%d. %s %d", t.Day(), deMonths[t.Month()-1], t.Year())
 	}
 	return t.Format("2 January 2006")
+}
+
+// signaturePaths resolves the signature image for the layout compiler. pdfcpu
+// resolves image paths against its working directory (the repo root), so the
+// compiler needs the file both as a root-relative src and as a real path.
+func signaturePaths(root string, assets map[string]string) (src, file string) {
+	p := assets["signature"]
+	if p == "" {
+		return "", ""
+	}
+	abs, err := filepath.Abs(p)
+	if err != nil {
+		return "", ""
+	}
+	relPath, err := filepath.Rel(root, abs)
+	if err != nil || strings.HasPrefix(relPath, "..") {
+		return "", ""
+	}
+	return filepath.ToSlash(relPath), abs
+}
+
+// exportDist mirrors the capsule artifacts into dist/ under the names the
+// pipeline documents use. dist/ is disposable: the capsule stays authoritative.
+func exportDist(root string, c *capsule.Capsule, r *Report) ([]string, error) {
+	dist := filepath.Join(root, "dist")
+	if err := os.MkdirAll(dist, 0o755); err != nil {
+		return nil, err
+	}
+	stem, lang := c.FileStem, c.Language
+	if stem == "" {
+		stem = "Resume"
+	}
+	pairs := [][2]string{
+		{r.CV, "CV_" + stem + "_" + lang + ".pdf"},
+		{r.Layout, "pdfcpu_cv_layout_" + lang + ".json"},
+	}
+	if r.Letter != "" {
+		pairs = append(pairs, [2]string{r.Letter, "Cover_Letter_" + stem + "_" + lang + ".pdf"})
+	}
+	if r.LayoutLetter != "" {
+		pairs = append(pairs, [2]string{r.LayoutLetter, "pdfcpu_letter_layout_" + lang + ".json"})
+	}
+	if r.Package != "" {
+		pairs = append(pairs, [2]string{r.Package, "Bewerbungsmappe_" + stem + "_" + lang + ".pdf"})
+	}
+	var out []string
+	for _, p := range pairs {
+		if p[0] == "" {
+			continue
+		}
+		dst := filepath.Join(dist, p[1])
+		if err := copyFile(p[0], dst); err != nil {
+			return out, err
+		}
+		out = append(out, dst)
+	}
+	return out, nil
+}
+
+func copyFile(src, dst string) error {
+	b, err := os.ReadFile(src)
+	if err != nil {
+		return err
+	}
+	tmp := dst + ".tmp"
+	if err := os.WriteFile(tmp, b, 0o644); err != nil {
+		return err
+	}
+	return os.Rename(tmp, dst)
 }

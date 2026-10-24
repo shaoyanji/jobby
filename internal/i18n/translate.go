@@ -187,15 +187,23 @@ func (c *Cache) Sync(refs []resume.Ref, opt SyncOptions) (Stats, error) {
 		if i > 0 && !opt.DryRun {
 			time.Sleep(opt.Delay)
 		}
-		de, err := opt.Translator.Translate(j.ref.EN)
-		if err != nil {
-			// One retry, then move on: a single flaky call must not abort a
-			// long pass.
-			time.Sleep(opt.Delay)
+		// A glossary entry for the whole string is a pin: "Go" is a language,
+		// not "Gehen", and no machine translation can be trusted with it. An
+		// exact match also saves a network call.
+		de, pinned := opt.Glossary[j.ref.EN]
+		pinned = pinned && strings.TrimSpace(de) != ""
+		var err error
+		if !pinned {
 			de, err = opt.Translator.Translate(j.ref.EN)
-		}
-		if err == nil {
-			de = opt.Glossary.Apply(de)
+			if err != nil {
+				// One retry, then move on: a single flaky call must not abort a
+				// long pass.
+				time.Sleep(opt.Delay)
+				de, err = opt.Translator.Translate(j.ref.EN)
+			}
+			if err == nil {
+				de = opt.Glossary.Apply(de)
+			}
 		}
 		switch {
 		case err != nil:

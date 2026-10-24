@@ -38,3 +38,6 @@ local
 # the personal signature / avatar are fetched locally, never committed
 /assets/signature.png
 /assets/avatar.*
+
+# rendered output (the capsule keeps the real artifacts)
+/dist/

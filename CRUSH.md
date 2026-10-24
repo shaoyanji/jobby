@@ -1,10 +1,12 @@
 # CRUSH.md — Jobby Development Guide
 
 ## Build commands
-- `nix develop` — dev shell: go, typst, pdfcpu, mupdf, translate-shell, visidata, task
+- `nix develop` — dev shell: go, pdfcpu 0.16 (create engine), mupdf, translate-shell, task
 - `task` — list every pipeline task
 - `task build:en` / `task build:de` — export → typst → pdfcpu → mupdf reload
 - `task app` — application workbench TUI
+- `task app:guides COMPANY=X` — rebuild with pdfcpu alignment guides
+- `task layout LAYOUT=dist/pdfcpu_cv_layout_de.json` — inspect the create JSON
 - `task app:build COMPANY=X LENS=ai LANG=de` — capsule → CV + letter + package
 - `task app:list` — capsules under `applications/`
 - `task app:import PDF=file.pdf` — restore a capsule from an old PDF
@@ -30,15 +32,14 @@
 - `internal/i18n/` — content-addressed cache (`i18n_cache.json`)
 - `internal/loadout/` — named decks (`loadouts.json`)
 - `internal/export/` — loadout + language → JSON view
-- `internal/pdf/` — typst + pdfcpu + mupdf pipeline
+- `internal/layout/` — flow-to-coordinate compiler for `pdfcpu create` (metrics, wrap, paging, density solver)
+- `internal/pdf/engine.go` — pdfcpu engine: create, validate, attach, properties, merge
 - `internal/tui/` — huh review deck and loadout editor
 - `internal/capsule/` — application folders, `capsule.json`, import/export
 - `internal/lens/` — narrative lenses: persona, titles, keyword priorities
 - `internal/coverletter/` — Anschreiben model, scaffold, translatable refs
 - `internal/workbench/` — draft, build (CV + letter + package), TUI
-- `internal/pdf/autofit.go` — page-budget solver over the density ladder
-- `templates/style.typ` — shared palette, header, section and date helpers
-- `templates/resume.typ` — bilingual A4 CV, reads `json_path`
-- `templates/cover_letter.typ` — Anschreiben on the same header
+- `internal/layout/compiler.go` — y-cursor layout, keep-together, page budget
+- `templates/resume.typ`, `templates/style.typ` — legacy resumectl typst template (workbench does not use typst)
 - `glossary.json` — terms `trans` must not mangle
 - `flake.nix` — the only dependency source

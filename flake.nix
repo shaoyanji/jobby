@@ -4,22 +4,27 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    # pdfcpu create (the layout compiler's renderer) needs >= 0.16; the pinned
+    # nixpkgs still ships 0.11, so the renderer comes from its own pin.
+    nixpkgs-pdfcpu.url = "github:NixOS/nixpkgs/5adc50831c259f87faeb09ddf930d43597197473";
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-pdfcpu,
     flake-utils,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
         inherit (pkgs) lib;
+        pdfcpu = nixpkgs-pdfcpu.legacyPackages.${system}.pdfcpu;
 
         # Everything resumectl shells out to. Wrapped into the binary's PATH so
         # `nix run .#` works outside the dev shell.
         runtimeDeps = with pkgs; [
-          typst
+          typst # only resumectl's legacy typst templates need this
           pdfcpu
           mupdf
           translate-shell
@@ -62,7 +67,6 @@
               gotools
               go-task
               typst
-              pdfcpu
               mupdf
               poppler_utils
               translate-shell
@@ -76,10 +80,10 @@
             # the toolchain here invoke the image's compiler and fail on version.
             unset GOROOT
             export JOBBY_ROOT="''${JOBBY_ROOT:-$PWD}"
-            echo "jobby: resumectl dev shell"
+            echo "jobby: dev shell (go, pdfcpu $(pdfcpu version | head -1 | cut -d' ' -f2), typst for legacy resumectl)"
             echo "  task            # pipeline tasks"
-            echo "  task i18n:sync  # fill missing German"
-            echo "  task build:de   # typst -> pdfcpu -> mupdf"
+            echo "  task app        # workbench TUI"
+            echo "  task app:build COMPANY=X LENS=ai LANG=de"
             command -v trans >/dev/null || echo "  warning: trans not on PATH"
           '';
         };

@@ -18,6 +18,7 @@ import (
 
 	"github.com/shaoyanji/jobby/internal/capsule"
 	"github.com/shaoyanji/jobby/internal/i18n"
+	"github.com/shaoyanji/jobby/internal/layout"
 	"github.com/shaoyanji/jobby/internal/workbench"
 )
 
@@ -159,6 +160,8 @@ type buildFlags struct {
 	points     string
 	noCover    bool
 	noStamp    bool
+	guides     bool
+	density    string
 	noOptimize bool
 	noSync     bool
 	reload     bool
@@ -174,7 +177,9 @@ func (b *buildFlags) bind(fs *flag.FlagSet) {
 	fs.StringVar(&b.salutation, "salutation", "", "cover letter greeting")
 	fs.StringVar(&b.points, "points", "", "cover-letter talking points, separated by ; or newlines")
 	fs.BoolVar(&b.noCover, "no-cover", false, "skip the cover letter and package")
-	fs.BoolVar(&b.noStamp, "no-stamp", false, "do not stamp the signature")
+	fs.BoolVar(&b.noStamp, "no-stamp", false, "do not draw the signature image")
+	fs.BoolVar(&b.guides, "guides", false, "draw pdfcpu alignment guides and the content box")
+	fs.StringVar(&b.density, "density", "", "force a typography preset (10.0, 9.5, 9.0) instead of auto-fitting")
 	fs.BoolVar(&b.noOptimize, "no-optimize", false, "skip pdfcpu optimize")
 	fs.BoolVar(&b.noSync, "no-sync", false, "do not call trans; use the cache only")
 	fs.BoolVar(&b.reload, "reload-mupdf", false, "SIGHUP a running mupdf after the build")
@@ -241,7 +246,9 @@ func cmdBuild(args []string) error {
 		Lang:        b.lang,
 		Points:      splitPoints(b.points),
 		Budget:      b.budget,
-		StampSig:    !b.noStamp,
+		Guides:      b.guides,
+		Density:     densityPreset(b.density),
+		NoSignature: b.noStamp,
 		Optimize:    !b.noOptimize,
 		NoCover:     b.noCover,
 		SkipSync:    b.noSync,
@@ -267,23 +274,52 @@ func cmdBuild(args []string) error {
 		fmt.Fprintf(os.Stderr, "warning: %s\n", w)
 	}
 
-	fit := fmt.Sprintf("fitted to %d page(s) · %s", rep.Pages, rep.Preset)
+	fit := fmt.Sprintf("fitted to %s · %s", pages(rep.Pages), rep.Preset)
 	if !rep.Fitted {
-		fit = fmt.Sprintf("%d page(s) at the densest preset (%s)", rep.Pages, rep.Preset)
+		fit = fmt.Sprintf("%s at the densest preset (%s)", pages(rep.Pages), rep.Preset)
 	}
 	fmt.Printf("capsule  %s\n", rep.CapsuleDir)
 	fmt.Printf("cv       %s · %s\n", filepath.Base(rep.CV), fit)
+	if rep.Layout != "" {
+		fmt.Printf("layout   %s\n", filepath.Base(rep.Layout))
+	}
 	if rep.Letter != "" {
 		fmt.Printf("letter   %s\n", filepath.Base(rep.Letter))
 	}
 	if rep.Package != "" {
 		fmt.Printf("package  %s\n", filepath.Base(rep.Package))
 	}
+	if len(rep.Dist) > 0 {
+		fmt.Printf("dist     %d files\n", len(rep.Dist))
+	}
 	if rep.Lang == "de" {
 		fmt.Printf("i18n     %d translated · %d missing · %s\n",
 			rep.Translated, rep.Missing, rep.Stats.String())
 	} else {
 		fmt.Println("i18n     english source (no translation needed)")
+	}
+	return nil
+}
+
+// pages keeps the summary readable: "1 page", not "1 page(s)".
+func pages(n int) string {
+	if n == 1 {
+		return "1 page"
+	}
+	return fmt.Sprintf("%d pages", n)
+}
+
+// densityPreset maps --density onto the compiler's ladder.
+func densityPreset(id string) *layout.Density {
+	id = strings.TrimSuffix(strings.TrimSpace(id), "pt")
+	if id == "" {
+		return nil
+	}
+	for i := range layout.Densities {
+		d := layout.Densities[i]
+		if strings.TrimSuffix(d.ID, "pt") == id {
+			return &d
+		}
 	}
 	return nil
 }

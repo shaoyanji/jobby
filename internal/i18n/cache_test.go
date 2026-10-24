@@ -282,3 +282,43 @@ func TestUnverifiedFilter(t *testing.T) {
 		t.Fatalf("work filter = %+v", work)
 	}
 }
+
+// A glossary entry for the whole string pins it: "Go" is a programming
+// language, and a machine translator that turns it into "Gehen" has to be
+// overruled without spending a call.
+func TestGlossaryExactTermSkipsTheTranslator(t *testing.T) {
+	calls := 0
+	tr := countingTranslator{calls: &calls}
+	c, err := Load(filepath.Join(t.TempDir(), "cache.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	refs := []resume.Ref{{Path: "skills[0].name", EN: "Go"}, {Path: "skills[1].name", EN: "Distributed Systems"}}
+	stats, err := c.Sync(refs, SyncOptions{
+		Translator: tr,
+		Glossary:   Glossary{"Go": "Go"},
+		DryRun:     false,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if calls != 1 {
+		t.Errorf("translator calls = %d, want only the non-pinned string", calls)
+	}
+	de, ok := c.Lookup("Go")
+	if !ok || de != "Go" {
+		t.Errorf("Go -> %q", de)
+	}
+	if stats.Auto != 2 {
+		t.Errorf("stats = %+v", stats)
+	}
+}
+
+type countingTranslator struct{ calls *int }
+
+func (c countingTranslator) Translate(en string) (string, error) {
+	*c.calls = *c.calls + 1
+	return "DE " + en, nil
+}
+
+func (c countingTranslator) Name() string { return "counting" }

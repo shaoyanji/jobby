@@ -73,10 +73,11 @@ printf '%%PDF-1.4 stub\n' > "$last"
 	writeStub(t, bin, "pdfcpu", `#!/bin/sh
 echo "pdfcpu $*" >> "$STUB_LOG"
 case "$1" in
+  version) echo "version: v0.16.1" ;;
   info) echo "Page count:           1" ;;
+  create) last=""; for a in "$@"; do last="$a"; done; printf '%%PDF-1.4 stub\n' > "$last" ;;
   merge) cp "$4" "$3" ;;
   optimize) last=""; for a in "$@"; do last="$a"; done; cp "$3" "$last" ;;
-  stamp) last=""; prev=""; for a in "$@"; do prev="$last"; last="$a"; done; cp "$prev" "$last" ;;
 esac
 `)
 	t.Setenv("STUB_LOG", log)
@@ -168,11 +169,12 @@ func TestBuildProducesCapsuleCVLetterAndPackage(t *testing.T) {
 
 	calls := h.calls(t)
 	for _, want := range []string{
-		"pdfcpu attachments add -q " + rep.CV + " " + rep.CapsuleDir + "/rendered.json " + rep.CapsuleDir + "/capsule.json",
+		"pdfcpu create -q " + rep.Layout + " " + rep.CV,
+		"pdfcpu attachments add -q " + rep.CV + " " + rep.CapsuleDir + "/capsule.json " + rep.Layout + " " + rep.CapsuleDir + "/rendered.json",
 		"pdfcpu merge -q " + rep.Package,
 		"pdfcpu properties add -q " + rep.CV,
-		"Company=TestGmbH",
-		"Lens=ai",
+		"Company = TestGmbH",
+		"Lens = ai",
 	} {
 		if !strings.Contains(calls, want) {
 			t.Errorf("missing call %q\nlog:\n%s", want, calls)

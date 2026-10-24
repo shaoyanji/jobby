@@ -12,6 +12,7 @@ import (
 
 	"github.com/shaoyanji/jobby/internal/capsule"
 	"github.com/shaoyanji/jobby/internal/i18n"
+	"github.com/shaoyanji/jobby/internal/layout"
 	"github.com/shaoyanji/jobby/internal/lens"
 	"github.com/shaoyanji/jobby/internal/pdf"
 	"github.com/shaoyanji/jobby/internal/resume"
@@ -20,9 +21,12 @@ import (
 
 // Session is one interactive workbench run.
 type Session struct {
-	Root    string
-	Budget  int
-	Mock    bool
+	Root   string
+	Budget int
+	Mock   bool
+	// Guides draws pdfcpu's alignment grid into the next export, so the
+	// blueprint can be inspected in the viewer.
+	Guides  bool
 	Current *capsule.Capsule
 }
 
@@ -66,6 +70,8 @@ func (s *Session) Run() error {
 		switch action {
 		case "quit":
 			return nil
+		case "guides":
+			runErr = s.toggleGuides()
 		case "new":
 			runErr = s.newCapsule()
 		case "switch":
@@ -90,6 +96,40 @@ func (s *Session) Run() error {
 	}
 }
 
+// toggleGuides flips the blueprint grid and, when a capsule is open, exports so
+// the viewer shows the change immediately.
+func (s *Session) toggleGuides() error {
+	s.Guides = !s.Guides
+	state := "off"
+	if s.Guides {
+		state = "on"
+	}
+	fmt.Printf("\nalignment guides: %s\n", state)
+	if s.Current == nil {
+		fmt.Println("open a capsule to see the grid")
+		return nil
+	}
+	return s.export()
+}
+
+// fitLine reports the layout solver's verdict without writing anything: the
+// deckbuilder shows it after every change so the page budget is never a
+// surprise at export time.
+func (s *Session) fitLine() string {
+	if s.Current == nil {
+		return ""
+	}
+	view, _, err := Preview(s.Root, s.Current)
+	if err != nil {
+		return ""
+	}
+	res := layout.Compile(view, layout.Options{Lang: s.Current.Language, Budget: s.Budget})
+	if res.Fits {
+		return fmt.Sprintf("fits on %d page(s) at %s", res.Pages, res.Density.ID)
+	}
+	return fmt.Sprintf("%d pages at %s — trim a bullet", res.Pages, res.Density.ID)
+}
+
 func (s *Session) title() string {
 	if s.Current == nil {
 		return "workbench"
@@ -109,6 +149,7 @@ func (s *Session) menu() (string, error) {
 				huh.NewOption("Edit cover letter (Anschreiben)", "letter"),
 				huh.NewOption("Polish German translations (this application)", "review"),
 				huh.NewOption("Export & stamp package", "export"),
+				huh.NewOption("Toggle alignment guides (blueprint grid, then export)", "guides"),
 				huh.NewOption("Import capsule from a PDF", "import"),
 				huh.NewOption("Quit", "quit"),
 			).
@@ -269,7 +310,7 @@ func (s *Session) tailor() error {
 	if _, err := c.Save(s.Root); err != nil {
 		return err
 	}
-	fmt.Printf("\nsaved tailoring for %s\n", c.Company)
+	fmt.Printf("\nsaved tailoring for %s\n%s\n", c.Company, s.fitLine())
 	return nil
 }
 
@@ -345,7 +386,7 @@ func (s *Session) export() error {
 		Root:        s.Root,
 		Capsule:     c,
 		Budget:      s.Budget,
-		StampSig:    true,
+		Guides:      s.Guides,
 		Optimize:    true,
 		ReloadMupdf: true,
 		Log:         func(format string, args ...any) { fmt.Printf(format+"\n", args...) },
@@ -365,6 +406,9 @@ func (s *Session) export() error {
 		status = fmt.Sprintf("! %d pages at the densest preset (%s)", rep.Pages, rep.Preset)
 	}
 	fmt.Printf("\n%s\n%s\n", status, rep.CapsuleDir)
+	if s.Guides {
+		fmt.Println("guides: on (pdfcpu gridlines + content box)")
+	}
 	if rep.Package != "" {
 		fmt.Println(rep.Package)
 	}

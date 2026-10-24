@@ -4,9 +4,11 @@ A composable framework for job applications: one JSON Resume source, two
 languages, and a sub-second PDF loop you can drive from a TUI, a flag, or your
 own editor.
 
-`resumectl` is the whole engine. It is a plain Go CLI, so every action works
-headless and scripts cleanly; the interactive `huh` forms are a convenience on
-top, never the only way to change state.
+The CV is rendered by a small layout compiler (`internal/layout`) that turns the
+semantic resume into pdfcpu's declarative `create` document: it measures text
+with the same Helvetica metrics pdfcpu draws with, advances a y cursor, breaks
+pages and emits explicit coordinates. pdfcpu is the only renderer, so a layout
+question can always be answered by reading the JSON that produced the page.
 
 ## Why
 
@@ -21,15 +23,17 @@ CV as a *view*: pick a loadout, pick a language, compile.
 ## Quick start
 
 ```bash
-nix develop            # go, typst, pdfcpu, mupdf, translate-shell, visidata, task
-task                   # list the pipeline
-task build:en          # dist/resume-en.pdf
-task build:de          # dist/resume-de.pdf
-task preview           # mupdf + build, reloading in place
+nix develop                          # go, pdfcpu 0.16, mupdf, translate-shell, task
+task                                 # list the pipeline
+task app:build COMPANY=TestGmbH LENS=ai LANG=de   # capsule -> CV + Anschreiben
+task app                             # the TUI
+task preview                         # the legacy resumectl/typst preview
 ```
 
-Without Nix, install `go`, `typst`, `pdfcpu`, `mupdf`, `translate-shell` and
-`go-task` yourself, then `task` works the same.
+pdfcpu must be **>= 0.16**: `create`, layout guides and the `contentBox` rail
+arrived after the 0.11 the base image ships, which is why `flake.nix` pins the
+renderer from its own nixpkgs revision. Without Nix, install `go`,
+`pdfcpu>=0.16`, `mupdf`, `translate-shell` and `go-task` yourself.
 
 There is no `nix` in a Codespace by default: `curl -L https://nixos.org/nix/install | sh -s -- --no-daemon`
 followed by `. ~/.nix-profile/etc/profile.d/nix.sh` gives you the flake, and
@@ -74,19 +78,37 @@ someone’s history silently is worse than a longer CV.
 
 ### Auto-fit instead of manual nudging
 
-Every job and education entry is a Typst `grid(columns: (1fr, auto))`, so dates
-are locked to the right margin and long German compounds cannot push them off.
-If the CV still spills past the page budget, Go recompiles through a density
-ladder and stops at the first fit:
+Every job and education entry is a **locked two-column grid**: the company and
+title are one text box at x=52, the dates one right-aligned box whose right edge
+is the page margin, both on the same baseline. A long German compound therefore
+wraps inside the left column and can never push a date inward.
 
-| Preset | Font | Leading |
-| :--- | :--- | :--- |
-| normal | 10pt | 0.65em |
-| compact | 9.6pt | 0.55em |
-| tight | 9.2pt | 0.45em |
-| dense | 8.9pt | 0.38em |
+The compiler solves the page budget *before* pdfcpu runs, so tightening costs
+nothing: it lays out the whole CV in memory, and if the result exceeds the
+budget it walks a density ladder until it fits.
 
-The TUI reports `✔ Auto-fitted to 2 pages (preset: 9.6pt / compact)`.
+| Preset | Body | Leading | Section gap |
+| :--- | :--- | :--- | :--- |
+| `10.0pt` | 10.0 | 12.4 | 13.0 |
+| `9.5pt` | 9.5 | 11.7 | 10.0 |
+| `9.0pt` | 9.0 | 11.0 | 8.0 |
+
+`--density 9.5` forces one preset; without it the solver stops at the first fit
+and reports `cv CV_Matt_Ji.pdf · fitted to 2 page(s) · 9.5pt`. The deckbuilder in
+the TUI shows `fits on 2 page(s) at 10.0pt` after every change.
+
+### The layout is a file you can read
+
+Every build writes the exact `pdfcpu create` document next to the PDF:
+
+```
+applications/2026-10-24-testgmbh/layout_cv.json
+```
+
+`task layout` prints it, `pdfcpu create layout_cv.json out.pdf` reproduces the
+page, and `--guides` (or the guides entry in the TUI menu) sets `"guides": true` plus
+`"contentBox": true` so the grid and the text rail are drawn *into* the PDF and
+visible in mupdf alongside the content.
 
 ### Commands
 
@@ -94,15 +116,21 @@ The TUI reports `✔ Auto-fitted to 2 pages (preset: 9.6pt / compact)`.
 workbench                                   # TUI: new/switch capsule, tailor, letter, export
 task app                                    # same, through task
 workbench build --lens=ai --lang=de --company=TestGmbH
+workbench build --company=TestGmbH --guides # blueprint grid inside the PDF
+workbench build --company=TestGmbH --density 9.5
 workbench new --company=TestGmbH --lens=energy
-task app:build COMPANY=TestGmbH LENS=energy LANG=de BUDGET=2
+task app:build COMPANY=TestGmbH LENS=energy LANG=de BUDGET=2 GUIDES=1
+task layout LAYOUT=dist/pdfcpu_cv_layout_de.json
 workbench list
 workbench import-pdf CV_Matt_Ji.pdf
 ```
 
 `build` creates today’s capsule for the company if none exists (scaffolding the
-cover letter from the lens highlights), reuses it if one does, and then renders
-CV, letter and package with `pdfcpu` stamps, attachments and a merge.
+cover letter from the lens highlights), reuses it if one does, then compiles the
+layout, renders with `pdfcpu create`, attaches the state, and merges the package.
+The same artifacts are mirrored to `dist/` under the pipeline names
+(`CV_Matt_Ji_de.pdf`, `pdfcpu_cv_layout_de.json`, `Bewerbungsmappe_Matt_Ji_de.pdf`);
+`dist/` is disposable, the capsule stays authoritative.
 
 ## The state files
 

@@ -14,5 +14,15 @@
   "flakes": "Flakes",
   "eval harnesses": "Evaluierungs-Harnesses",
   "loadout": "Loadout",
-  "highlights": "Highlights"
+  "highlights": "Highlights",
+  "Go": "Go",
+  "PPA": "PPA",
+  "Rust": "Rust",
+  "Python": "Python",
+  "Postgres": "Postgres",
+  "weather derivatives": "Wetterderivate",
+  "Native": "Muttersprache",
+  "Professional": "fließend",
+  "Fluent": "fließend",
+  "Verhandlungssicher": "verhandlungssicher"
 }

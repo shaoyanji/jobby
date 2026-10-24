@@ -6,16 +6,7 @@
     "de_auto": "Forschungsassistent",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:58Z"
-  },
-  {
-    "hash": "028302c1e7e8",
-    "path_hint": "work[3].highlights[0]",
-    "en": "Modelled PV yield and grid-parity scenarios for regional studies",
-    "de_auto": "Modellierte PV-Ertrags- und Netzparitätsszenarien für regionale Studien",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:26Z"
+    "updated_at": "2026-10-24T07:38:04Z"
   },
   {
     "hash": "0553a7b1f0fd",
@@ -24,7 +15,7 @@
     "de_auto": "Offene Tools für PPA und wetterbasierte Szenarioanalysen.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:03Z"
+    "updated_at": "2026-10-24T07:38:08Z"
   },
   {
     "hash": "0d361412e3a4",
@@ -33,7 +24,7 @@
     "de_auto": "KI-Systeme",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:04Z"
+    "updated_at": "2026-10-24T07:38:11Z"
   },
   {
     "hash": "0f5d0b67f66b",
@@ -42,7 +33,7 @@
     "de_auto": "Nix",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:05Z"
+    "updated_at": "2026-10-24T07:38:11Z"
   },
   {
     "hash": "23602b6ae033",
@@ -51,16 +42,7 @@
     "de_auto": "Verteilte Systeme",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:15Z"
-  },
-  {
-    "hash": "2999944571e2",
-    "path_hint": "basics.label",
-    "en": "Senior Quantitative Risk \u0026 Energy Systems Architect",
-    "de_auto": "Senior Quantitative Risk \u0026 Energy Systems Architect",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:19Z"
+    "updated_at": "2026-10-24T07:38:17Z"
   },
   {
     "hash": "2fcd2f519c2c",
@@ -69,7 +51,7 @@
     "de_auto": "KI-Produkt im Frühstadium: Abruf, Auswertung und die damit verbundenen Dienste.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:47Z"
+    "updated_at": "2026-10-24T07:37:56Z"
   },
   {
     "hash": "33ca924e4725",
@@ -78,16 +60,7 @@
     "de_auto": "Ich bewerbe mich als Software Engineer – KI-Systeme, Retrieval, Evaluierung bei TestGmbH, und die dort beschriebene Arbeit passt genau zu meinem Hintergrund als AI Systems \u0026 Retrieval Architect.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:17Z"
-  },
-  {
-    "hash": "3d0b073dab68",
-    "path_hint": "cover_letter.opening",
-    "en": "I am applying for Senior Quantitative Risk \u0026 Energy Systems Architect at TaskCo, and the work described there sits squarely in the Energy \u0026 Quantitative Risk Lead side of my background.",
-    "de_auto": "Ich bewerbe mich als Senior Quantitative Risk \u0026 Energy Systems Architect bei TaskCo und die dort beschriebene Arbeit passt genau zu meinem Hintergrund als Energy \u0026 Quantitative Risk Lead.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:29Z"
+    "updated_at": "2026-10-24T07:38:18Z"
   },
   {
     "hash": "3e980c8c1ae7",
@@ -96,7 +69,7 @@
     "de_auto": "Headless-First-JSON-Resume-Pipeline mit einem inhaltsadressierten deutschen Cache.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:59Z"
+    "updated_at": "2026-10-24T07:38:05Z"
   },
   {
     "hash": "42ebff4396ce",
@@ -105,7 +78,7 @@
     "de_auto": "Plattformingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:53Z"
+    "updated_at": "2026-10-24T07:37:59Z"
   },
   {
     "hash": "445ddaa59df6",
@@ -114,7 +87,7 @@
     "de_auto": "Informatik",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:12Z"
+    "updated_at": "2026-10-24T07:38:16Z"
   },
   {
     "hash": "51926de444aa",
@@ -123,7 +96,7 @@
     "de_auto": "Aufbau einer Abrufschicht über internen Dokumenten mit RAG- und MCP-Tools",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:48Z"
+    "updated_at": "2026-10-24T07:37:57Z"
   },
   {
     "hash": "57fc772536ee",
@@ -132,16 +105,7 @@
     "de_auto": "Die Datenpipeline hinter der Szenario-Arbeitsmappe wurde veröffentlicht",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:58Z"
-  },
-  {
-    "hash": "59185c5765b8",
-    "path_hint": "work[1].highlights[0]",
-    "en": "Modelled PPA exposure and weather-derivative settlement for the trading desk",
-    "de_auto": "Modelliertes PPA-Exposure und Abwicklung von Wetterderivaten für den Handelsbereich",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:25Z"
+    "updated_at": "2026-10-24T07:38:04Z"
   },
   {
     "hash": "5ca2e544969a",
@@ -150,7 +114,7 @@
     "de_auto": "Entwickelt End-to-End-Abruf- und Bewertungssysteme: RAG-Pipelines, MCP-Tools und die Bewertungsschleifen, die dafür sorgen, dass Modelländerungen ehrlich bleiben.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:45Z"
+    "updated_at": "2026-10-24T07:37:52Z"
   },
   {
     "hash": "5fdc351f0998",
@@ -159,7 +123,7 @@
     "de_auto": "M.Sc.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:12Z"
+    "updated_at": "2026-10-24T07:38:16Z"
   },
   {
     "hash": "636485868971",
@@ -168,25 +132,16 @@
     "de_auto": "Autor",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:02Z"
-  },
-  {
-    "hash": "6826aec094f4",
-    "path_hint": "projects[1].highlights[0]",
-    "en": "Backtests hedge structures against historical weather data",
-    "de_auto": "Backtests von Absicherungsstrukturen anhand historischer Wetterdaten",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:27Z"
+    "updated_at": "2026-10-24T07:38:07Z"
   },
   {
     "hash": "6cc8519b9158",
     "path_hint": "skills[2].name",
     "en": "Go",
-    "de_auto": "Gehen",
+    "de_auto": "Go",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:06Z"
+    "updated_at": "2026-10-24T07:38:11Z"
   },
   {
     "hash": "6d8edeb8dfea",
@@ -195,7 +150,7 @@
     "de_auto": "Software Engineer – KI-Systeme, Abruf, Auswertung",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:45Z"
+    "updated_at": "2026-10-24T07:37:51Z"
   },
   {
     "hash": "6fc7291f44f5",
@@ -204,7 +159,7 @@
     "de_auto": "Leitender KI-Softwarearchitekt",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:47Z"
+    "updated_at": "2026-10-24T07:37:56Z"
   },
   {
     "hash": "741d34ff99a8",
@@ -213,16 +168,7 @@
     "de_auto": "Besitzt die Nix-basierte Flotte und die dahinter stehende Lieferpipeline.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:53Z"
-  },
-  {
-    "hash": "7711cb420a7b",
-    "path_hint": "work[1].highlights[1]",
-    "en": "Automated the monthly hedge report from market and portfolio data",
-    "de_auto": "Automatisiert den monatlichen Hedge-Report aus Markt- und Portfoliodaten",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:25Z"
+    "updated_at": "2026-10-24T07:38:00Z"
   },
   {
     "hash": "7e8b8112baa0",
@@ -231,16 +177,7 @@
     "de_auto": "Numerische Methoden",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:16Z"
-  },
-  {
-    "hash": "8448440dc6b3",
-    "path_hint": "work[0].position",
-    "en": "Founder \u0026 Principal Risk Architect",
-    "de_auto": "Gründer und Hauptrisikoarchitekt",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:22Z"
+    "updated_at": "2026-10-24T07:38:18Z"
   },
   {
     "hash": "8cd90a60fc54",
@@ -249,16 +186,7 @@
     "de_auto": "Unabhängiger Forscher",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:56Z"
-  },
-  {
-    "hash": "913e245ed5c4",
-    "path_hint": "work[0].highlights[0]",
-    "en": "Ran the Postgres storage layer and its migrations",
-    "de_auto": "Ausführung der Postgres-Speicherschicht und ihrer Migrationen",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:24Z"
+    "updated_at": "2026-10-24T07:38:02Z"
   },
   {
     "hash": "9931da794522",
@@ -267,16 +195,7 @@
     "de_auto": "Verlustfreier JSON-Baum, sodass unbekannte Felder jeden Export überleben",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:00Z"
-  },
-  {
-    "hash": "9eb94711a766",
-    "path_hint": "work[2].highlights[1]",
-    "en": "Prototyped a Rust risk engine with a Typst reporting front end",
-    "de_auto": "Prototyp einer Rust-Risiko-Engine mit einem Typst-Reporting-Frontend",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:26Z"
+    "updated_at": "2026-10-24T07:38:06Z"
   },
   {
     "hash": "a659b60d246d",
@@ -285,7 +204,7 @@
     "de_auto": "Deutsch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:08Z"
+    "updated_at": "2026-10-24T07:38:14Z"
   },
   {
     "hash": "a69d645f1512",
@@ -294,7 +213,7 @@
     "de_auto": "Entwickelte eine Backtesting-Engine für wetterbasierte Strategien",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:57Z"
+    "updated_at": "2026-10-24T07:38:03Z"
   },
   {
     "hash": "af55d95081d5",
@@ -303,7 +222,7 @@
     "de_auto": "Quantitativer Risikoingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:46Z"
+    "updated_at": "2026-10-24T07:37:55Z"
   },
   {
     "hash": "b2b6dd85fb05",
@@ -312,7 +231,7 @@
     "de_auto": "Die Host-Flotte wurde mit inventargesteuerter CI im Handumdrehen neu aufgebaut",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:54Z"
+    "updated_at": "2026-10-24T07:38:01Z"
   },
   {
     "hash": "ba118bf7fc9c",
@@ -321,7 +240,7 @@
     "de_auto": "Englisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:07Z"
+    "updated_at": "2026-10-24T07:38:13Z"
   },
   {
     "hash": "bdb95056084a",
@@ -330,7 +249,7 @@
     "de_auto": "Kleines Forschungsfahrzeug für die Entwicklung von Energiemarktinstrumenten.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:56Z"
+    "updated_at": "2026-10-24T07:38:02Z"
   },
   {
     "hash": "bef32d2c315a",
@@ -339,7 +258,7 @@
     "de_auto": "einheimisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:08Z"
+    "updated_at": "2026-10-24T07:38:14Z"
   },
   {
     "hash": "c0033063aed3",
@@ -348,16 +267,7 @@
     "de_auto": "KI-Plattform-Ingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:46Z"
-  },
-  {
-    "hash": "c57e11ef5bd4",
-    "path_hint": "cover_letter.closing",
-    "en": "I would welcome the chance to discuss how that experience fits TaskCo. Kind regards,",
-    "de_auto": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TaskCo passt. Mit freundlichen Grüße,",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:30Z"
+    "updated_at": "2026-10-24T07:37:53Z"
   },
   {
     "hash": "c6ddfd471731",
@@ -366,25 +276,16 @@
     "de_auto": "Erzeugt Szenarioberichte aus einer deklarativen Eingabedatei",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:04Z"
+    "updated_at": "2026-10-24T07:38:09Z"
   },
   {
     "hash": "cd340d1a5c41",
     "path_hint": "languages[1].fluency",
     "en": "professional",
-    "de_auto": "Professional",
+    "de_auto": "fließend",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:10Z"
-  },
-  {
-    "hash": "d28ad3a34c6a",
-    "path_hint": "basics.summary",
-    "en": "Models energy-market exposure and builds the systems that price it: PPA structuring, weather derivatives, and the data pipelines behind both.",
-    "de_auto": "Modelliert das Engagement auf dem Energiemarkt und baut die Systeme auf, die es bepreisen: PPA-Strukturierung, Wetterderivate und die Datenpipelines dahinter.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:04:21Z"
+    "updated_at": "2026-10-24T07:38:15Z"
   },
   {
     "hash": "ddcfa34ecf46",
@@ -393,7 +294,7 @@
     "de_auto": "Ich habe den Evaluierungsstrang geschrieben, der jeden Modellwechsel abdeckt",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:49Z"
+    "updated_at": "2026-10-24T07:37:58Z"
   },
   {
     "hash": "e37eb04842e6",
@@ -402,7 +303,7 @@
     "de_auto": "Energiemärkte",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:06Z"
+    "updated_at": "2026-10-24T07:38:12Z"
   },
   {
     "hash": "ea540ffea2e0",
@@ -411,7 +312,7 @@
     "de_auto": "Berater",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:47Z"
+    "updated_at": "2026-10-24T07:37:55Z"
   },
   {
     "hash": "eacfd4c4fcc6",
@@ -420,7 +321,7 @@
     "de_auto": "Bereitstellung von Go- und Python-Diensten für die Storefront und Abrechnung",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:50Z"
+    "updated_at": "2026-10-24T07:37:58Z"
   },
   {
     "hash": "f114eb37fd37",
@@ -429,7 +330,7 @@
     "de_auto": "Typst in PDF mit pdfcpu-Herkunft und mupdf-Live-Reload",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:01Z"
+    "updated_at": "2026-10-24T07:38:07Z"
   },
   {
     "hash": "f32accb1c585",
@@ -438,7 +339,7 @@
     "de_auto": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TestGmbH passt. Mit freundlichen Grüße,",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:04:18Z"
+    "updated_at": "2026-10-24T07:38:19Z"
   },
   {
     "hash": "f540bc6e3f63",
@@ -447,6 +348,6 @@
     "de_auto": "Reduzieren Sie die durchschnittliche Bereitstellungszeit, indem Sie Builds an Remote-Builder auslagern",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T07:03:55Z"
+    "updated_at": "2026-10-24T07:38:01Z"
   }
 ]

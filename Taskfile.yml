@@ -150,9 +150,14 @@ tasks:
   audit:
     desc: Page count, properties and provenance attachments of the built PDF
     cmds:
-      - pdfcpu info {{.OUT_PDF}}
-      - pdfcpu properties list {{.OUT_PDF}}
-      - pdfcpu attachments list {{.OUT_PDF}}
+      - pdfcpu info {{default "dist/CV_Matt_Ji_en.pdf" .PDF}}
+      - pdfcpu properties list {{default "dist/CV_Matt_Ji_en.pdf" .PDF}}
+      - pdfcpu attachments list {{default "dist/CV_Matt_Ji_en.pdf" .PDF}}
+
+  layout:
+    desc: Print the pdfcpu create layout JSON of the built CV (PDF=path)
+    cmds:
+      - jq . {{default "dist/pdfcpu_cv_layout_en.json" .LAYOUT}}
 
   test:
     desc: Run the Go test suite
@@ -204,6 +209,7 @@ tasks:
   app:build:
     desc: >-
       Build a capsule: COMPANY=x [LENS=ai] [LANG=de] [ROLE=y] [BUDGET=2]
+      [DENSITY=9.5] [GUIDES=1]
     deps: [workbench:bin]
     cmds:
       - >-
@@ -212,8 +218,20 @@ tasks:
         {{if .LENS}}--lens {{.LENS}}{{end}}
         {{if .LANG}}--lang {{.LANG}}{{end}}
         {{if .ROLE}}--role "{{.ROLE}}"{{end}}
+        {{if .DENSITY}}--density {{.DENSITY}}{{end}}
+        {{if .GUIDES}}--guides{{end}}
         {{if .POINTS}}--points "{{.POINTS}}"{{end}}
         {{if .NO_COVER}}--no-cover{{end}}
+
+  app:guides:
+    desc: Rebuild the active capsule with pdfcpu alignment guides (COMPANY=x [LENS=ai] [LANG=de])
+    deps: [workbench:bin]
+    cmds:
+      - >-
+        {{.WB}} build --root {{.ROOT}} --company "{{.COMPANY}}" --guides
+        {{if .LENS}}--lens {{.LENS}}{{end}}
+        {{if .LANG}}--lang {{.LANG}}{{end}}
+        --reload-mupdf
 
   app:new:
     desc: Draft a capsule without building (COMPANY=x [LENS=ai] [LANG=de])
