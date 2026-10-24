@@ -36,11 +36,11 @@
   ],
   "projects": [
     {
-      "name": "resumetui",
-      "description": "Keyboard-driven JSON Resume loadout and bilingual review pipeline.",
+      "name": "resumectl",
+      "description": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
       "url": "https://github.com/shaoyanji/jobby",
       "highlights": [
-        "Bubble Tea TUI over a lossless JSON Resume schema",
+        "Lossless JSON tree, so unknown fields survive every export",
         "Typst to PDF with pdfcpu provenance and mupdf live reload"
       ]
     }

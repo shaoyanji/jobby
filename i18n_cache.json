@@ -6,7 +6,7 @@
     "de_auto": "Nix",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:46Z"
+    "updated_at": "2026-10-24T06:32:08Z"
   },
   {
     "hash": "2ae413599ad7",
@@ -15,7 +15,16 @@
     "de_auto": "Infrastrukturingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:24Z"
+    "updated_at": "2026-10-24T06:31:54Z"
+  },
+  {
+    "hash": "3e980c8c1ae7",
+    "path_hint": "projects[0].description",
+    "en": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
+    "de_auto": "Headless-First-JSON-Resume-Pipeline mit einem inhaltsadressierten deutschen Cache.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:32:03Z"
   },
   {
     "hash": "42ebff4396ce",
@@ -24,7 +33,7 @@
     "de_auto": "Plattformingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:19Z"
+    "updated_at": "2026-10-24T06:31:48Z"
   },
   {
     "hash": "445ddaa59df6",
@@ -33,7 +42,7 @@
     "de_auto": "Informatik",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:59Z"
+    "updated_at": "2026-10-24T06:32:22Z"
   },
   {
     "hash": "5fdc351f0998",
@@ -42,7 +51,7 @@
     "de_auto": "M.Sc.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:21:01Z"
+    "updated_at": "2026-10-24T06:32:24Z"
   },
   {
     "hash": "6cc8519b9158",
@@ -51,16 +60,7 @@
     "de_auto": "Gehen",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:49Z"
-  },
-  {
-    "hash": "6e7a548c5242",
-    "path_hint": "projects[0].description",
-    "en": "Keyboard-driven JSON Resume loadout and bilingual review pipeline.",
-    "de_auto": "Tastaturgesteuertes JSON-Lebenslauf-Loadout und zweisprachige Überprüfungspipeline.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T06:20:38Z"
+    "updated_at": "2026-10-24T06:32:11Z"
   },
   {
     "hash": "741d34ff99a8",
@@ -69,16 +69,7 @@
     "de_auto": "Besitzt die Nix-basierte Flotte und die dahinter stehende Lieferpipeline.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:30Z"
-  },
-  {
-    "hash": "75da939ab571",
-    "path_hint": "projects[0].highlights[0]",
-    "en": "Bubble Tea TUI over a lossless JSON Resume schema",
-    "de_auto": "Bubble Tea TUI über ein verlustfreies JSON-Resume-Schema",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T06:20:42Z"
+    "updated_at": "2026-10-24T06:31:57Z"
   },
   {
     "hash": "86ff8187dd84",
@@ -87,7 +78,16 @@
     "de_auto": "Baut eine deklarative Infrastruktur und lokal ausgerichtete KI-Tools auf, mit Schwerpunkt auf kleinen reproduzierbaren Systemen.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:22Z"
+    "updated_at": "2026-10-24T06:31:51Z"
+  },
+  {
+    "hash": "9931da794522",
+    "path_hint": "projects[0].highlights[0]",
+    "en": "Lossless JSON tree, so unknown fields survive every export",
+    "de_auto": "Verlustfreier JSON-Baum, sodass unbekannte Felder jeden Export überleben",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:32:05Z"
   },
   {
     "hash": "a659b60d246d",
@@ -96,7 +96,7 @@
     "de_auto": "Deutsch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:54Z"
+    "updated_at": "2026-10-24T06:32:18Z"
   },
   {
     "hash": "b2b6dd85fb05",
@@ -105,7 +105,7 @@
     "de_auto": "Die Host-Flotte wurde mit inventargesteuerter CI im Handumdrehen neu aufgebaut",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:34Z"
+    "updated_at": "2026-10-24T06:31:58Z"
   },
   {
     "hash": "ba118bf7fc9c",
@@ -114,7 +114,7 @@
     "de_auto": "Englisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:50Z"
+    "updated_at": "2026-10-24T06:32:13Z"
   },
   {
     "hash": "bef32d2c315a",
@@ -123,7 +123,7 @@
     "de_auto": "einheimisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:52Z"
+    "updated_at": "2026-10-24T06:32:14Z"
   },
   {
     "hash": "c0033063aed3",
@@ -132,7 +132,7 @@
     "de_auto": "KI-Plattform-Ingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:27Z"
+    "updated_at": "2026-10-24T06:31:55Z"
   },
   {
     "hash": "cd340d1a5c41",
@@ -141,7 +141,7 @@
     "de_auto": "Professional",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:57Z"
+    "updated_at": "2026-10-24T06:32:21Z"
   },
   {
     "hash": "f114eb37fd37",
@@ -150,7 +150,7 @@
     "de_auto": "Typst in PDF mit pdfcpu-Herkunft und mupdf-Live-Reload",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:44Z"
+    "updated_at": "2026-10-24T06:32:07Z"
   },
   {
     "hash": "f540bc6e3f63",
@@ -159,6 +159,6 @@
     "de_auto": "Reduzieren Sie die durchschnittliche Bereitstellungszeit, indem Sie Builds an Remote-Builder auslagern",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:20:36Z"
+    "updated_at": "2026-10-24T06:32:01Z"
   }
 ]
