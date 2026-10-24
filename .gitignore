@@ -23,3 +23,8 @@ src/.config/groqkey.txt
 tmp*
 local
 .crush
+
+# resumetui build outputs
+dist/
+result
+.task/

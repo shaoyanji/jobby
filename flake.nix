@@ -104,6 +104,12 @@
                 pkgs.imagemagick
                 pkgs.viu
                 tex
+                pkgs.go
+                pkgs.gopls
+                pkgs.go-task
+                pkgs.typst
+                pkgs.mupdf
+                pkgs.translate-shell
               ];
             };
             cmark = pkgs.mkShell {
@@ -113,6 +119,19 @@
             };
           };
           packages = {
+            resumetui = pkgs.buildGoModule {
+              pname = "resumetui";
+              version = "0.1.0";
+              src = ./.;
+              subPackages = ["cmd/resumetui"];
+              vendorHash = "sha256-TUbaUoqDZoQTkcOMtoE/FlAiqkWN+x49JeGkDguh2UU=";
+              nativeBuildInputs = [pkgs.makeWrapper];
+              postInstall = ''
+                wrapProgram $out/bin/resumetui \
+                  --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.typst pkgs.pdfcpu pkgs.go-task pkgs.mupdf pkgs.translate-shell]}
+              '';
+              meta.mainProgram = "resumetui";
+            };
             cv = pkgs.stdenvNoCC.mkDerivation rec {
               name = "cv";
               src = ./src;
@@ -342,6 +361,10 @@
             };
           };
           defaultPackage = packages.cv;
+          apps.resumetui = {
+            type = "app";
+            program = "${packages.resumetui}/bin/resumetui";
+          };
           cv = packages.cv;
           cv-en = packages.cv-en;
           letter = packages.letter;

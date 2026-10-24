@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "active": "default",
+  "loadouts": {
+    "default": {
+      "name": "default",
+      "language": "en"
+    }
+  }
+}

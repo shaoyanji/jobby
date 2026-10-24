@@ -1,0 +1,90 @@
+{
+  "basics": {
+    "name": "Shao-yan (Matt) Ji",
+    "label": "Platform Engineer",
+    "altLabels": [
+      "Infrastructure Engineer",
+      "AI Platform Engineer"
+    ],
+    "email": "jisifu@gmail.com",
+    "url": "https://github.com/shaoyanji",
+    "summary": "Builds declarative infrastructure and local-first AI tooling, with a bias for small reproducible systems.",
+    "signature": "https://example.com/assets/signature.png",
+    "location": {
+      "city": "Freiburg",
+      "countryCode": "DE"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "shaoyanji"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "O3 Energy",
+      "position": "Platform Engineer",
+      "startDate": "2022-04",
+      "endDate": "",
+      "summary": "Owns the Nix-based fleet and the delivery pipeline behind it.",
+      "highlights": [
+        "Rebuilt the host fleet on one flake with inventory-driven CI",
+        "Cut median deploy time by offloading builds to remote builders"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "resumetui",
+      "description": "Keyboard-driven JSON Resume loadout and bilingual review pipeline.",
+      "url": "https://github.com/shaoyanji/jobby",
+      "highlights": [
+        "Bubble Tea TUI over a lossless JSON Resume schema",
+        "Typst to PDF with pdfcpu provenance and mupdf live reload"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Nix",
+      "level": "expert",
+      "keywords": [
+        "flakes",
+        "home-manager",
+        "nixos"
+      ]
+    },
+    {
+      "name": "Go",
+      "level": "advanced",
+      "keywords": [
+        "CLI",
+        "bubbletea"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "native"
+    },
+    {
+      "language": "German",
+      "fluency": "professional"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Albert-Ludwigs-Universität Freiburg",
+      "area": "Computer Science",
+      "studyType": "M.Sc.",
+      "startDate": "2018-10",
+      "endDate": "2021-09"
+    }
+  ],
+  "meta": {
+    "language": "en",
+    "synced_tasks": []
+  }
+}
