@@ -1,6 +1,9 @@
 package pdf
 
 import (
+	"fmt"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
@@ -150,6 +153,47 @@ func TestBuildRunsTheWholeChain(t *testing.T) {
 	}
 	if !strings.Contains(string(raw), "20261024-default") {
 		t.Error("synced_tasks was dropped from the export")
+	}
+}
+
+func TestRemoteSignatureIsCachedWithoutRewritingTheExport(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "image/png")
+		_, _ = w.Write([]byte("png-bytes"))
+	}))
+	defer srv.Close()
+
+	h := newHarness(t)
+	body := fmt.Sprintf(`{
+	  "basics": {"name": "Ada", "label": "Engineer", "signature": %q},
+	  "meta": {"language": "en"}
+	}`, srv.URL+"/sig.png")
+	if err := os.WriteFile(filepath.Join(h.root, "resume.json"), []byte(body), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	res, err := Build(Options{Root: h.root, Lang: "en", StampSig: true})
+	if err != nil {
+		t.Fatalf("build: %v", err)
+	}
+	stamped := filepath.Join(h.root, "assets", "signature.png")
+	if b, err := os.ReadFile(stamped); err != nil || string(b) != "png-bytes" {
+		t.Fatalf("signature not cached: %v (%q)", err, b)
+	}
+	if !strings.Contains(h.calls(t), "pdfcpu stamp") {
+		t.Error("cached signature was not stamped")
+	}
+	// The exported JSON is attached to the PDF, so it must keep the URL the
+	// author wrote, not the build machine's cache path.
+	raw, err := os.ReadFile(res.JSON)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(raw), srv.URL) {
+		t.Errorf("export lost the original signature URL:\n%s", raw)
+	}
+	if strings.Contains(string(raw), filepath.Join("assets", "signature.png")) {
+		t.Errorf("export leaks a local asset path:\n%s", raw)
 	}
 }
 

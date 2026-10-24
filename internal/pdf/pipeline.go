@@ -120,8 +120,8 @@ func Build(opt Options) (*Result, error) {
 	}
 	assets, warnings := cacheAssets(exp.Doc, opt.Root, !opt.NoNetwork)
 	res.Warnings = append(res.Warnings, warnings...)
-	for _, a := range assets {
-		opt.logf("asset   %s", a)
+	for kind, a := range assets {
+		opt.logf("asset   %s (%s)", a, kind)
 	}
 
 	if _, err := exp.Write(opt.OutJSON, nil); err != nil {
@@ -139,10 +139,8 @@ func Build(opt Options) (*Result, error) {
 		"--root", opt.Root,
 		"--input", "json_path=" + typstPath(opt.Root, opt.OutJSON),
 	}
-	if avatar, ok := exp.Doc.GetString("basics.image"); ok && avatar != "" {
-		if st, err := os.Stat(avatar); err == nil && st.Size() > 0 {
-			typstArgs = append(typstArgs, "--input", "avatar="+typstPath(opt.Root, avatar))
-		}
+	if avatar := assets["avatar"]; avatar != "" {
+		typstArgs = append(typstArgs, "--input", "avatar="+typstPath(opt.Root, avatar))
 	}
 	typstArgs = append(typstArgs, opt.Template, opt.OutPDF)
 	if err := run(opt, "typst", typstArgs...); err != nil {
@@ -369,10 +367,12 @@ func Preview(path string) error {
 	return cmd.Process.Release()
 }
 
-// cacheAssets downloads remote signature/avatar images into assets/ once, so
-// typst and pdfcpu can read them as local files.
-func cacheAssets(doc *resume.Doc, root string, network bool) ([]string, []string) {
-	var cached []string
+// cacheAssets resolves the local file for each remote signature/avatar once, so
+// typst and pdfcpu read a local image. The document is left untouched: the
+// exported JSON is attached to the PDF and mailed on, so a build-machine path
+// has no business in it.
+func cacheAssets(doc *resume.Doc, root string, network bool) (map[string]string, []string) {
+	resolved := map[string]string{}
 	var warnings []string
 	assetsDir := filepath.Join(root, "assets")
 	for _, spec := range []struct{ key, base string }{
@@ -380,18 +380,23 @@ func cacheAssets(doc *resume.Doc, root string, network bool) ([]string, []string
 		{"basics.image", "avatar"},
 	} {
 		value, ok := doc.GetString(spec.key)
-		if !ok || !strings.HasPrefix(value, "http") {
+		if !ok || value == "" {
+			continue
+		}
+		if !strings.HasPrefix(value, "http") {
+			if st, err := os.Stat(value); err == nil && st.Size() > 0 {
+				resolved[spec.base] = value
+			}
 			continue
 		}
 		if existing := findAsset(assetsDir, spec.base); existing != "" {
-			_ = doc.SetString(spec.key, existing)
+			resolved[spec.base] = existing
 			continue
 		}
 		if !network {
 			continue
 		}
-		ext := extFromURL(value)
-		dest := filepath.Join(assetsDir, spec.base+ext)
+		dest := filepath.Join(assetsDir, spec.base+extFromURL(value))
 		if err := os.MkdirAll(assetsDir, 0o755); err != nil {
 			warnings = append(warnings, err.Error())
 			continue
@@ -400,10 +405,9 @@ func cacheAssets(doc *resume.Doc, root string, network bool) ([]string, []string
 			warnings = append(warnings, fmt.Sprintf("%s: %v", spec.key, err))
 			continue
 		}
-		_ = doc.SetString(spec.key, dest)
-		cached = append(cached, filepath.Join(spec.base, filepath.Base(dest)))
+		resolved[spec.base] = dest
 	}
-	return cached, warnings
+	return resolved, warnings
 }
 
 func existing(path string) string {
@@ -423,8 +427,16 @@ func findAsset(dir, base string) string {
 	return ""
 }
 
+// findSignature only accepts raster formats: pdfcpu's image stamp mode cannot
+// place an SVG.
 func findSignature(root string) string {
-	return findAsset(filepath.Join(root, "assets"), "signature")
+	for _, ext := range []string{".png", ".jpg", ".jpeg"} {
+		p := filepath.Join(root, "assets", "signature"+ext)
+		if st, err := os.Stat(p); err == nil && st.Size() > 0 {
+			return p
+		}
+	}
+	return ""
 }
 
 func extFromURL(u string) string {
