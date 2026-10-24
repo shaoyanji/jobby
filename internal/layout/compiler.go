@@ -141,13 +141,20 @@ func compileCV(doc *resume.Doc, o Options, d Density) (*Spec, int) {
 	if items := doc.Objects("work"); len(items) > 0 {
 		p.sectionHead(labelsFor(o.Lang).Experience)
 		for _, item := range items {
-			p.entry(item, "position", "startDate", "endDate")
+			p.entry(entryData{
+				head:     stringField(item, "name"),
+				detail:   stringField(item, "position"),
+				dates:    dateRange(stringField(item, "startDate"), stringField(item, "endDate"), p.o.Lang),
+				location: stringField(item, "location"),
+				summary:  stringField(item, "summary"),
+				bullets:  stringSlice(item, "highlights"),
+			})
 		}
 	}
 	if items := doc.Objects("projects"); len(items) > 0 {
 		p.sectionHead(labelsFor(o.Lang).Projects)
 		for _, item := range items {
-			p.entry(item, "", "", "")
+			p.projectEntry(item)
 		}
 	}
 	if rows := skillRows(doc); len(rows) > 0 {
@@ -160,8 +167,8 @@ func compileCV(doc *resume.Doc, o Options, d Density) (*Spec, int) {
 	if items := doc.Objects("education"); len(items) > 0 {
 		p.sectionHead(labelsFor(o.Lang).Education)
 		for _, item := range items {
-			area := joinWords(stringField(item, "area"), studyType(item))
-			p.twoColumn(stringField(item, "institution"), area,
+			// studyType already folds the area in; joining again printed it twice.
+			p.twoColumn(stringField(item, "institution"), studyType(item),
 				dateRange(stringField(item, "startDate"), stringField(item, "endDate"), p.o.Lang))
 		}
 	}
@@ -416,32 +423,41 @@ func (p *painter) section(title, body string) {
 
 // entry draws one work or project item: a locked two-column head, then its
 // summary and bullets.
-func (p *painter) entry(item map[string]any, positionKey, startKey, endKey string) {
+// entryData is one CV entry, already reduced to the strings the grid draws.
+// Work and projects share the layout; only what fills the fields differs.
+type entryData struct {
+	head     string
+	detail   string
+	dates    string
+	location string
+	summary  string
+	bullets  []string
+}
+
+// entry draws one work or project item: a locked two-column head, then its
+// summary and bullets.
+func (p *painter) entry(e entryData) {
 	d := p.d
-	name := stringField(item, "name")
-	detail := ""
-	if positionKey != "" {
-		detail = stringField(item, positionKey)
+	if strings.TrimSpace(e.head) == "" {
+		e.head = e.detail
+		e.detail = ""
 	}
-	summary := stringField(item, "summary")
-	highlights := stringSlice(item, "highlights")
 
 	// Keep the head with the first thing under it, so a job never starts at the
 	// bottom of a page and continues alone overleaf.
 	first := 0.0
-	if summary != "" {
-		first = float64(len(Wrap(summary, LeftWidth, d.Body, helvetica))) * d.LineHeight
-	} else if len(highlights) > 0 {
-		h := highlights[0]
-		first = float64(len(Wrap(h, PageWidth-MarginLeft-MarginRight-12, d.Body, helvetica))) * d.LineHeight
+	if e.summary != "" {
+		first = float64(len(Wrap(e.summary, PageWidth-MarginLeft-MarginRight, d.Body, helvetica))) * d.LineHeight
+	} else if len(e.bullets) > 0 {
+		first = float64(len(Wrap(e.bullets[0], PageWidth-MarginLeft-MarginRight-12, d.Body, helvetica))) * d.LineHeight
 	}
 	p.ensure(d.LineHeight + d.BulletGap + first)
 
 	y := p.y
-	if detail != "" {
-		p.text(MarginLeft, y, name, helveticaBold, d.Body, Ink)
-		offset := Measure(name+" ", d.Body, helveticaBold)
-		rest := "— " + detail
+	if e.detail != "" {
+		p.text(MarginLeft, y, e.head, helveticaBold, d.Body, Ink)
+		offset := Measure(e.head+" ", d.Body, helveticaBold)
+		rest := "— " + e.detail
 		if offset+Measure(rest, d.Body, helvetica) <= LeftWidth {
 			p.text(MarginLeft+offset, y, rest, helvetica, d.Body, Ink)
 		} else {
@@ -453,21 +469,55 @@ func (p *painter) entry(item map[string]any, positionKey, startKey, endKey strin
 			p.y -= d.LineHeight
 		}
 	} else {
-		p.text(MarginLeft, y, name, helveticaBold, d.Body, Ink)
+		p.text(MarginLeft, y, e.head, helveticaBold, d.Body, Ink)
 	}
-	if startKey != "" {
-		p.meta(rightEdge, y, dateRange(stringField(item, startKey), stringField(item, endKey), p.o.Lang))
-	}
+	p.metaBlock(y, e.dates, e.location)
 	p.y += d.LineHeight
 
-	if summary != "" {
-		p.drawLines(MarginLeft, PageWidth-MarginLeft-MarginRight, summary, helveticaOblique, d.Body, Muted)
+	if e.summary != "" {
+		p.drawLines(MarginLeft, PageWidth-MarginLeft-MarginRight, e.summary, helveticaOblique, d.Body, Muted)
 		p.y += d.BulletGap
 	}
-	for _, h := range highlights {
+	for _, h := range e.bullets {
 		p.bullet(h)
 	}
 	p.y += d.EntryGap
+}
+
+// projectEntry is the same grid with an entity instead of a title and the
+// description standing in for the summary.
+func (p *painter) projectEntry(item map[string]any) {
+	name := stringField(item, "name")
+	entity := stringField(item, "entity")
+	roles := stringSlice(item, "roles")
+	detail := entity
+	if len(roles) > 0 {
+		detail = joinWords(entity, strings.Join(roles, ", "))
+	}
+	p.entry(entryData{
+		head:    name,
+		detail:  detail,
+		dates:   dateRange(stringField(item, "startDate"), stringField(item, "endDate"), p.o.Lang),
+		summary: stringField(item, "description"),
+		bullets: stringSlice(item, "highlights"),
+	})
+}
+
+// metaBlock writes the right-hand column: the dates on the head's baseline and
+// the location under them when the pair would not fit on one line.
+func (p *painter) metaBlock(y float64, dates, location string) {
+	if dates == "" && location == "" {
+		return
+	}
+	p.meta(rightEdge, y, dates)
+	if location == "" {
+		return
+	}
+	if dates != "" && Measure(dates+" | "+location, p.d.Small, helvetica) <= MetaWidth {
+		p.meta(rightEdge, y, dates+" | "+location)
+		return
+	}
+	p.meta(rightEdge, y+p.d.Small*1.45, location)
 }
 
 // bullet draws one highlight with a hanging indent.
