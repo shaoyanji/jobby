@@ -28,3 +28,6 @@ local
 /dist/
 /bin/
 /extracted/
+
+# task runner cache
+.task/

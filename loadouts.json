@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "active": "default",
+  "loadouts": {
+    "default": {
+      "name": "default",
+      "label": "Platform Engineer",
+      "work": {
+        "O3 Energy": [
+          0,
+          1
+        ]
+      },
+      "projects": {
+        "resumetui": [
+          0,
+          1
+        ]
+      },
+      "language": "en"
+    }
+  }
+}
