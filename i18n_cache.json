@@ -5,8 +5,8 @@
     "en": "Research Assistant",
     "de_auto": "Forschungsassistent",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:04Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "0553a7b1f0fd",
@@ -14,8 +14,8 @@
     "en": "Open tooling for PPA and weather-derivative scenario analysis.",
     "de_auto": "Offene Tools für PPA und wetterbasierte Szenarioanalysen.",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:08Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "0d361412e3a4",
@@ -23,8 +23,8 @@
     "en": "AI systems",
     "de_auto": "KI-Systeme",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:11Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "0f5d0b67f66b",
@@ -32,8 +32,8 @@
     "en": "Nix",
     "de_auto": "Nix",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:11Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "23602b6ae033",
@@ -41,44 +41,44 @@
     "en": "Distributed Systems",
     "de_auto": "Verteilte Systeme",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:17Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "2fcd2f519c2c",
     "path_hint": "work[0].summary",
     "en": "Early-stage AI product: retrieval, evaluation and the services around them.",
     "de_auto": "KI-Produkt im Frühstadium: Abruf, Auswertung und die damit verbundenen Dienste.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:56Z"
+    "de_override": "KI-Produkt im Frühstadium: Retrieval, Evaluierung und die dazugehörigen Dienste.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "33ca924e4725",
     "path_hint": "cover_letter.opening",
     "en": "I am applying for Software Engineer — AI systems, retrieval, evaluation at TestGmbH, and the work described there sits squarely in the AI Systems \u0026 Retrieval Architect side of my background.",
     "de_auto": "Ich bewerbe mich als Software Engineer – KI-Systeme, Retrieval, Evaluierung bei TestGmbH, und die dort beschriebene Arbeit passt genau zu meinem Hintergrund als AI Systems \u0026 Retrieval Architect.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:18Z"
+    "de_override": "Ich bewerbe mich als Software Engineer – KI-Systeme, Retrieval, Evaluierung bei TestGmbH, und die dort beschriebene Arbeit passt genau zu meinem Hintergrund im Bereich AI Systems \u0026 Retrieval.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "3e980c8c1ae7",
     "path_hint": "projects[0].description",
     "en": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
     "de_auto": "Headless-First-JSON-Resume-Pipeline mit einem inhaltsadressierten deutschen Cache.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:05Z"
+    "de_override": "Headless-first JSON-Resume-Pipeline mit inhaltsadressiertem deutschem Übersetzungs-Cache.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "42ebff4396ce",
     "path_hint": "work[1].position",
     "en": "Platform Engineer",
     "de_auto": "Plattformingenieur",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:59Z"
+    "de_override": "Plattform-Engineer",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "445ddaa59df6",
@@ -86,35 +86,35 @@
     "en": "Computer Science",
     "de_auto": "Informatik",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:16Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "51926de444aa",
     "path_hint": "work[0].highlights[0]",
     "en": "Built a retrieval layer over internal documents with RAG and MCP tools",
     "de_auto": "Aufbau einer Abrufschicht über internen Dokumenten mit RAG- und MCP-Tools",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:57Z"
+    "de_override": "Retrieval-Schicht über internen Dokumenten mit RAG- und MCP-Tools aufgebaut",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "57fc772536ee",
     "path_hint": "work[3].highlights[0]",
     "en": "Published the data pipeline behind the scenario workbook",
     "de_auto": "Die Datenpipeline hinter der Szenario-Arbeitsmappe wurde veröffentlicht",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:04Z"
+    "de_override": "Datenpipeline hinter der Szenario-Arbeitsmappe veröffentlicht",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "5ca2e544969a",
     "path_hint": "basics.summary",
     "en": "Builds retrieval and evaluation systems end to end: RAG pipelines, MCP tooling, and the evaluation loops that keep model changes honest.",
     "de_auto": "Entwickelt End-to-End-Abruf- und Bewertungssysteme: RAG-Pipelines, MCP-Tools und die Bewertungsschleifen, die dafür sorgen, dass Modelländerungen ehrlich bleiben.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:52Z"
+    "de_override": "Entwickelt End-to-End-Retrieval- und Evaluierungssysteme: RAG-Pipelines, MCP-Tools und die Evaluierungsschleifen, die dafür sorgen, dass Modelländerungen belastbar bleiben.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "5fdc351f0998",
@@ -122,8 +122,8 @@
     "en": "M.Sc.",
     "de_auto": "M.Sc.",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:16Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "636485868971",
@@ -131,8 +131,8 @@
     "en": "author",
     "de_auto": "Autor",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:07Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "6cc8519b9158",
@@ -140,17 +140,17 @@
     "en": "Go",
     "de_auto": "Go",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:11Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "6d8edeb8dfea",
     "path_hint": "basics.label",
     "en": "Software Engineer — AI systems, retrieval, evaluation",
     "de_auto": "Software Engineer – KI-Systeme, Abruf, Auswertung",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:51Z"
+    "de_override": "Software Engineer – KI-Systeme, Retrieval, Evaluierung",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "6fc7291f44f5",
@@ -158,17 +158,17 @@
     "en": "Senior AI Software Architect",
     "de_auto": "Leitender KI-Softwarearchitekt",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:56Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "741d34ff99a8",
     "path_hint": "work[1].summary",
     "en": "Owns the Nix-based fleet and the delivery pipeline behind it.",
     "de_auto": "Besitzt die Nix-basierte Flotte und die dahinter stehende Lieferpipeline.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:00Z"
+    "de_override": "Verantwortet die Nix-basierte Flotte und die dahinterliegende Delivery-Pipeline.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "7e8b8112baa0",
@@ -176,8 +176,8 @@
     "en": "Numerical Methods",
     "de_auto": "Numerische Methoden",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:18Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "8cd90a60fc54",
@@ -185,8 +185,8 @@
     "en": "Independent Researcher",
     "de_auto": "Unabhängiger Forscher",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:02Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "9931da794522",
@@ -194,8 +194,8 @@
     "en": "Lossless JSON tree, so unknown fields survive every export",
     "de_auto": "Verlustfreier JSON-Baum, sodass unbekannte Felder jeden Export überleben",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:06Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "a659b60d246d",
@@ -203,8 +203,8 @@
     "en": "German",
     "de_auto": "Deutsch",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:14Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "a69d645f1512",
@@ -212,8 +212,8 @@
     "en": "Built a backtesting engine for weather-derivative strategies",
     "de_auto": "Entwickelte eine Backtesting-Engine für wetterbasierte Strategien",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:03Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "af55d95081d5",
@@ -221,17 +221,17 @@
     "en": "Quantitative Risk Engineer",
     "de_auto": "Quantitativer Risikoingenieur",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:55Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "b2b6dd85fb05",
     "path_hint": "work[1].highlights[0]",
     "en": "Rebuilt the host fleet on one flake with inventory-driven CI",
     "de_auto": "Die Host-Flotte wurde mit inventargesteuerter CI im Handumdrehen neu aufgebaut",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:01Z"
+    "de_override": "Die Host-Flotte mit einem Flake und inventargesteuerter CI neu aufgebaut",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "ba118bf7fc9c",
@@ -239,26 +239,26 @@
     "en": "English",
     "de_auto": "Englisch",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:13Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "bdb95056084a",
     "path_hint": "work[2].summary",
     "en": "Small research vehicle for energy-market tooling.",
     "de_auto": "Kleines Forschungsfahrzeug für die Entwicklung von Energiemarktinstrumenten.",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:02Z"
+    "de_override": "Kleines Forschungsprojekt für Energiemarkt-Tooling.",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "bef32d2c315a",
     "path_hint": "languages[0].fluency",
     "en": "native",
     "de_auto": "einheimisch",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:14Z"
+    "de_override": "Muttersprache",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "c0033063aed3",
@@ -266,8 +266,8 @@
     "en": "AI Platform Engineer",
     "de_auto": "KI-Plattform-Ingenieur",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:53Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "c6ddfd471731",
@@ -275,8 +275,8 @@
     "en": "Generates scenario reports from one declarative input file",
     "de_auto": "Erzeugt Szenarioberichte aus einer deklarativen Eingabedatei",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:09Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "cd340d1a5c41",
@@ -284,17 +284,17 @@
     "en": "professional",
     "de_auto": "fließend",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:15Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "ddcfa34ecf46",
     "path_hint": "work[0].highlights[1]",
     "en": "Wrote the evaluation harness that gates every model change",
     "de_auto": "Ich habe den Evaluierungsstrang geschrieben, der jeden Modellwechsel abdeckt",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:58Z"
+    "de_override": "Evaluierungs-Harness geschrieben, das jede Modelländerung absichert",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "e37eb04842e6",
@@ -302,8 +302,8 @@
     "en": "Energy markets",
     "de_auto": "Energiemärkte",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:12Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "ea540ffea2e0",
@@ -311,43 +311,43 @@
     "en": "Consultant",
     "de_auto": "Berater",
     "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:55Z"
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "eacfd4c4fcc6",
     "path_hint": "work[0].highlights[2]",
     "en": "Shipped Go and Python services for the storefront and billing",
     "de_auto": "Bereitstellung von Go- und Python-Diensten für die Storefront und Abrechnung",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:37:58Z"
+    "de_override": "Go- und Python-Dienste für Storefront und Abrechnung bereitgestellt",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "f114eb37fd37",
     "path_hint": "projects[0].highlights[1]",
     "en": "Typst to PDF with pdfcpu provenance and mupdf live reload",
     "de_auto": "Typst in PDF mit pdfcpu-Herkunft und mupdf-Live-Reload",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:07Z"
+    "de_override": "Typst zu PDF mit pdfcpu-Provenienz und mupdf-Live-Reload",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "f32accb1c585",
     "path_hint": "cover_letter.closing",
     "en": "I would welcome the chance to discuss how that experience fits TestGmbH. Kind regards,",
     "de_auto": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TestGmbH passt. Mit freundlichen Grüße,",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:19Z"
+    "de_override": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TestGmbH passt. Mit freundlichen Grüßen,",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   },
   {
     "hash": "f540bc6e3f63",
     "path_hint": "work[1].highlights[1]",
     "en": "Cut median deploy time by offloading builds to remote builders",
     "de_auto": "Reduzieren Sie die durchschnittliche Bereitstellungszeit, indem Sie Builds an Remote-Builder auslagern",
-    "de_override": "",
-    "verified": false,
-    "updated_at": "2026-10-24T07:38:01Z"
+    "de_override": "Median-Deploy-Zeit durch Auslagerung der Builds auf Remote-Builder verkürzt",
+    "verified": true,
+    "updated_at": "2026-10-24T07:45:44Z"
   }
 ]
