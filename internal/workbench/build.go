@@ -261,6 +261,14 @@ func Build(o Options) (*Report, error) {
 	sigSrc, sigFile := "", ""
 	if !o.NoSignature {
 		sigSrc, sigFile = signaturePaths(o.Root, assets)
+		if sigSrc == "" {
+			// A signature path in the resume that resolves to nothing is easy to
+			// miss: the PDF is valid, it just has no mark. Say so.
+			if want, ok := view.GetString("basics.signature"); ok && strings.TrimSpace(want) != "" {
+				report.Warnings = append(report.Warnings,
+					fmt.Sprintf("signature %q not found; the PDFs carry no signature", want))
+			}
+		}
 	}
 
 	engine := pdf.NewEngine(o.Root)

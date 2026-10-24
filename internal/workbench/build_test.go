@@ -318,6 +318,31 @@ func TestBuildCanSkipTheCoverLetter(t *testing.T) {
 	}
 }
 
+// A resume that points at a signature file which is not there must say so:
+// the PDF renders fine, and nobody notices the missing mark otherwise.
+func TestBuildWarnsAboutAMissingSignature(t *testing.T) {
+	h := newHarness(t)
+	withSig := strings.Replace(resumeJSON, `"basics": {"name"`, `"basics": {"signature": "assets/signature.png", "name"`, 1)
+	if err := os.WriteFile(filepath.Join(h.root, "resume.json"), []byte(withSig), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	c := capsule.New("NoSig GmbH")
+	c.Lens = "ai"
+	rep, err := Build(Options{Root: h.root, Capsule: c, NoCover: true, Log: func(string, ...any) {}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, w := range rep.Warnings {
+		if strings.Contains(w, "carry no signature") {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("warnings = %v", rep.Warnings)
+	}
+}
+
 func TestFormatDate(t *testing.T) {
 	d := time.Date(2026, 10, 24, 0, 0, 0, 0, time.UTC)
 	if got := formatDate(d, "de"); got != "24. Oktober 2026" {
