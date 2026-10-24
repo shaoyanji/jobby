@@ -4,9 +4,12 @@
 - `nix develop` — dev shell: go, typst, pdfcpu, mupdf, translate-shell, visidata, task
 - `task` — list every pipeline task
 - `task build:en` / `task build:de` — export → typst → pdfcpu → mupdf reload
+- `task app` — application workbench TUI
+- `task app:build COMPANY=X LENS=ai LANG=de` — capsule → CV + letter + package
+- `task app:list` — capsules under `applications/`
+- `task app:import PDF=file.pdf` — restore a capsule from an old PDF
 - `task mappe` — German CV merged with Anschreiben and Zeugnisse
-- `task preview` — open mupdf, then build so it reloads in place
-- `nix build .#resumectl` — package the CLI (wrapped with its runtime deps)
+- `nix build .#resumectl .#workbench` — package the CLIs with their runtime deps
 
 ## Test / lint commands
 - `task test` — `go test ./...` (pdf tests use stub typst/pdfcpu binaries)
@@ -29,6 +32,13 @@
 - `internal/export/` — loadout + language → JSON view
 - `internal/pdf/` — typst + pdfcpu + mupdf pipeline
 - `internal/tui/` — huh review deck and loadout editor
-- `templates/resume.typ` — bilingual A4 template, reads `json_path`
+- `internal/capsule/` — application folders, `capsule.json`, import/export
+- `internal/lens/` — narrative lenses: persona, titles, keyword priorities
+- `internal/coverletter/` — Anschreiben model, scaffold, translatable refs
+- `internal/workbench/` — draft, build (CV + letter + package), TUI
+- `internal/pdf/autofit.go` — page-budget solver over the density ladder
+- `templates/style.typ` — shared palette, header, section and date helpers
+- `templates/resume.typ` — bilingual A4 CV, reads `json_path`
+- `templates/cover_letter.typ` — Anschreiben on the same header
 - `glossary.json` — terms `trans` must not mangle
 - `flake.nix` — the only dependency source

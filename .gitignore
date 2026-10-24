@@ -31,3 +31,10 @@ local
 
 # task runner cache
 .task/
+
+# application capsules are local artifacts (the state travels inside the PDFs)
+/applications/
+
+# the personal signature / avatar are fetched locally, never committed
+/assets/signature.png
+/assets/avatar.*

@@ -1,21 +1,93 @@
 [
   {
-    "hash": "0f5d0b67f66b",
+    "hash": "0195f308f8bf",
+    "path_hint": "work[3].position",
+    "en": "Research Assistant",
+    "de_auto": "Forschungsassistent",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:58Z"
+  },
+  {
+    "hash": "028302c1e7e8",
+    "path_hint": "work[3].highlights[0]",
+    "en": "Modelled PV yield and grid-parity scenarios for regional studies",
+    "de_auto": "Modellierte PV-Ertrags- und Netzparitätsszenarien für regionale Studien",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:26Z"
+  },
+  {
+    "hash": "0553a7b1f0fd",
+    "path_hint": "projects[1].description",
+    "en": "Open tooling for PPA and weather-derivative scenario analysis.",
+    "de_auto": "Offene Tools für PPA und wetterbasierte Szenarioanalysen.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:03Z"
+  },
+  {
+    "hash": "0d361412e3a4",
     "path_hint": "skills[0].name",
+    "en": "AI systems",
+    "de_auto": "KI-Systeme",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:04Z"
+  },
+  {
+    "hash": "0f5d0b67f66b",
+    "path_hint": "skills[1].name",
     "en": "Nix",
     "de_auto": "Nix",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:08Z"
+    "updated_at": "2026-10-24T07:04:05Z"
   },
   {
-    "hash": "2ae413599ad7",
-    "path_hint": "basics.altLabels[0]",
-    "en": "Infrastructure Engineer",
-    "de_auto": "Infrastrukturingenieur",
+    "hash": "23602b6ae033",
+    "path_hint": "education[0].courses[0]",
+    "en": "Distributed Systems",
+    "de_auto": "Verteilte Systeme",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:54Z"
+    "updated_at": "2026-10-24T07:04:15Z"
+  },
+  {
+    "hash": "2999944571e2",
+    "path_hint": "basics.label",
+    "en": "Senior Quantitative Risk \u0026 Energy Systems Architect",
+    "de_auto": "Senior Quantitative Risk \u0026 Energy Systems Architect",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:19Z"
+  },
+  {
+    "hash": "2fcd2f519c2c",
+    "path_hint": "work[0].summary",
+    "en": "Early-stage AI product: retrieval, evaluation and the services around them.",
+    "de_auto": "KI-Produkt im Frühstadium: Abruf, Auswertung und die damit verbundenen Dienste.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:47Z"
+  },
+  {
+    "hash": "33ca924e4725",
+    "path_hint": "cover_letter.opening",
+    "en": "I am applying for Software Engineer — AI systems, retrieval, evaluation at TestGmbH, and the work described there sits squarely in the AI Systems \u0026 Retrieval Architect side of my background.",
+    "de_auto": "Ich bewerbe mich als Software Engineer – KI-Systeme, Retrieval, Evaluierung bei TestGmbH, und die dort beschriebene Arbeit passt genau zu meinem Hintergrund als AI Systems \u0026 Retrieval Architect.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:17Z"
+  },
+  {
+    "hash": "3d0b073dab68",
+    "path_hint": "cover_letter.opening",
+    "en": "I am applying for Senior Quantitative Risk \u0026 Energy Systems Architect at TaskCo, and the work described there sits squarely in the Energy \u0026 Quantitative Risk Lead side of my background.",
+    "de_auto": "Ich bewerbe mich als Senior Quantitative Risk \u0026 Energy Systems Architect bei TaskCo und die dort beschriebene Arbeit passt genau zu meinem Hintergrund als Energy \u0026 Quantitative Risk Lead.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:29Z"
   },
   {
     "hash": "3e980c8c1ae7",
@@ -24,16 +96,16 @@
     "de_auto": "Headless-First-JSON-Resume-Pipeline mit einem inhaltsadressierten deutschen Cache.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:03Z"
+    "updated_at": "2026-10-24T07:03:59Z"
   },
   {
     "hash": "42ebff4396ce",
-    "path_hint": "basics.label",
+    "path_hint": "work[1].position",
     "en": "Platform Engineer",
     "de_auto": "Plattformingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:48Z"
+    "updated_at": "2026-10-24T07:03:53Z"
   },
   {
     "hash": "445ddaa59df6",
@@ -42,7 +114,43 @@
     "de_auto": "Informatik",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:22Z"
+    "updated_at": "2026-10-24T07:04:12Z"
+  },
+  {
+    "hash": "51926de444aa",
+    "path_hint": "work[0].highlights[0]",
+    "en": "Built a retrieval layer over internal documents with RAG and MCP tools",
+    "de_auto": "Aufbau einer Abrufschicht über internen Dokumenten mit RAG- und MCP-Tools",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:48Z"
+  },
+  {
+    "hash": "57fc772536ee",
+    "path_hint": "work[3].highlights[0]",
+    "en": "Published the data pipeline behind the scenario workbook",
+    "de_auto": "Die Datenpipeline hinter der Szenario-Arbeitsmappe wurde veröffentlicht",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:58Z"
+  },
+  {
+    "hash": "59185c5765b8",
+    "path_hint": "work[1].highlights[0]",
+    "en": "Modelled PPA exposure and weather-derivative settlement for the trading desk",
+    "de_auto": "Modelliertes PPA-Exposure und Abwicklung von Wetterderivaten für den Handelsbereich",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:25Z"
+  },
+  {
+    "hash": "5ca2e544969a",
+    "path_hint": "basics.summary",
+    "en": "Builds retrieval and evaluation systems end to end: RAG pipelines, MCP tooling, and the evaluation loops that keep model changes honest.",
+    "de_auto": "Entwickelt End-to-End-Abruf- und Bewertungssysteme: RAG-Pipelines, MCP-Tools und die Bewertungsschleifen, die dafür sorgen, dass Modelländerungen ehrlich bleiben.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:45Z"
   },
   {
     "hash": "5fdc351f0998",
@@ -51,34 +159,106 @@
     "de_auto": "M.Sc.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:24Z"
+    "updated_at": "2026-10-24T07:04:12Z"
+  },
+  {
+    "hash": "636485868971",
+    "path_hint": "projects[0].roles[0]",
+    "en": "author",
+    "de_auto": "Autor",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:02Z"
+  },
+  {
+    "hash": "6826aec094f4",
+    "path_hint": "projects[1].highlights[0]",
+    "en": "Backtests hedge structures against historical weather data",
+    "de_auto": "Backtests von Absicherungsstrukturen anhand historischer Wetterdaten",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:27Z"
   },
   {
     "hash": "6cc8519b9158",
-    "path_hint": "skills[1].name",
+    "path_hint": "skills[2].name",
     "en": "Go",
     "de_auto": "Gehen",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:11Z"
+    "updated_at": "2026-10-24T07:04:06Z"
+  },
+  {
+    "hash": "6d8edeb8dfea",
+    "path_hint": "basics.label",
+    "en": "Software Engineer — AI systems, retrieval, evaluation",
+    "de_auto": "Software Engineer – KI-Systeme, Abruf, Auswertung",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:45Z"
+  },
+  {
+    "hash": "6fc7291f44f5",
+    "path_hint": "work[0].position",
+    "en": "Senior AI Software Architect",
+    "de_auto": "Leitender KI-Softwarearchitekt",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:47Z"
   },
   {
     "hash": "741d34ff99a8",
-    "path_hint": "work[0].summary",
+    "path_hint": "work[1].summary",
     "en": "Owns the Nix-based fleet and the delivery pipeline behind it.",
     "de_auto": "Besitzt die Nix-basierte Flotte und die dahinter stehende Lieferpipeline.",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:57Z"
+    "updated_at": "2026-10-24T07:03:53Z"
   },
   {
-    "hash": "86ff8187dd84",
-    "path_hint": "basics.summary",
-    "en": "Builds declarative infrastructure and local-first AI tooling, with a bias for small reproducible systems.",
-    "de_auto": "Baut eine deklarative Infrastruktur und lokal ausgerichtete KI-Tools auf, mit Schwerpunkt auf kleinen reproduzierbaren Systemen.",
+    "hash": "7711cb420a7b",
+    "path_hint": "work[1].highlights[1]",
+    "en": "Automated the monthly hedge report from market and portfolio data",
+    "de_auto": "Automatisiert den monatlichen Hedge-Report aus Markt- und Portfoliodaten",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:51Z"
+    "updated_at": "2026-10-24T07:04:25Z"
+  },
+  {
+    "hash": "7e8b8112baa0",
+    "path_hint": "education[0].courses[1]",
+    "en": "Numerical Methods",
+    "de_auto": "Numerische Methoden",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:16Z"
+  },
+  {
+    "hash": "8448440dc6b3",
+    "path_hint": "work[0].position",
+    "en": "Founder \u0026 Principal Risk Architect",
+    "de_auto": "Gründer und Hauptrisikoarchitekt",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:22Z"
+  },
+  {
+    "hash": "8cd90a60fc54",
+    "path_hint": "work[2].position",
+    "en": "Independent Researcher",
+    "de_auto": "Unabhängiger Forscher",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:56Z"
+  },
+  {
+    "hash": "913e245ed5c4",
+    "path_hint": "work[0].highlights[0]",
+    "en": "Ran the Postgres storage layer and its migrations",
+    "de_auto": "Ausführung der Postgres-Speicherschicht und ihrer Migrationen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:24Z"
   },
   {
     "hash": "9931da794522",
@@ -87,7 +267,16 @@
     "de_auto": "Verlustfreier JSON-Baum, sodass unbekannte Felder jeden Export überleben",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:05Z"
+    "updated_at": "2026-10-24T07:04:00Z"
+  },
+  {
+    "hash": "9eb94711a766",
+    "path_hint": "work[2].highlights[1]",
+    "en": "Prototyped a Rust risk engine with a Typst reporting front end",
+    "de_auto": "Prototyp einer Rust-Risiko-Engine mit einem Typst-Reporting-Frontend",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:26Z"
   },
   {
     "hash": "a659b60d246d",
@@ -96,16 +285,34 @@
     "de_auto": "Deutsch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:18Z"
+    "updated_at": "2026-10-24T07:04:08Z"
+  },
+  {
+    "hash": "a69d645f1512",
+    "path_hint": "work[2].highlights[0]",
+    "en": "Built a backtesting engine for weather-derivative strategies",
+    "de_auto": "Entwickelte eine Backtesting-Engine für wetterbasierte Strategien",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:57Z"
+  },
+  {
+    "hash": "af55d95081d5",
+    "path_hint": "basics.altLabels[1]",
+    "en": "Quantitative Risk Engineer",
+    "de_auto": "Quantitativer Risikoingenieur",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:46Z"
   },
   {
     "hash": "b2b6dd85fb05",
-    "path_hint": "work[0].highlights[0]",
+    "path_hint": "work[1].highlights[0]",
     "en": "Rebuilt the host fleet on one flake with inventory-driven CI",
     "de_auto": "Die Host-Flotte wurde mit inventargesteuerter CI im Handumdrehen neu aufgebaut",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:58Z"
+    "updated_at": "2026-10-24T07:03:54Z"
   },
   {
     "hash": "ba118bf7fc9c",
@@ -114,7 +321,16 @@
     "de_auto": "Englisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:13Z"
+    "updated_at": "2026-10-24T07:04:07Z"
+  },
+  {
+    "hash": "bdb95056084a",
+    "path_hint": "work[2].summary",
+    "en": "Small research vehicle for energy-market tooling.",
+    "de_auto": "Kleines Forschungsfahrzeug für die Entwicklung von Energiemarktinstrumenten.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:56Z"
   },
   {
     "hash": "bef32d2c315a",
@@ -123,16 +339,34 @@
     "de_auto": "einheimisch",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:14Z"
+    "updated_at": "2026-10-24T07:04:08Z"
   },
   {
     "hash": "c0033063aed3",
-    "path_hint": "basics.altLabels[1]",
+    "path_hint": "basics.altLabels[0]",
     "en": "AI Platform Engineer",
     "de_auto": "KI-Plattform-Ingenieur",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:31:55Z"
+    "updated_at": "2026-10-24T07:03:46Z"
+  },
+  {
+    "hash": "c57e11ef5bd4",
+    "path_hint": "cover_letter.closing",
+    "en": "I would welcome the chance to discuss how that experience fits TaskCo. Kind regards,",
+    "de_auto": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TaskCo passt. Mit freundlichen Grüße,",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:30Z"
+  },
+  {
+    "hash": "c6ddfd471731",
+    "path_hint": "projects[1].highlights[0]",
+    "en": "Generates scenario reports from one declarative input file",
+    "de_auto": "Erzeugt Szenarioberichte aus einer deklarativen Eingabedatei",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:04Z"
   },
   {
     "hash": "cd340d1a5c41",
@@ -141,7 +375,52 @@
     "de_auto": "Professional",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:21Z"
+    "updated_at": "2026-10-24T07:04:10Z"
+  },
+  {
+    "hash": "d28ad3a34c6a",
+    "path_hint": "basics.summary",
+    "en": "Models energy-market exposure and builds the systems that price it: PPA structuring, weather derivatives, and the data pipelines behind both.",
+    "de_auto": "Modelliert das Engagement auf dem Energiemarkt und baut die Systeme auf, die es bepreisen: PPA-Strukturierung, Wetterderivate und die Datenpipelines dahinter.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:21Z"
+  },
+  {
+    "hash": "ddcfa34ecf46",
+    "path_hint": "work[0].highlights[1]",
+    "en": "Wrote the evaluation harness that gates every model change",
+    "de_auto": "Ich habe den Evaluierungsstrang geschrieben, der jeden Modellwechsel abdeckt",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:49Z"
+  },
+  {
+    "hash": "e37eb04842e6",
+    "path_hint": "skills[3].name",
+    "en": "Energy markets",
+    "de_auto": "Energiemärkte",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:06Z"
+  },
+  {
+    "hash": "ea540ffea2e0",
+    "path_hint": "basics.altLabels[2]",
+    "en": "Consultant",
+    "de_auto": "Berater",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:47Z"
+  },
+  {
+    "hash": "eacfd4c4fcc6",
+    "path_hint": "work[0].highlights[2]",
+    "en": "Shipped Go and Python services for the storefront and billing",
+    "de_auto": "Bereitstellung von Go- und Python-Diensten für die Storefront und Abrechnung",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:03:50Z"
   },
   {
     "hash": "f114eb37fd37",
@@ -150,15 +429,24 @@
     "de_auto": "Typst in PDF mit pdfcpu-Herkunft und mupdf-Live-Reload",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:07Z"
+    "updated_at": "2026-10-24T07:04:01Z"
+  },
+  {
+    "hash": "f32accb1c585",
+    "path_hint": "cover_letter.closing",
+    "en": "I would welcome the chance to discuss how that experience fits TestGmbH. Kind regards,",
+    "de_auto": "Ich würde die Gelegenheit begrüßen, darüber zu diskutieren, wie diese Erfahrung zu TestGmbH passt. Mit freundlichen Grüße,",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T07:04:18Z"
   },
   {
     "hash": "f540bc6e3f63",
-    "path_hint": "work[0].highlights[1]",
+    "path_hint": "work[1].highlights[1]",
     "en": "Cut median deploy time by offloading builds to remote builders",
     "de_auto": "Reduzieren Sie die durchschnittliche Bereitstellungszeit, indem Sie Builds an Remote-Builder auslagern",
     "de_override": "",
     "verified": false,
-    "updated_at": "2026-10-24T06:32:01Z"
+    "updated_at": "2026-10-24T07:03:55Z"
   }
 ]

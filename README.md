@@ -35,7 +35,76 @@ There is no `nix` in a Codespace by default: `curl -L https://nixos.org/nix/inst
 followed by `. ~/.nix-profile/etc/profile.d/nix.sh` gives you the flake, and
 `nix develop` then supplies every dependency at pinned versions.
 
-## The four state files
+## One folder per application (the workbench)
+
+`cmd/workbench` builds an **application capsule** instead of a CV variant:
+
+```
+applications/2026-10-24-testgmbh/
+  capsule.json                      lens, title overrides, bullets, letter, language
+  rendered.json                     the exact CV that was compiled
+  CV_Matt_Ji.pdf                    capsule + rendered JSON embedded
+  Cover_Letter_Matt_Ji.pdf          same header, same stamp, same palette
+  Application_Package_Matt_Ji.pdf   letter + CV + optional Zeugnisse
+```
+
+There is still **one** `resume.json` and **one** `i18n_cache.json`. An application
+is a folder of decisions, not a branch. Because the state is embedded in the
+PDFs, an old application is recoverable months later:
+
+```bash
+task app:import PDF=~/Downloads/CV_Matt_Ji.pdf   # restores capsule.json
+```
+
+### Narrative lenses
+
+`lenses.json` holds three ways to tell the same career. A lens shifts the
+persona line, rewrites per-company job titles, and pre-selects the bullets that
+belong to that story:
+
+| Lens | Persona | Bountystash title | Prioritises |
+| :--- | :--- | :--- | :--- |
+| `ai` | Software Engineer — AI systems, retrieval, evaluation | Senior AI Software Architect | RAG, MCP, eval, Go, Python |
+| `energy` | Senior Quantitative Risk & Energy Systems Architect | Founder & Principal Risk Architect | PPA, weather, risk, hedging |
+| `consulting` | Programmer, Engineer, Consultant | Founder | balanced, every bullet |
+
+Lens keywords are matched word-bounded, so “RAG” does not match “storage”. An
+employer whose bullets never mention the keywords keeps all of them: shrinking
+someone’s history silently is worse than a longer CV.
+
+### Auto-fit instead of manual nudging
+
+Every job and education entry is a Typst `grid(columns: (1fr, auto))`, so dates
+are locked to the right margin and long German compounds cannot push them off.
+If the CV still spills past the page budget, Go recompiles through a density
+ladder and stops at the first fit:
+
+| Preset | Font | Leading |
+| :--- | :--- | :--- |
+| normal | 10pt | 0.65em |
+| compact | 9.6pt | 0.55em |
+| tight | 9.2pt | 0.45em |
+| dense | 8.9pt | 0.38em |
+
+The TUI reports `✔ Auto-fitted to 2 pages (preset: 9.6pt / compact)`.
+
+### Commands
+
+```bash
+workbench                                   # TUI: new/switch capsule, tailor, letter, export
+task app                                    # same, through task
+workbench build --lens=ai --lang=de --company=TestGmbH
+workbench new --company=TestGmbH --lens=energy
+task app:build COMPANY=TestGmbH LENS=energy LANG=de BUDGET=2
+workbench list
+workbench import-pdf CV_Matt_Ji.pdf
+```
+
+`build` creates today’s capsule for the company if none exists (scaffolding the
+cover letter from the lens highlights), reuses it if one does, and then renders
+CV, letter and package with `pdfcpu` stamps, attachments and a merge.
+
+## The state files
 
 | File | Owner | What it holds |
 | :--- | :--- | :--- |
@@ -43,6 +112,8 @@ followed by `. ~/.nix-profile/etc/profile.d/nix.sh` gives you the flake, and
 | `i18n_cache.json` | `i18n-sync`, you | Flat array of translations, keyed by `sha256(en)[:12]`. |
 | `loadouts.json` | `loadout-edit` | Named decks: persona + selected highlight indices. |
 | `glossary.json` | you | Terms `trans` must not mangle (acronyms, product names). |
+| `lenses.json` | you | Narrative lenses: persona, title overrides, keyword priorities. |
+| `applications/<date>-<company>/` | `workbench` | One application capsule (see above). |
 
 Nothing in `dist/` is authoritative. `dist/resume-<lang>.json` is the exact
 document a PDF was compiled from, and `--attach-json` embeds it in the PDF, so a

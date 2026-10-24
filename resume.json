@@ -3,8 +3,9 @@
     "name": "Shao-yan (Matt) Ji",
     "label": "Platform Engineer",
     "altLabels": [
-      "Infrastructure Engineer",
-      "AI Platform Engineer"
+      "AI Platform Engineer",
+      "Quantitative Risk Engineer",
+      "Consultant"
     ],
     "email": "jisifu@gmail.com",
     "url": "https://github.com/shaoyanji",
@@ -23,6 +24,19 @@
   },
   "work": [
     {
+      "name": "Bountystash",
+      "position": "Founder",
+      "startDate": "2023-01",
+      "endDate": "",
+      "summary": "Early-stage AI product: retrieval, evaluation and the services around them.",
+      "highlights": [
+        "Built a retrieval layer over internal documents with RAG and MCP tools",
+        "Wrote the evaluation harness that gates every model change",
+        "Shipped Go and Python services for the storefront and billing",
+        "Ran the Postgres storage layer and its migrations"
+      ]
+    },
+    {
       "name": "O3 Energy",
       "position": "Platform Engineer",
       "startDate": "2022-04",
@@ -30,7 +44,30 @@
       "summary": "Owns the Nix-based fleet and the delivery pipeline behind it.",
       "highlights": [
         "Rebuilt the host fleet on one flake with inventory-driven CI",
-        "Cut median deploy time by offloading builds to remote builders"
+        "Cut median deploy time by offloading builds to remote builders",
+        "Modelled PPA exposure and weather-derivative settlement for the trading desk",
+        "Automated the monthly hedge report from market and portfolio data"
+      ]
+    },
+    {
+      "name": "Swirl Engine",
+      "position": "Independent Researcher",
+      "startDate": "2021-09",
+      "endDate": "2022-03",
+      "summary": "Small research vehicle for energy-market tooling.",
+      "highlights": [
+        "Built a backtesting engine for weather-derivative strategies",
+        "Prototyped a Rust risk engine with a Typst reporting front end"
+      ]
+    },
+    {
+      "name": "Fraunhofer ISE",
+      "position": "Research Assistant",
+      "startDate": "2019-04",
+      "endDate": "2021-08",
+      "highlights": [
+        "Modelled PV yield and grid-parity scenarios for regional studies",
+        "Published the data pipeline behind the scenario workbook"
       ]
     }
   ],
@@ -39,29 +76,42 @@
       "name": "resumectl",
       "description": "Headless-first JSON Resume pipeline with a content-addressed German cache.",
       "url": "https://github.com/shaoyanji/jobby",
+      "roles": ["author"],
       "highlights": [
         "Lossless JSON tree, so unknown fields survive every export",
         "Typst to PDF with pdfcpu provenance and mupdf live reload"
+      ]
+    },
+    {
+      "name": "Energy Scenario Kit",
+      "description": "Open tooling for PPA and weather-derivative scenario analysis.",
+      "roles": ["author"],
+      "highlights": [
+        "Backtests hedge structures against historical weather data",
+        "Generates scenario reports from one declarative input file"
       ]
     }
   ],
   "skills": [
     {
+      "name": "AI systems",
+      "level": "advanced",
+      "keywords": ["RAG", "MCP", "evaluation", "retrieval", "LLM"]
+    },
+    {
       "name": "Nix",
       "level": "expert",
-      "keywords": [
-        "flakes",
-        "home-manager",
-        "nixos"
-      ]
+      "keywords": ["flakes", "home-manager", "nixos"]
     },
     {
       "name": "Go",
       "level": "advanced",
-      "keywords": [
-        "CLI",
-        "bubbletea"
-      ]
+      "keywords": ["CLI", "services"]
+    },
+    {
+      "name": "Energy markets",
+      "level": "working",
+      "keywords": ["PPA", "weather derivatives", "hedging"]
     }
   ],
   "languages": [
@@ -80,11 +130,14 @@
       "area": "Computer Science",
       "studyType": "M.Sc.",
       "startDate": "2018-10",
-      "endDate": "2021-09"
+      "endDate": "2021-09",
+      "courses": ["Distributed Systems", "Numerical Methods"]
     }
   ],
   "meta": {
     "language": "en",
-    "synced_tasks": []
+    "synced_tasks": [],
+    "file_stem": "Matt_Ji",
+    "rezi_source_id": "demo"
   }
 }

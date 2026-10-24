@@ -9,6 +9,7 @@ version: '3'
 vars:
   ROOT: '.'
   CTL: './bin/resumectl'
+  WB: './bin/workbench'
   LANG: '{{default "en" .LANG}}'
   PROFILE: '{{default "default" .PROFILE}}'
   OUT_PDF: 'dist/resume-{{.LANG}}.pdf'
@@ -174,6 +175,63 @@ tasks:
       - go mod tidy
 
   nix:build:
-    desc: Build the packaged binary through the flake
+    desc: Build the packaged binaries through the flake
     cmds:
-      - nix build .#resumectl --print-out-paths
+      - nix build .#resumectl .#workbench --print-out-paths
+
+  # ── Application workbench ────────────────────────────────────────────────
+
+  workbench:bin:
+    desc: Build ./bin/workbench when sources changed
+    sources:
+      - 'cmd/**/*.go'
+      - 'internal/**/*.go'
+      - go.mod
+      - go.sum
+    generates:
+      - 'bin/workbench'
+    cmds:
+      - mkdir -p bin
+      - go build -o bin/workbench ./cmd/workbench
+
+  app:
+    desc: Open the workbench TUI (new/switch capsule, tailor, letter, export)
+    deps: [workbench:bin]
+    interactive: true
+    cmds:
+      - '{{.WB}} tui --root {{.ROOT}} --budget {{default "2" .BUDGET}}'
+
+  app:build:
+    desc: >-
+      Build a capsule: COMPANY=x [LENS=ai] [LANG=de] [ROLE=y] [BUDGET=2]
+    deps: [workbench:bin]
+    cmds:
+      - >-
+        {{.WB}} build --root {{.ROOT}} --company "{{.COMPANY}}"
+        --budget {{default "2" .BUDGET}}
+        {{if .LENS}}--lens {{.LENS}}{{end}}
+        {{if .LANG}}--lang {{.LANG}}{{end}}
+        {{if .ROLE}}--role "{{.ROLE}}"{{end}}
+        {{if .POINTS}}--points "{{.POINTS}}"{{end}}
+        {{if .NO_COVER}}--no-cover{{end}}
+
+  app:new:
+    desc: Draft a capsule without building (COMPANY=x [LENS=ai] [LANG=de])
+    deps: [workbench:bin]
+    cmds:
+      - >-
+        {{.WB}} new --root {{.ROOT}} --company "{{.COMPANY}}"
+        {{if .LENS}}--lens {{.LENS}}{{end}}
+        {{if .LANG}}--lang {{.LANG}}{{end}}
+
+  app:list:
+    desc: List application capsules under applications/
+    deps: [workbench:bin]
+    cmds:
+      - '{{.WB}} list --root {{.ROOT}}'
+
+  app:import:
+    desc: Restore a capsule from the JSON embedded in an old PDF (PDF=path)
+    deps: [workbench:bin]
+    cmds:
+      - '{{.WB}} import-pdf --root {{.ROOT}} {{.PDF}}'

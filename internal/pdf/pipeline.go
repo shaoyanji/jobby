@@ -118,7 +118,7 @@ func Build(opt Options) (*Result, error) {
 	if err != nil {
 		return nil, err
 	}
-	assets, warnings := cacheAssets(exp.Doc, opt.Root, !opt.NoNetwork)
+	assets, warnings := ResolveAssets(exp.Doc, opt.Root, !opt.NoNetwork)
 	res.Warnings = append(res.Warnings, warnings...)
 	for kind, a := range assets {
 		opt.logf("asset   %s (%s)", a, kind)
@@ -154,13 +154,7 @@ func Build(opt Options) (*Result, error) {
 		case sig == "":
 			opt.logf("stamp   skipped (no assets/signature.{png,jpg})")
 		default:
-			tmp := opt.OutPDF + ".stamp.pdf"
-			// Short flags on purpose: pflag reads "-mode image" as "-m ode".
-			if err := run(opt, "pdfcpu", "stamp", "add", "-m", "image", "-p", "l", "--",
-				sig, "pos:br, off:-40 35, scale:0.18 abs, rot:0", opt.OutPDF, tmp); err != nil {
-				return nil, err
-			}
-			if err := os.Rename(tmp, opt.OutPDF); err != nil {
+			if err := stampSignature(opt.Root, sig, opt.OutPDF); err != nil {
 				return nil, err
 			}
 			opt.logf("stamp   %s", rel(opt.Root, sig))
@@ -241,7 +235,7 @@ type PDFInfo struct {
 	Output string
 }
 
-var pageCount = regexp.MustCompile(`(?m)Page count:\s*(\d+)`)
+var pageCountRe = regexp.MustCompile(`(?m)Page count:\s*(\d+)`)
 
 // Info asks pdfcpu for the page count and full report.
 func Info(path string) (PDFInfo, error) {
@@ -252,7 +246,7 @@ func Info(path string) (PDFInfo, error) {
 		return PDFInfo{Output: text}, fmt.Errorf("pdfcpu info: %s", text)
 	}
 	info := PDFInfo{Output: text}
-	if m := pageCount.FindStringSubmatch(text); len(m) == 2 {
+	if m := pageCountRe.FindStringSubmatch(text); len(m) == 2 {
 		info.Pages, _ = strconv.Atoi(m[1])
 	}
 	return info, nil
@@ -367,11 +361,11 @@ func Preview(path string) error {
 	return cmd.Process.Release()
 }
 
-// cacheAssets resolves the local file for each remote signature/avatar once, so
-// typst and pdfcpu read a local image. The document is left untouched: the
+// ResolveAssets resolves the local file for each remote signature/avatar once,
+// so typst and pdfcpu read a local image. The document is left untouched: the
 // exported JSON is attached to the PDF and mailed on, so a build-machine path
 // has no business in it.
-func cacheAssets(doc *resume.Doc, root string, network bool) (map[string]string, []string) {
+func ResolveAssets(doc *resume.Doc, root string, network bool) (map[string]string, []string) {
 	resolved := map[string]string{}
 	var warnings []string
 	assetsDir := filepath.Join(root, "assets")
@@ -484,13 +478,31 @@ func download(url, dest string) error {
 }
 
 func run(opt Options, name string, args ...string) error {
+	return runIn(opt.Root, name, args...)
+}
+
+func runIn(root, name string, args ...string) error {
 	cmd := exec.Command(name, args...)
-	cmd.Dir = opt.Root
+	cmd.Dir = root
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		return fmt.Errorf("%s %s: %s", name, strings.Join(args, " "), strings.TrimSpace(string(out)))
 	}
 	return nil
+}
+
+// stampSignature places the signature image bottom-right on the last page,
+// writing through a temp file so a failed stamp cannot corrupt the PDF.
+func stampSignature(root, sig, pdfPath string) error {
+	tmp := pdfPath + ".stamp.pdf"
+	// Short flags on purpose: pflag reads "-mode image" as "-m ode".
+	err := runIn(root, "pdfcpu", "stamp", "add", "-m", "image", "-p", "l", "--",
+		sig, "pos:br, off:-40 35, scale:0.18 abs, rot:0", pdfPath, tmp)
+	if err != nil {
+		_ = os.Remove(tmp)
+		return err
+	}
+	return os.Rename(tmp, pdfPath)
 }
 
 // typstPath renders a path the way typst wants it: root-anchored ("/dist/x")

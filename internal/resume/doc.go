@@ -13,6 +13,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/shaoyanji/jobby/internal/atomicfile"
 )
 
 // Doc is a parsed resume plus the path it came from.
@@ -40,14 +42,10 @@ func Load(path string) (*Doc, error) {
 	return &Doc{Root: root, Path: path}, nil
 }
 
-// Save writes the document back with two-space indentation and a trailing
-// newline, so diffs stay reviewable.
+// Save writes the document back atomically, with two-space indentation and a
+// trailing newline so diffs stay reviewable.
 func (d *Doc) Save(path string) error {
-	b, err := json.MarshalIndent(d.Root, "", "  ")
-	if err != nil {
-		return fmt.Errorf("encode resume: %w", err)
-	}
-	if err := os.WriteFile(path, append(b, '\n'), 0o644); err != nil {
+	if err := atomicfile.WriteJSON(path, d.Root); err != nil {
 		return fmt.Errorf("write resume: %w", err)
 	}
 	return nil

@@ -284,6 +284,24 @@ func (s Stats) String() string {
 		s.Total, s.Verified, s.Auto, s.Missing, s.Orphaned)
 }
 
+// Coverage counts covered and missing strings, deduplicated the same way
+// StatsFor counts totals so the two numbers in a build summary add up.
+func (c *Cache) Coverage(refs []resume.Ref) (covered, missing int) {
+	seen := map[string]bool{}
+	for _, r := range refs {
+		if seen[r.EN] {
+			continue
+		}
+		seen[r.EN] = true
+		if v, ok := c.Lookup(r.EN); ok && v != "" {
+			covered++
+		} else {
+			missing++
+		}
+	}
+	return covered, missing
+}
+
 // StatsFor counts coverage over the deduplicated refs of a document.
 func (c *Cache) StatsFor(refs []resume.Ref) Stats {
 	seen := map[string]bool{}

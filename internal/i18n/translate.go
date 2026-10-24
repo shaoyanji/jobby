@@ -238,6 +238,25 @@ func (c *Cache) Unverified(prefix string) []Entry {
 	return out
 }
 
+// UnverifiedFor returns the unverified entries that belong to a specific set of
+// refs. That is what "polish the German of this application" reviews: only the
+// strings the current capsule actually shows.
+func (c *Cache) UnverifiedFor(refs []resume.Ref) []Entry {
+	want := make(map[string]bool, len(refs))
+	for _, r := range refs {
+		want[Hash(r.EN)] = true
+	}
+	out := make([]Entry, 0, len(refs))
+	for _, e := range c.Entries {
+		if e.Verified || e.Orphaned || !want[e.Hash] {
+			continue
+		}
+		out = append(out, e)
+	}
+	sort.SliceStable(out, func(i, j int) bool { return out[i].PathHint < out[j].PathHint })
+	return out
+}
+
 // EntriesView exposes a copy of the cache entries.
 func (c *Cache) EntriesView() []Entry {
 	out := make([]Entry, len(c.Entries))

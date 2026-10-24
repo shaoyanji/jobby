@@ -23,35 +23,35 @@
           pdfcpu
           mupdf
           translate-shell
-        ];
-
-        resumectl = pkgs.buildGoModule {
-          pname = "resumectl";
+        ];		mkCli = pname: subPackage: meta: pkgs.buildGoModule {
+          inherit pname;
           version = "1.0.0";
           src = ./.;
-          subPackages = ["cmd/resumectl"];
+          subPackages = [subPackage];
           vendorHash = "sha256-kuheizBlwHUpozXPmFnoYOJ4zzyUDu3U5k8j0N1bhGc=";
           nativeBuildInputs = [pkgs.makeWrapper];
           postInstall = ''
-            wrapProgram $out/bin/resumectl \
+            wrapProgram $out/bin/${pname} \
               --prefix PATH : ${lib.makeBinPath runtimeDeps}
           '';
-          meta = {
-            description = "Bilingual JSON Resume pipeline: loadouts, i18n cache, typst to PDF";
-            homepage = "https://github.com/shaoyanji/jobby";
-            mainProgram = "resumectl";
-            license = lib.licenses.mit;
-          };
+          meta = meta // {mainProgram = pname; license = lib.licenses.mit; homepage = "https://github.com/shaoyanji/jobby";};
         };
-      in {
-        packages = {
-          inherit resumectl;
-          default = resumectl;
+
+        resumectl = mkCli "resumectl" "cmd/resumectl" {
+          description = "Bilingual JSON Resume pipeline: loadouts, i18n cache, typst to PDF";
+        };
+
+        workbench = mkCli "workbench" "cmd/workbench" {
+          description = "Application capsules: lenses, cover letters, auto-fitted PDF packages";
+        };
+      in {		packages = {
+          inherit resumectl workbench;
+          default = workbench;
         };
 
         apps = {
-          resumectl = flake-utils.lib.mkApp {drv = resumectl;};
-          default = flake-utils.lib.mkApp {drv = resumectl;};
+          inherit resumectl workbench;
+          default = flake-utils.lib.mkApp {drv = workbench;};
         };
 
         devShells.default = pkgs.mkShellNoCC {

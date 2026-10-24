@@ -46,7 +46,12 @@ func (s Session) logf(format string, args ...any) {
 // Review walks every unverified translation and lets a human accept or rewrite
 // it. Entries are saved one at a time, so quitting halfway keeps the work.
 func Review(cache *i18n.Cache, pathPrefix string) error {
-	entries := cache.Unverified(pathPrefix)
+	return ReviewEntries(cache, cache.Unverified(pathPrefix))
+}
+
+// ReviewEntries is Review for an explicit entry set, which is how the workbench
+// limits the deck to the strings the current application actually shows.
+func ReviewEntries(cache *i18n.Cache, entries []i18n.Entry) error {
 	if len(entries) == 0 {
 		fmt.Println("No unverified translations.")
 		return nil

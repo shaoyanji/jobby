@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "active": "ai",
+  "lenses": {
+    "ai": {
+      "name": "AI Systems & Retrieval Architect",
+      "label": "Software Engineer — AI systems, retrieval, evaluation",
+      "summary": "Builds retrieval and evaluation systems end to end: RAG pipelines, MCP tooling, and the evaluation loops that keep model changes honest.",
+      "titles": {
+        "Bountystash": "Senior AI Software Architect"
+      },
+      "keywords": ["RAG", "MCP", "eval", "evaluation", "retrieval", "LLM", "Go", "Python", "vector"],
+      "max_highlights": 3,
+      "work": {
+        "Bountystash": [0, 1, 2],
+        "O3 Energy": [0, 1],
+        "Swirl Engine": [0],
+        "Fraunhofer ISE": [1]
+      },
+      "projects": {
+        "resumectl": [0, 1],
+        "Energy Scenario Kit": [1]
+      }
+    },
+    "energy": {
+      "name": "Energy & Quantitative Risk Lead",
+      "label": "Senior Quantitative Risk & Energy Systems Architect",
+      "summary": "Models energy-market exposure and builds the systems that price it: PPA structuring, weather derivatives, and the data pipelines behind both.",
+      "titles": {
+        "Bountystash": "Founder & Principal Risk Architect"
+      },
+      "keywords": ["PPA", "weather", "derivative", "risk", "hedge", "energy", "backtest", "PV", "scenario"],
+      "max_highlights": 3,
+      "work": {
+        "Bountystash": [3],
+        "O3 Energy": [2, 3, 0],
+        "Swirl Engine": [0, 1],
+        "Fraunhofer ISE": [0, 1]
+      },
+      "projects": {
+        "resumectl": [1],
+        "Energy Scenario Kit": [0, 1]
+      }
+    },
+    "consulting": {
+      "name": "General Engineering & Consulting",
+      "label": "Programmer, Engineer, Consultant",
+      "summary": "Generalist engineer: picks up a domain, builds the system, documents it, and hands it over.",
+      "keywords": [],
+      "max_highlights": 0,
+      "work": {},
+      "projects": {}
+    }
+  }
+}
