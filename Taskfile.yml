@@ -1,14 +1,18 @@
 version: '3'
 
-# resumetui pipeline: JSON Resume -> Typst -> pdfcpu -> mupdf.
-# The legacy letter/CV pipeline lives in Taskfile.legacy.yml.
+# resumectl pipeline: resume.json -> loadout + i18n view -> typst -> pdfcpu -> mupdf.
+#
+# Every task is a thin call into ./bin/resumectl so the Go code is the only
+# place that knows the pipeline; Taskfile is the discoverable entrypoint.
+# Dependencies come from the flake: run `nix develop` (or `task shell`).
 
 vars:
+  ROOT: '.'
+  CTL: './bin/resumectl'
   LANG: '{{default "en" .LANG}}'
-  OUT_DIR: dist
+  PROFILE: '{{default "default" .PROFILE}}'
   OUT_PDF: 'dist/resume-{{.LANG}}.pdf'
-  MAPPE_PDF: 'dist/bewerbungsmappe-{{.LANG}}.pdf'
-  ACTIVE_JSON: 'dist/active-{{.LANG}}.json'
+  MAPPE_PDF: 'dist/bewerbungsmappe-de.pdf'
 
 tasks:
   default:
@@ -16,71 +20,134 @@ tasks:
     cmds:
       - task --list
 
+  shell:
+    desc: Enter the flake dev shell (go, typst, pdfcpu, mupdf, trans, vd)
+    cmds:
+      - nix develop
+
+  bin:
+    desc: Build ./bin/resumectl when sources changed
+    sources:
+      - 'cmd/**/*.go'
+      - 'internal/**/*.go'
+      - go.mod
+      - go.sum
+    generates:
+      - 'bin/resumectl'
+    cmds:
+      - mkdir -p bin
+      - go build -o bin/resumectl ./cmd/resumectl
+
   tui:
-    desc: Launch the interactive loadout and bilingual editor
+    desc: Interactive menu (review, loadout, sync, build)
+    deps: [bin]
     interactive: true
     cmds:
-      - go run ./cmd/resumetui
+      - '{{.CTL}} tui --root {{.ROOT}}'
 
   i18n:sync:
-    desc: Translate only the English strings with no cached translation
+    desc: Translate only the strings with no cached German yet
+    deps: [bin]
     cmds:
-      - go run ./cmd/resumetui --sync-i18n
+      - '{{.CTL}} i18n-sync --root {{.ROOT}}'
 
-  export:
-    desc: Materialize the loadout + language view used by Typst
+  i18n:sync:dry:
+    desc: Report what i18n-sync would translate, without writing
+    deps: [bin]
     cmds:
-      - mkdir -p {{.OUT_DIR}}
-      - go run ./cmd/resumetui --export-lang={{.LANG}} --out={{.ACTIVE_JSON}}
+      - '{{.CTL}} i18n-sync --root {{.ROOT}} --dry-run --mock -v'
+
+  i18n:review:
+    desc: Review unverified German translations in a huh deck
+    deps: [bin]
+    interactive: true
+    cmds:
+      - '{{.CTL}} i18n-review --root {{.ROOT}}'
+
+  i18n:vd:
+    desc: Edit i18n_cache.json as a spreadsheet in VisiData
+    interactive: true
+    cmds:
+      - vd i18n_cache.json
+
+  i18n:fzf:
+    desc: Fuzzy-pick one cached string and open it in $EDITOR
+    interactive: true
+    cmds:
+      - |
+        hash=$(jq -r '.[] | "\(.hash)\t\(.path_hint)\t\(.en)"' i18n_cache.json \
+          | fzf --delimiter='\t' --with-nth=2,3 | cut -f1)
+        [ -n "$hash" ] && ${EDITOR:-vi} +/"$hash" i18n_cache.json
+
+  stats:
+    desc: Translation coverage and orphaned entries
+    deps: [bin]
+    cmds:
+      - '{{.CTL}} stats --root {{.ROOT}}'
+
+  loadout:
+    desc: Create or edit a named highlight loadout
+    deps: [bin]
+    interactive: true
+    cmds:
+      - '{{.CTL}} loadout-edit --root {{.ROOT}} --profile {{.PROFILE}}'
+
+  render:
+    desc: Export the active view as JSON (stdout by default)
+    deps: [bin]
+    cmds:
+      - '{{.CTL}} render-json --root {{.ROOT}} --lang {{.LANG}} --profile {{.PROFILE}} --out {{default "-" .OUT}}'
+
+  build:en:
+    desc: Build the English PDF
+    deps: [bin]
+    cmds:
+      - task: build:pdf
+        vars: { LANG: en }
+
+  build:de:
+    desc: Build the German PDF
+    deps: [bin]
+    cmds:
+      - task: build:pdf
+        vars: { LANG: de }
 
   build:
-    desc: Compile the active view to PDF and refresh mupdf in place
-    deps:
-      - task: export
-        vars: { LANG: '{{.LANG}}' }
-    sources:
-      - resume.json
-      - i18n_cache.json
-      - loadouts.json
-      - templates/resume.typ
-    generates:
-      - '{{.OUT_PDF}}'
+    desc: Build the PDF for LANG (default en)
+    deps: [bin]
     cmds:
-      - mkdir -p {{.OUT_DIR}}
-      - typst compile --root . --input json_path=/{{.ACTIVE_JSON}} templates/resume.typ {{.OUT_PDF}}
-      - |
-        if [ -f assets/signature.png ] && command -v pdfcpu >/dev/null 2>&1; then
-          pdfcpu stamp add -pages l -mode image -- assets/signature.png "pos:br, off:-40 40, scale:0.18 abs, rot:0" {{.OUT_PDF}} || true
-        fi
-      - command -v pdfcpu >/dev/null 2>&1 && pdfcpu attachments add -q {{.OUT_PDF}} {{.ACTIVE_JSON}} || true
-      - command -v pdfcpu >/dev/null 2>&1 && pdfcpu properties add -q {{.OUT_PDF}} "ResumeLang={{.LANG}}" "SyncedTask={{.LANG}}" || true
-      - command -v pdfcpu >/dev/null 2>&1 && pdfcpu optimize -q {{.OUT_PDF}} || true
-      - pkill -HUP mupdf || true
+      - '{{.CTL}} build-pdf --root {{.ROOT}} --lang {{.LANG}} --profile {{.PROFILE}} --stamp-sig --attach-json --reload-mupdf'
+
+  build:pdf:
+    internal: false
+    desc: (used by build:en/build:de) build one language without the sig stamp
+    deps: [bin]
+    cmds:
+      - '{{.CTL}} build-pdf --root {{.ROOT}} --lang {{.LANG}} --profile {{.PROFILE}} --attach-json --reload-mupdf'
 
   preview:
-    desc: Build, then open the PDF in mupdf
-    deps:
-      - task: build
-        vars: { LANG: '{{.LANG}}' }
-    cmds:
-      - mupdf {{.OUT_PDF}} >/dev/null 2>&1 &
-
-  mappe:
-    desc: Merge Anschreiben + CV + Zeugnisse into one Bewerbungsmappe
-    deps:
-      - task: build
-        vars: { LANG: de }
+    desc: Open mupdf, then build so the viewer reloads in place
+    deps: [bin]
     cmds:
       - |
-        set -- dist/resume-de.pdf
-        [ -f assets/anschreiben.pdf ] && set -- assets/anschreiben.pdf "$@"
-        [ -f assets/zeugnisse.pdf ] && set -- "$@" assets/zeugnisse.pdf
-        pdfcpu merge -q {{.MAPPE_PDF}} "$@"
-      - command -v pdfcpu >/dev/null 2>&1 && pdfcpu optimize -q {{.MAPPE_PDF}} || true
-      - pkill -HUP mupdf || true
+        mupdf {{.OUT_PDF}} >/dev/null 2>&1 &
+        sleep 0.4
+      - '{{.CTL}} build-pdf --root {{.ROOT}} --lang {{.LANG}} --profile {{.PROFILE}} --stamp-sig --attach-json --reload-mupdf'
+
+  unpack:
+    desc: Extract the embedded JSON snapshot from a built PDF
+    deps: [bin]
+    cmds:
+      - '{{.CTL}} unpack {{default .OUT_PDF .PDF}} --dir {{default "extracted" .DIR}}'
+
+  mappe:
+    desc: Merge Anschreiben + German CV + Zeugnisse into one packet
+    deps: [bin]
+    cmds:
+      - '{{.CTL}} mappe --root {{.ROOT}} --profile {{.PROFILE}} --stamp-sig --attach-json --reload-mupdf'
 
   audit:
-    desc: Show page count, properties and provenance attachments
+    desc: Page count, properties and provenance attachments of the built PDF
     cmds:
       - pdfcpu info {{.OUT_PDF}}
       - pdfcpu properties list {{.OUT_PDF}}
@@ -90,3 +157,23 @@ tasks:
     desc: Run the Go test suite
     cmds:
       - go test ./...
+
+  vet:
+    desc: go vet
+    cmds:
+      - go vet ./...
+
+  fmt:
+    desc: gofmt the Go sources
+    cmds:
+      - gofmt -l -w cmd internal
+
+  tidy:
+    desc: go mod tidy
+    cmds:
+      - go mod tidy
+
+  nix:build:
+    desc: Build the packaged binary through the flake
+    cmds:
+      - nix build .#resumectl --print-out-paths

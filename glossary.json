@@ -1,0 +1,18 @@
+{
+  "RAG": "RAG",
+  "MCP": "MCP",
+  "LLM": "LLM",
+  "CI": "CI",
+  "JSON": "JSON",
+  "Nix": "Nix",
+  "NixOS": "NixOS",
+  "Typst": "Typst",
+  "pdfcpu": "pdfcpu",
+  "mupdf": "mupdf",
+  "home-manager": "Home-Manager",
+  "flake": "Flake",
+  "flakes": "Flakes",
+  "eval harnesses": "Evaluierungs-Harnesses",
+  "loadout": "Loadout",
+  "highlights": "Highlights"
+}

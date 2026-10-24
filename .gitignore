@@ -24,7 +24,7 @@ tmp*
 local
 .crush
 
-# resumetui build outputs
-dist/
-result
-.task/
+# resumectl outputs
+/dist/
+/bin/
+/extracted/

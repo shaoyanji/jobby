@@ -1,2 +1,164 @@
-{}
-
+[
+  {
+    "hash": "0f5d0b67f66b",
+    "path_hint": "skills[0].name",
+    "en": "Nix",
+    "de_auto": "Nix",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:46Z"
+  },
+  {
+    "hash": "2ae413599ad7",
+    "path_hint": "basics.altLabels[0]",
+    "en": "Infrastructure Engineer",
+    "de_auto": "Infrastrukturingenieur",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:24Z"
+  },
+  {
+    "hash": "42ebff4396ce",
+    "path_hint": "basics.label",
+    "en": "Platform Engineer",
+    "de_auto": "Plattformingenieur",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:19Z"
+  },
+  {
+    "hash": "445ddaa59df6",
+    "path_hint": "education[0].area",
+    "en": "Computer Science",
+    "de_auto": "Informatik",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:59Z"
+  },
+  {
+    "hash": "5fdc351f0998",
+    "path_hint": "education[0].studyType",
+    "en": "M.Sc.",
+    "de_auto": "M.Sc.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:21:01Z"
+  },
+  {
+    "hash": "6cc8519b9158",
+    "path_hint": "skills[1].name",
+    "en": "Go",
+    "de_auto": "Gehen",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:49Z"
+  },
+  {
+    "hash": "6e7a548c5242",
+    "path_hint": "projects[0].description",
+    "en": "Keyboard-driven JSON Resume loadout and bilingual review pipeline.",
+    "de_auto": "Tastaturgesteuertes JSON-Lebenslauf-Loadout und zweisprachige Überprüfungspipeline.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:38Z"
+  },
+  {
+    "hash": "741d34ff99a8",
+    "path_hint": "work[0].summary",
+    "en": "Owns the Nix-based fleet and the delivery pipeline behind it.",
+    "de_auto": "Besitzt die Nix-basierte Flotte und die dahinter stehende Lieferpipeline.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:30Z"
+  },
+  {
+    "hash": "75da939ab571",
+    "path_hint": "projects[0].highlights[0]",
+    "en": "Bubble Tea TUI over a lossless JSON Resume schema",
+    "de_auto": "Bubble Tea TUI über ein verlustfreies JSON-Resume-Schema",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:42Z"
+  },
+  {
+    "hash": "86ff8187dd84",
+    "path_hint": "basics.summary",
+    "en": "Builds declarative infrastructure and local-first AI tooling, with a bias for small reproducible systems.",
+    "de_auto": "Baut eine deklarative Infrastruktur und lokal ausgerichtete KI-Tools auf, mit Schwerpunkt auf kleinen reproduzierbaren Systemen.",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:22Z"
+  },
+  {
+    "hash": "a659b60d246d",
+    "path_hint": "languages[1].language",
+    "en": "German",
+    "de_auto": "Deutsch",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:54Z"
+  },
+  {
+    "hash": "b2b6dd85fb05",
+    "path_hint": "work[0].highlights[0]",
+    "en": "Rebuilt the host fleet on one flake with inventory-driven CI",
+    "de_auto": "Die Host-Flotte wurde mit inventargesteuerter CI im Handumdrehen neu aufgebaut",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:34Z"
+  },
+  {
+    "hash": "ba118bf7fc9c",
+    "path_hint": "languages[0].language",
+    "en": "English",
+    "de_auto": "Englisch",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:50Z"
+  },
+  {
+    "hash": "bef32d2c315a",
+    "path_hint": "languages[0].fluency",
+    "en": "native",
+    "de_auto": "einheimisch",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:52Z"
+  },
+  {
+    "hash": "c0033063aed3",
+    "path_hint": "basics.altLabels[1]",
+    "en": "AI Platform Engineer",
+    "de_auto": "KI-Plattform-Ingenieur",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:27Z"
+  },
+  {
+    "hash": "cd340d1a5c41",
+    "path_hint": "languages[1].fluency",
+    "en": "professional",
+    "de_auto": "Professional",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:57Z"
+  },
+  {
+    "hash": "f114eb37fd37",
+    "path_hint": "projects[0].highlights[1]",
+    "en": "Typst to PDF with pdfcpu provenance and mupdf live reload",
+    "de_auto": "Typst in PDF mit pdfcpu-Herkunft und mupdf-Live-Reload",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:44Z"
+  },
+  {
+    "hash": "f540bc6e3f63",
+    "path_hint": "work[0].highlights[1]",
+    "en": "Cut median deploy time by offloading builds to remote builders",
+    "de_auto": "Reduzieren Sie die durchschnittliche Bereitstellungszeit, indem Sie Builds an Remote-Builder auslagern",
+    "de_override": "",
+    "verified": false,
+    "updated_at": "2026-10-24T06:20:36Z"
+  }
+]
